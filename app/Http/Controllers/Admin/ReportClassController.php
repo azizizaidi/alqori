@@ -34,20 +34,16 @@ class ReportClassController extends Controller
     public function allowance()
     {
 
-        abort_if(Gate::denies('allowance_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+     abort_if(Gate::denies('allowance_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $teachers = DB::table('report_classes AS report')->whereNull('report.deleted_at')
-       ->select('report.created_by_id', 'user.name', DB::raw('SUM(report.allowance) AS alw'),'month')
-       // ->select('report.*', 'user.name', DB::raw('allowance','month'))
-        ->groupBy('report.created_by_id', 'user.name')
-        ->groupBy('report.month')
-        //->where('month','dec2022')
-        ->join('users AS user', 'report.created_by_id', 'user.id')
-       
-        ->orderBy('report.created_at', 'desc')
-        ->get()
-        ;
-        //dd($teachers);
+      $teachers = DB::table('report_classes AS report')
+       ->whereNull('report.deleted_at')
+       ->select('report.created_by_id', 'user.name', DB::raw('SUM(report.allowance) AS alw'), 'report.month', 'report.created_at')
+       ->groupBy('report.created_by_id', 'user.name', 'report.month', 'report.created_at')
+       ->join('users AS user', 'report.created_by_id', 'user.id')
+       ->orderBy('report.created_at', 'desc')
+       ->get();
+
       
       
         return view('admin.reportClasses.allowance', compact('teachers'));
