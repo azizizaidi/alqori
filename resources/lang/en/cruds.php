@@ -481,6 +481,11 @@ return [
     'feeManagement' => [
         'title'          => 'Fee Management',
         'title_singular' => 'Fee Management',
+
+    ],
+    'claim' => [
+        'title'          => 'Claim ',
+        'title_singular' => 'Claim',
     ],
     'fee' => [
         'title'          => 'Fee',
