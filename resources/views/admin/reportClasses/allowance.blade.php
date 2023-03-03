@@ -100,7 +100,7 @@
                            RM{{ $teacher->alw ?? '' }}
                            </td>
                            <td>
-                                
+                           {{ $teacher->allowance_note ?? '' }}
                            </td>
                            <td>
                                <a class="btn btn-xs btn-info" href="{{ route('admin.edit_allowance',$teacher->id) }}">

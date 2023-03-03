@@ -159,7 +159,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     //admin.allowance
     Route::get('report-classes/allowance', 'ReportClassController@allowance')->name('report-classes.allowance');
     Route::get('report-classes/editallowance/{teacher}', 'ReportClassController@editallowance')->name('edit_allowance');
-    Route::put('report-classes/updateallowance{teacher}', 'ReportClassController@updateallowance')->name('update_allowance');
+    Route::put('report-classes/updateallowance/{teacher}', 'ReportClassController@updateallowance')->name('update_allowance');
     
     Route::delete('report-classes/destroy', 'ReportClassController@massDestroy')->name('report-classes.massDestroy');
     Route::post('report-classes/parse-csv-import', 'ReportClassController@parseCsvImport')->name('report-classes.parseCsvImport');
