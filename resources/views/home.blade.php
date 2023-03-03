@@ -47,8 +47,10 @@
                      </div>
                      </div>
                      
-                        <div><canvas id="myChart" style="width:100%;max-width:700px"></canvas></div>
-                      
+                        <div>
+                          <canvas id="myChart" class="chartjs" data-height="400" height="500" style="display: block; box-sizing: border-box; height: 400px; width: 592.8px;" width="741"></canvas>
+                      </div>
+                        
                                
                    <div class="row">
                       <div class="col-lg-4">
@@ -224,6 +226,7 @@
                      </div>
                    
                      </div>-->
+                     
 
                  
                    @else
