@@ -1,3 +1,5 @@
+
+
 .ck-editor__editable,
 textarea {
     min-height: 150px;
@@ -123,10 +125,69 @@ table.dataTable thead .sorting_desc {
     display: block;
 }
 
-.c-sidebar-brand .c-sidebar-brand-full:hover {
-    color: inherit;
-}
-
 .custom-select.form-control-sm {
     padding: 0.25rem 1.5rem;
+}
+
+/*-----------------sidebar------------------*/
+.c-sidebar{
+    color: #FF1493;
+    background-color: #ffffff;
+}
+.c-sidebar .c-sidebar-brand{
+    color: #FF1493;
+    background-color: #ffffff;
+    border-right-style: solid;
+  border-bottom-style: solid;
+  border-color:#dbdbdb;
+  border-width:1px;
+}
+.c-sidebar-brand .c-sidebar-brand-full:hover {
+    color: #FF1493;
+    text-decoration: none;
+}
+.c-sidebar .c-sidebar-nav {
+   
+  
+}
+.c-sidebar .c-sidebar-nav .c-sidebar-nav-dropdown .c-show {
+    color: #7b7779;
+
+   
+}
+.c-sidebar .c-sidebar-nav .c-sidebar-nav-dropdown .c-sidebar-nav-dropdown-toggle {
+    color: #7b7779;
+
+   
+}
+.c-sidebar .c-sidebar-nav .c-sidebar-nav-dropdown .c-sidebar-nav-dropdown-toggle:hover {
+    color: #FF1493;
+    background-color: #ffffff;
+
+   
+}
+ 
+  
+.c-sidebar .c-sidebar-nav .c-sidebar-nav-item .c-sidebar-nav-link  {
+   
+    color: #7b7779;
+
+   
+ }
+ .c-sidebar .c-sidebar-nav .c-sidebar-nav-item .c-sidebar-nav-link:hover  {
+   
+    color: #FF1493;
+    background-color: #ffffff;
+
+   
+ }
+
+
+.c-sidebar .c-sidebar-nav .c-sidebar-nav-item .c-sidebar-nav-icon{
+    color: #FF1493;
+}
+
+.c-sidebar .c-sidebar-nav .c-sidebar-nav-dropdown .c-sidebar-nav-dropdown-toggle .c-sidebar-nav-icon{
+    color: #FF1493;
+
 }

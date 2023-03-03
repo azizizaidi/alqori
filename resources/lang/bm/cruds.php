@@ -2,12 +2,12 @@
 
 return [
     'userManagement' => [
-        'title'          => 'User management',
-        'title_singular' => 'User management',
+        'title'          => 'Pengurusan pengguna',
+        'title_singular' => 'Pengurusan pengguna',
     ],
     'permission' => [
-        'title'          => 'Permissions',
-        'title_singular' => 'Permission',
+        'title'          => 'Izin',
+        'title_singular' => 'Izin',
         'fields'         => [
             'id'                => 'ID',
             'id_helper'         => ' ',
@@ -22,8 +22,8 @@ return [
         ],
     ],
     'role' => [
-        'title'          => 'Roles',
-        'title_singular' => 'Role',
+        'title'          => 'Peranan',
+        'title_singular' => 'Peranan',
         'fields'         => [
             'id'                 => 'ID',
             'id_helper'          => ' ',
@@ -40,14 +40,14 @@ return [
         ],
     ],
     'user' => [
-        'title'          => 'Users',
-        'title_singular' => 'User',
+        'title'          => 'Daftar Pengguna',
+        'title_singular' => 'Pengguna',
         'fields'         => [
             'id'                       => 'ID',
             'id_helper'                => ' ',
             'name'                     => 'Name',
             'name_helper'              => ' ',
-            'email'                    => 'id Login',
+            'email'                    => 'Email',
             'email_helper'             => ' ',
             'email_verified_at'        => 'Email verified at',
             'email_verified_at_helper' => ' ',
@@ -63,10 +63,8 @@ return [
             'updated_at_helper'        => ' ',
             'deleted_at'               => 'Deleted at',
             'deleted_at_helper'        => ' ',
-            'code'                 => 'Code',
-            'code_helper'          => ' ',
-              'phone'                 => 'Phone',
-            'phone_helper'          => ' ',
+            'usertype'                 => 'Usertype',
+            'usertype_helper'          => ' ',
         ],
     ],
     'student' => [
@@ -77,8 +75,6 @@ return [
             'id_helper'         => ' ',
             'student'           => 'Student',
             'student_helper'    => ' ',
-            'registrar'           => 'Registrar',
-            'registrar_helper'    => ' ',
             'created_at'        => 'Created at',
             'created_at_helper' => ' ',
             'updated_at'        => 'Updated at',
@@ -89,8 +85,6 @@ return [
             'code_helper'       => ' ',
             'age_stage'         => 'Age Stage',
             'age_stage_helper'  => ' ',
-            'notes'             => 'Notes',
-            'note_helper'       => ' ',
         ],
     ],
     'teacherManagement' => [
@@ -157,10 +151,6 @@ return [
             'id_helper'         => ' ',
             'name'              => 'Name',
             'name_helper'       => ' ',
-            'feeperhour'        => 'Fee',
-            'feeperhour_helper' => ' ',
-            'allowanceperhour'  => 'Allowance',
-      'allowanceperhour_helper' => ' ',
             'created_at'        => 'Created at',
             'created_at_helper' => ' ',
             'updated_at'        => 'Updated at',
@@ -175,8 +165,6 @@ return [
         'fields'         => [
             'id'                => 'ID',
             'id_helper'         => ' ',
-            'batch'              => 'Batch',
-            'batch_helper'       => ' ',
             'name'              => 'Name',
             'name_helper'       => ' ',
             'created_at'        => 'Created at',
@@ -224,52 +212,7 @@ return [
             'updated_at'        => 'Updated at',
             'updated_at_helper' => ' ',
         ],
-        
-        
     ],
-    
-     'claim' => [
-        'title'          => 'Claim',
-        'title_singular' => 'Claim',
-        'fields'         => [
-            'id'                => 'ID',
-            'id_helper'         => ' ',
-            'name'              => 'Name',
-            'name_helper'       => ' ',
-            'image'             => 'Image',
-            'image_helper'      => ' ',
-            'amount'            => 'Amount',
-            'amount_helper'     => ' ',
-            'created_at'        => 'Created at',
-            'created_at_helper' => ' ',
-            'updated_at'        => 'Updated at',
-            'updated_at_helper' => ' ',
-        ],
-        
-        
-    ],
-    
-      'debt' => [
-        'title'          => 'Debt',
-        'title_singular' => 'Debt',
-        'fields'         => [
-            'id'                => 'ID',
-            'id_helper'         => ' ',
-            'name'              => 'Name',
-            'name_helper'       => ' ',
-            'description'             => 'Description',
-            'description_helper'      => ' ',
-            'amount'            => 'Amount',
-            'amount_helper'     => ' ',
-            'created_at'        => 'Created at',
-            'created_at_helper' => ' ',
-            'updated_at'        => 'Updated at',
-            'updated_at_helper' => ' ',
-        ],
-        
-        
-    ],
-    
     'taskManagement' => [
         'title'          => 'Task management',
         'title_singular' => 'Task management',
@@ -359,6 +302,10 @@ return [
             'registrar'         => 'Registrar',
             'registrar_helper'  => ' ',
         ],
+        'claim' => [
+            'title'          => 'Tuntutan ',
+            'title_singular' => 'Tuntutan',
+        ],
     ],
     'auditLog' => [
         'title'          => 'Audit Logs',
@@ -385,12 +332,12 @@ return [
         ],
     ],
     'expenseManagement' => [
-        'title'          => 'Expense Management',
-        'title_singular' => 'Expense Management',
+        'title'          => 'Pengurusan Transaksi',
+        'title_singular' => 'Pengurusan Transaksi',
     ],
     'expenseCategory' => [
-        'title'          => 'Expense Categories',
-        'title_singular' => 'Expense Category',
+        'title'          => 'Kategori Pengeluaran',
+        'title_singular' => 'Kategori Pengeluaran',
         'fields'         => [
             'id'                => 'ID',
             'id_helper'         => ' ',
@@ -405,8 +352,8 @@ return [
         ],
     ],
     'incomeCategory' => [
-        'title'          => 'Income categories',
-        'title_singular' => 'Income Category',
+        'title'          => 'Kategori Pendapatan',
+        'title_singular' => 'Kategori Pendapatan',
         'fields'         => [
             'id'                => 'ID',
             'id_helper'         => ' ',
@@ -421,8 +368,8 @@ return [
         ],
     ],
     'expense' => [
-        'title'          => 'Expenses',
-        'title_singular' => 'Expense',
+        'title'          => 'Pengeluaran',
+        'title_singular' => 'Biaya',
         'fields'         => [
             'id'                      => 'ID',
             'id_helper'               => ' ',
@@ -443,8 +390,8 @@ return [
         ],
     ],
     'income' => [
-        'title'          => 'Income',
-        'title_singular' => 'Income',
+        'title'          => 'Pendapatan',
+        'title_singular' => 'Pendapatan',
         'fields'         => [
             'id'                     => 'ID',
             'id_helper'              => ' ',
@@ -465,27 +412,22 @@ return [
         ],
     ],
     'expenseReport' => [
-        'title'          => 'Monthly report',
-        'title_singular' => 'Monthly report',
+        'title'          => 'Laporan bulanan',
+        'title_singular' => 'Laporan bulanan',
         'reports'        => [
-            'title'             => 'Reports',
-            'title_singular'    => 'Report',
-            'incomeReport'      => 'Incomes report',
-            'incomeByCategory'  => 'Income by category',
-            'expenseByCategory' => 'Expense by category',
-            'income'            => 'Income',
-            'expense'           => 'Expense',
-            'profit'            => 'Profit',
+            'title'             => 'Laporan',
+            'title_singular'    => 'Laporan',
+            'incomeReport'      => 'Laporan pendapatan',
+            'incomeByCategory'  => 'Pendapatan berdasarkan Kategori',
+            'expenseByCategory' => 'Pengeluaran berdasarkan Kategori',
+            'income'            => 'Pendapatan',
+            'expense'           => 'Biaya',
+            'profit'            => 'Keuntungan',
         ],
     ],
     'feeManagement' => [
         'title'          => 'Fee Management',
         'title_singular' => 'Fee Management',
-
-    ],
-    'claim' => [
-        'title'          => 'Claim ',
-        'title_singular' => 'Claim',
     ],
     'fee' => [
         'title'          => 'Fee',
@@ -517,7 +459,6 @@ return [
             'class_numer_helper'   => ' ',
             'code_class'           => 'Code Class',
             'code_class_helper'    => ' ',
-           
         ],
     ],
     'assignClassTeacher' => [
@@ -570,57 +511,6 @@ return [
             'id_helper'         => ' ',
             'teacher'           => 'Teacher',
             'teacher_helper'    => ' ',
-            
-            'registrar'           => 'Registrar',
-            'registrar_helper'    => ' ',
-            'classname'           => 'Class Name',
-            'classname_helper'    => ' ',
-            'classname_2'           => 'Class Name(2)',
-            'classname_2_helper'    => ' ',
-            'date'              => 'Date',
-            'date_helper'       => ' ',
-            'date_2'              => 'Date(2)',
-            'date_2_helper'       => ' ',
-            'total_hour'        => 'Total Hour',
-            'total_hour_helper' => ' ',
-            'total_hour_2'        => 'Total Hour(2)',
-            'total_hour_2_helper' => ' ',
-            'total_fee'        => 'Total Fee',
-            'total_fee_helper' => ' ',
-            'class'           => 'Class',
-            'class_helper'    => ' ',
-            'allowance'        => 'Allowance',
-            'allowance_helper' => ' ',
-            'created_at'        => 'Created at',
-            'created_at_helper' => ' ',
-            'updated_at'        => 'Updated at',
-            'updated_at_helper' => ' ',
-            'deleted_at'        => 'Deleted at',
-            'deleted_at_helper' => ' ',
-            'created_by'        => 'Created By',
-            'created_by_helper' => ' ',
-            'fee_student'        => 'Fee',
-            'fee_student_helper' => ' ',
-             'note'              => 'Note',
-            'note_helper'        => ' ',
-            'allowance_note'     => 'Allowance Note',
-            'allowance_note_helper'    => ' ',
-               'status'        => 'Status',
-            'status_helper' => ' ',
-            'month'         => 'Month',
-            'month_helper'  => ' ',
-             'phone'         => 'Phone',
-            'phone_helper'  => ' ',
-        ],
-    ],
-    'invoiceStudent' => [
-        'title'          => 'Invoice Student',
-        'title_singular' => 'Invoice Student',
-        'fields'         => [
-            'id'                => 'ID',
-            'id_helper'         => ' ',
-            'teacher'           => 'Teacher',
-            'teacher_helper'    => ' ',
             'student'           => 'Student',
             'student_helper'    => ' ',
             'date'              => 'Date',
@@ -667,53 +557,4 @@ return [
             'deleted_at_helper'  => ' ',
         ],
     ],
-    'ReportCard' => [
-        'title'          => 'Report Card ',
-        'title_singular' => 'Report Card',
-        'fields'         => [
-            'id'                => 'ID',
-            'id_helper'         => ' ',
-            'teacher'           => 'Teacher',
-            'teacher_helper'    => ' ',
-            'student'           => 'Student',
-            'student_helper'    => ' ',
-            'date'              => 'Date',
-            'date_helper'       => ' ',
-            'subject'           => 'Subject',
-            'subject_helper'    => ' ',
-            'desc'              => 'Description',
-            'desc_helper'       => ' ',
-            'created_at'        => 'Created at',
-            'created_at_helper' => ' ',
-            'updated_at'        => 'Updated at',
-            'updated_at_helper' => ' ',
-            'deleted_at'        => 'Deleted at',
-            'deleted_at_helper' => ' ',
-        ],
-    ],
-    'feepay' => [
-        'title'          => 'Manual Transaction ',
-        'title_singular' => 'Manual Transaction',
-        'fields'         => [
-            'id'                => 'ID',
-            'id_helper'         => ' ',
-            'payer'             => 'Payer',
-            'payer_helper'      => ' ',
-            'image'             => 'Image',
-            'subject_helper'    => ' ',
-            'ref'               => 'Reference',
-            'ref_helper'        => ' ',
-            'created_at'        => 'Created at',
-            'created_at_helper' => ' ',
-            'updated_at'        => 'Updated at',
-            'updated_at_helper' => ' ',
-            'deleted_at'        => 'Deleted at',
-            'deleted_at_helper' => ' ',
-        ],
-    ],
-
-    'allowance' => [
-        'title'          => 'Allowance',
-        'title_singular' => 'Allowance',
-    ]
 ];
