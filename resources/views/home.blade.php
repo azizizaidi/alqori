@@ -12,12 +12,13 @@
                   
                     <div class="row">
                       <div class="col-lg-4">
-                   <div class="card text-white bg-primary " style="width: 18rem;">
+                   <div class="card text-grey bg-white rounded-3 shadow p-1 " style="width: 18rem;">
                        <div class="card-body">
                       
-                           <h5 class="card-title">{{ $registrars->count('id') ?? '' }}</h5>
+                           <h5 class="card-title text-bold">{{ $registrars->count('id') ?? '' }}</h5>
+                           <img src="{{ asset('image/linechart.png') }}" class="float-right  ">
                       
-                             <p class="card-text">Total Registrars</p>
+                             <p class="card-text ">Total Registrars</p>
                            
                          </div>
                     
@@ -25,10 +26,13 @@
                      </div>
                      <!----------2nd col------->
                      <div class="col-lg-4">
-                     <div class="card text-white bg-warning " style="width: 18rem;">
+                   <div class="card text-grey bg-white rounded-3 shadow p-1 " style="width: 18rem;">
                        <div class="card-body">
-                           <h5 class="card-title">{{ $teachers->count('id') ?? '' }}</h5>
-                             <p class="card-text">Total Teachers</p>
+                      
+                           <h5 class="card-title text-bold">{{ $teachers->count('id') ?? '' }}</h5>
+                           <img src="{{ asset('image/linechart2.png') }}" class="float-right  ">
+                      
+                             <p class="card-text ">Total Teachers</p>
                            
                          </div>
                     
@@ -36,10 +40,13 @@
                      </div>
                       <!----------3rd col------->
                       <div class="col-lg-4">
-                      <div class="card text-white bg-success " style="width: 18rem;">
+                   <div class="card text-grey bg-white rounded-3 shadow p-1 " style="width: 18rem;">
                        <div class="card-body">
-                           <h5 class="card-title">{{$students->count('id') ?? '' }}</h5>
-                             <p class="card-text">Total Students</p>
+                      
+                           <h5 class="card-title text-bold">{{ $students->count('id') ?? '' }}</h5>
+                           <img src="{{ asset('image/linechart3.png') }}" class="float-right  ">
+                      
+                             <p class="card-text ">Total Students</p>
                            
                          </div>
                     
