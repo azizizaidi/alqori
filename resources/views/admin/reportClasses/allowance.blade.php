@@ -80,10 +80,11 @@
                         <tr data-entry-id="">
                            
                            <td>
+                           
                           </td>
                             
                             <td>
-                                {{ $teacher->created_by_id ?? '' }}
+                            {{ $teacher->id ?? '' }}
                           
                             </td>
                             <td>
@@ -102,9 +103,9 @@
                                 
                            </td>
                            <td>
-                               <!-- <a class="btn btn-xs btn-info" href="{{ route('admin.edit_allowance',$teacher->created_by_id) }}">
+                               <a class="btn btn-xs btn-info" href="{{ route('admin.edit_allowance',$teacher->id) }}">
                                         {{ trans('global.edit') }}
-                                    </a>-->
+                                    </a>
                            </td>
                         
 

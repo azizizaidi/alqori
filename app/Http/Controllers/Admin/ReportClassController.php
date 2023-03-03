@@ -36,14 +36,14 @@ class ReportClassController extends Controller
 
      abort_if(Gate::denies('allowance_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-      $teachers = DB::table('report_classes AS report')
-       ->whereNull('report.deleted_at')
-       ->select('report.created_by_id', 'user.name', DB::raw('SUM(report.allowance) AS alw'), 'report.month', 'report.created_at')
-       ->groupBy('report.created_by_id', 'user.name', 'report.month', 'report.created_at')
-       ->join('users AS user', 'report.created_by_id', 'user.id')
-       ->orderBy('report.created_at', 'desc')
-       ->get();
-
+     $teachers = DB::table('report_classes AS report')
+     ->whereNull('report.deleted_at')
+     ->select('report.id', 'report.created_by_id', 'user.name', DB::raw('SUM(report.allowance) AS alw'), 'report.month', 'report.created_at')
+     ->groupBy('report.id', 'report.created_by_id', 'user.name', 'report.month', 'report.created_at')
+     ->join('users AS user', 'report.created_by_id', 'user.id')
+     ->orderBy('report.created_at', 'desc')
+     ->get();
+         //dd($teachers);
       
       
         return view('admin.reportClasses.allowance', compact('teachers'));
@@ -56,12 +56,11 @@ class ReportClassController extends Controller
     {
         abort_if(Gate::denies('edit_allowance'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-    $user = User::with('roles')->whereRelation('roles','id', 'like', '%'.'2'.'%')->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');;
+       $user = User::with('roles')->whereRelation('roles','id', 'like', '%'.'2'.'%')->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');;
       
 
        $teacher->load('created_by');
-       //dd($teacher);
-         //json_decode($teacher);
+       
        
        return view('admin.reportClasses.editallowance', compact( 'teacher','user'));
     }

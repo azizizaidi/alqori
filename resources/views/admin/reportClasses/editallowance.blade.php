@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-
+@can('edit_allowance')
 <div class="card">
     <div class="card-header">
         {{ trans('global.edit') }} {{ trans('cruds.reportClass.title_singular') }}
@@ -40,5 +40,5 @@
 </div>
 
 
-
+@endcan
 @endsection
