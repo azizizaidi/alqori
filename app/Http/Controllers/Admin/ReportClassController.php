@@ -56,14 +56,16 @@ class ReportClassController extends Controller
     {
         abort_if(Gate::denies('edit_allowance'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-       $user = User::with('roles')->whereRelation('roles','id', 'like', '%'.'2'.'%')->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');;
+       //$user = User::with('roles')->whereRelation('roles','id', 'like', '%'.'2'.'%')->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');;
       
 
        $teacher->load('created_by');
        
        
-       return view('admin.reportClasses.editallowance', compact( 'teacher','user'));
+       return view('admin.reportClasses.editallowance', compact( 'teacher'));
     }
+
+   
     public function index()
     {
         abort_if(Gate::denies('report_class_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');

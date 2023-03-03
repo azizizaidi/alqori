@@ -3,7 +3,7 @@
 @can('edit_allowance')
 <div class="card">
     <div class="card-header">
-        {{ trans('global.edit') }} {{ trans('cruds.reportClass.title_singular') }}
+        {{ trans('global.edit') }} {{ trans('cruds.reportClass.fields.allowance_note') }}
     </div>
 
     <div class="card-body">
@@ -12,22 +12,17 @@
             @csrf
         
             
-             <div class="form-group">
-                <label class="required" for="registrar_id">{{ trans('cruds.reportClass.fields.registrar') }}</label>
-                <select class="form-control select2 {{ $errors->has('registrar_id') ? 'is-invalid' : '' }}" name="registrar_id" id="registrar_id" required>
-              
-                @foreach($teacher as $id => $teach)
-                           <option value="{{ $id }}" {{ (old('registrar_id') ? old('registrar_id') : $teach->id ?? '') == $id ? 'selected' : '' }}>{{ $teach->date }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('registrar'))
+           
+            <div class="form-group">
+                <label class="required" for="allowance_note">{{ trans('cruds.reportClass.fields.allowance_note') }}</label>
+                <input class="form-control {{ $errors->has('allowance_note') ? 'is-invalid' : '' }}" type="text" name="allowance_note" id="allowance_note" value="{{ old('allowance_note', $teacher->allowance_note) }}" required>
+                @if($errors->has('allowance_note'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('registrar') }}
+                        {{ $errors->first('allowance_note') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.reportClass.fields.registrar_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.reportClass.fields.allowance_note_helper') }}</span>
             </div>
-            
         
        
             <div class="form-group">
