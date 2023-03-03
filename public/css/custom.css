@@ -123,10 +123,44 @@ table.dataTable thead .sorting_desc {
     display: block;
 }
 
-.c-sidebar-brand .c-sidebar-brand-full:hover {
-    color: inherit;
-}
-
 .custom-select.form-control-sm {
     padding: 0.25rem 1.5rem;
+}
+
+/*-----------------sidebar------------------*/
+.c-sidebar{
+    color: white;
+}
+.c-sidebar-brand{
+    color: #FF1493;
+}
+.c-sidebar-brand .c-sidebar-brand-full:hover {
+    color: #FF1493;
+}
+.c-sidebar .c-sidebar-nav {
+   
+    background-color: #ffffff;
+}
+  
+.c-sidebar .c-sidebar-nav .c-sidebar-nav-dropdown .c-sidebar-nav-dropdown-toggle {
+    color: #FF1493;
+
+   
+}
+ 
+  
+.c-sidebar .c-sidebar-nav .c-sidebar-nav-item .c-sidebar-nav-link  {
+   
+    color: #FF1493;
+
+   
+ }
+
+.c-sidebar .c-sidebar-nav .c-sidebar-nav-item .c-sidebar-nav-icon{
+    color: #FF1493;
+}
+
+.c-sidebar .c-sidebar-nav .c-sidebar-nav-dropdown .c-sidebar-nav-dropdown-toggle .c-sidebar-nav-icon{
+    color: #FF1493;
+
 }
