@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "@chartisan/chartjs": "^2.1.0",
+        "@coreui/coreui": "^4.2.6",
         "chart.js": "^2.9.4"
     }
 }
