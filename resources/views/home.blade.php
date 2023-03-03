@@ -54,8 +54,14 @@
                      </div>
                      </div>
                      
-                        <div>
-                          <canvas id="myChart" class="chartjs" data-height="400" height="500" style="display: block; box-sizing: border-box; height: 400px; width: 592.8px;" width="741"></canvas>
+                        <div class="col-lg-10">
+                          <div class="card text-grey bg-white rounded-3 shadow p-1">
+                            <div class="body">
+                            <canvas id="myChart" class="chartjs" data-height="400" height="500" style="display: block; box-sizing: border-box; height: 400px; width: 592.8px;" width="741"></canvas>
+                            </div>
+                          
+                          </div>
+                       
                       </div>
                         
                                
