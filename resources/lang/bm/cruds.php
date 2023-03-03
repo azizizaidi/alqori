@@ -302,10 +302,11 @@ return [
             'registrar'         => 'Registrar',
             'registrar_helper'  => ' ',
         ],
-        'claim' => [
-            'title'          => 'Tuntutan ',
-            'title_singular' => 'Tuntutan',
-        ],
+      
+    ],
+    'claim' => [
+        'title'          => 'Tuntutan ',
+        'title_singular' => 'Tuntutan',
     ],
     'auditLog' => [
         'title'          => 'Audit Logs',
