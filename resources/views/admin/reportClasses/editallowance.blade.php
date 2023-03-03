@@ -7,7 +7,7 @@
     </div>
 
     <div class="card-body">
-        <form method="POST" action="" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("admin.update_allowance", [$teacher->id]) }}" enctype="multipart/form-data">
             @method('PUT')
             @csrf
         

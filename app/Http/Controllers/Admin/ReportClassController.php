@@ -7,6 +7,7 @@ use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Requests\MassDestroyReportClassRequest;
 use App\Http\Requests\StoreReportClassRequest;
 use App\Http\Requests\UpdateReportClassRequest;
+use App\Http\Requests\UpdateAllowanceRequest;
 use App\Models\AssignClassTeacher;
 use App\Models\ReportClass;
 use App\Models\User;
@@ -65,7 +66,14 @@ class ReportClassController extends Controller
        return view('admin.reportClasses.editallowance', compact( 'teacher'));
     }
 
-   
+    public function updateallowance(UpdateAllowanceRequest $request, ReportClass $reportclass)
+    {
+        $reportclass->update($request->all());
+       
+       dd($reportclass);
+        return redirect()->route('admin.report-classes.allowance');
+    }
+
     public function index()
     {
         abort_if(Gate::denies('report_class_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
