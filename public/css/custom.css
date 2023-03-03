@@ -129,10 +129,12 @@ table.dataTable thead .sorting_desc {
 
 /*-----------------sidebar------------------*/
 .c-sidebar{
-    color: white;
+    color: #FF1493;
+    background-color: #ffffff;
 }
 .c-sidebar-brand{
-    color: #FF1493;
+    color: #ffffff;
+    background-color: #ffffff;
 }
 .c-sidebar-brand .c-sidebar-brand-full:hover {
     color: #FF1493;
