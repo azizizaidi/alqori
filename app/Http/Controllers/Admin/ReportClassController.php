@@ -78,22 +78,16 @@ class ReportClassController extends Controller
         abort_if(Gate::denies('report_class_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
        
-        $reportClasses = ReportClass::with(['registrar', 'created_by','class_name'])->get();
+        $reportClasses = ReportClass::with(['registrar', 'created_by','class_name'])
+                                    ->where('month','dec2022')
+                                     ->get();
         
         $users = User::get();
-         $registrars =DB::table('users')->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
+        $registrars =DB::table('users')->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
       
 
-        $teachers = DB::table('report_classes AS report')
-        ->select('report.created_by_id', 'user.name', DB::raw('SUM(report.allowance) AS alw'),'month')
-        ->groupBy('report.created_by_id', 'user.name')
-        ->groupBy('report.month')
-        ->join('users AS user', 'report.created_by_id', 'user.id')
-        ->orderBy('report.created_by_id', 'DESC')
-        ->get();
-      
         
-        return view('admin.reportClasses.index', compact('reportClasses', 'users','registrars','teachers'));
+        return view('admin.reportClasses.index', compact('reportClasses', 'users','registrars'));
  
        
 

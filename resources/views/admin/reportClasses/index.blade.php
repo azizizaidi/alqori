@@ -2,15 +2,6 @@
 @section('content')
 @can('report_class_create')
 
-<!--
-<div class="card text-white bg-primary " style="width: 18rem;">
-  
-  <div class="card-body">
-    <h5 class="card-title">RM{{ $reportClasses->sum('allowance') ?? '' }}</h5>
-    <p class="card-text">Total Allowance This Month</p>
-   
-  </div>
-</div>-->
 
 <div>
 <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
@@ -39,19 +30,19 @@
                 </select>
             </div>
             <div class="form-group">
-                <button class="btn btn-danger" type="submit">
+                <button class="btn btn-danger " type="submit">
                     {{ trans('global.filter') }}
                 </button>
             </div>
         </form>
-<div class="card">
+<div class="card border shadow p-1">
     <div class="card-header">
         {{ trans('cruds.reportClass.title_singular') }} {{ trans('global.list') }}
     </div>
 
     <div class="card-body">
         <div class="table-responsive">
-            <table id="table "class=" table table-bordered table-striped table-hover datatable datatable-ReportClass">
+            <table id="table "class=" table table-bordered rounded  table-striped table-hover datatable datatable-ReportClass" >
                 <thead>
                     <tr>
                         <th width="10">
@@ -224,7 +215,8 @@
                                     <form action="{{ route('admin.report-classes.destroy', $reportClass->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                       
+                                       <input type="submit" class="btn btn-xs btn-danger rounded" value="{{ trans('global.delete') }}">
                                     </form>
                                      
                                 @endcan
@@ -263,7 +255,7 @@
   let deleteButton = {
     text: deleteButtonTrans,
     url: "{{ route('admin.report-classes.massDestroy') }}",
-    className: 'btn-danger',
+    className: 'btn-danger rounded ',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
           return $(entry).data('entry-id')
