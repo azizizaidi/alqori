@@ -174,7 +174,7 @@
     },
     columnDefs: [{
         orderable: false,
-        className: 'select-checkbox',
+        className: 'select-checkbox ',
         targets: 0
     }, {
         orderable: false,
@@ -193,7 +193,7 @@
     buttons: [
       {
         extend: 'selectAll',
-        className: 'btn-primary',
+        className: 'btn-primary rounded',
         text: selectAllButtonTrans,
         exportOptions: {
           columns: ':visible'
@@ -206,7 +206,7 @@
       },
       {
         extend: 'selectNone',
-        className: 'btn-primary',
+        className: 'btn-primary rounded',
         text: selectNoneButtonTrans,
         exportOptions: {
           columns: ':visible'
@@ -214,7 +214,7 @@
       },
       {
         extend: 'copy',
-        className: 'btn-default',
+        className: 'btn-default rounded',
         text: copyButtonTrans,
         exportOptions: {
           columns: ':visible'
@@ -222,7 +222,7 @@
       },
       {
         extend: 'csv',
-        className: 'btn-default',
+        className: 'btn-default rounded',
         text: csvButtonTrans,
         exportOptions: {
           columns: ':visible'
@@ -230,7 +230,7 @@
       },
       {
         extend: 'excel',
-        className: 'btn-default',
+        className: 'btn-default rounded',
         text: excelButtonTrans,
         exportOptions: {
           columns: ':visible'
@@ -238,7 +238,7 @@
       },
       {
         extend: 'pdf',
-        className: 'btn-default',
+        className: 'btn-default rounded',
         text: pdfButtonTrans,
         exportOptions: {
           columns: ':visible'
@@ -246,7 +246,7 @@
       },
       {
         extend: 'print',
-        className: 'btn-default',
+        className: 'btn-default rounded',
         text: printButtonTrans,
         exportOptions: {
           columns: ':visible'
@@ -254,7 +254,7 @@
       },
       {
         extend: 'colvis',
-        className: 'btn-default',
+        className: 'btn-default rounded',
         text: colvisButtonTrans,
         exportOptions: {
           columns: ':visible'
