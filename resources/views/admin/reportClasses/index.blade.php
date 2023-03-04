@@ -15,192 +15,6 @@
 <div>
 <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
 </div>
-<!--<div class="card">
-    <div class="card-header">
-        {{"Total Allowance" }} 
-    </div>
-
-    <div class="card-body">
-        <div class="table-responsive">
-            <table id="dtBasicExample "class=" table table-bordered table-striped table-hover datatable datatable-allowance ">
-                <thead>
-                    <tr>
-                      
-                      
-                      
-                        <th>
-                            {{ trans('cruds.reportClass.fields.month') }}
-                        </th>
-                      
-                      
-                                         
-                        <th>
-                            {{ trans('cruds.reportClass.fields.allowance') }}
-                        </th>
-                      
-                         
-                    </tr>
-                  
-                </thead>
-                <tbody>
-              
-                
-                   
-                    
-                        <tr data-entry-id="">
-                           
-                          
-                         
-                          
-                            <td>
-                            {{" feb 2022" }}
-                            </td>
-                            <td>
-                            RM{{ $reportClasses->where('month','feb2022')->sum('allowance') }}
-                       
-                            </td>
-                         
-                           
-
-                        </tr>
-                        <tr data-entry-id="">
-                           
-                          
-                         
-                           
-                            <td>
-                            {{ "mar 2022" }}
-                            </td>
-                            <td>
-                            RM{{ $reportClasses->where('month','mar2022')->sum('allowance') }}
-                            </td>
-                         
-                           
-
-                        </tr>
-                           <tr data-entry-id="">
-                           
-                          
-                         
-                          
-                            <td>
-                            {{" apr 2022" }}
-                            </td>
-                            <td>
-                            RM{{ $reportClasses->where('month','apr2022')->sum('allowance') }}
-                       
-                            </td>
-                         
-                           
-
-                        </tr>
-                              <tr data-entry-id="">
-                           
-                          
-                         
-                          
-                            <td>
-                            {{" may 2022" }}
-                            </td>
-                            <td>
-                            RM{{ $reportClasses->where('month','may2022')->sum('allowance') }}
-                       
-                            </td>
-                         
-                           
-
-                        </tr>
-                      <tr data-entry-id="">
-                           
-                          
-                         
-                          
-                            <td>
-                            {{" june 2022" }}
-                            </td>
-                            <td>
-                            RM{{ $reportClasses->where('month','june2022')->sum('allowance') }}
-                       
-                            </td>
-                         
-                           
-
-                        </tr>
-                         <tr data-entry-id="">
-                           
-                          
-                         
-                          
-                            <td>
-                            {{" july 2022" }}
-                            </td>
-                            <td>
-                            RM{{ $reportClasses->where('month','jul2022')->sum('allowance') }}
-                       
-                            </td>
-                         
-                           
-
-                        </tr>
-                        
-                          <tr data-entry-id="">
-                           
-                          
-                         
-                          
-                            <td>
-                            {{" august 2022" }}
-                            </td>
-                            <td>
-                            RM{{ $reportClasses->where('month','ogs2022')->sum('allowance') }}
-                       
-                            </td>
-                         
-                           
-
-                        </tr>
-                          <tr data-entry-id="">
-                           
-                          
-                         
-                          
-                            <td>
-                            {{" september 2022" }}
-                            </td>
-                            <td>
-                            RM{{ $reportClasses->where('month','sep2022')->sum('allowance') }}
-                       
-                            </td>
-                         
-                           
-
-                        </tr>
-                         <tr data-entry-id="">
-                           
-                          
-                         
-                          
-                            <td>
-                            {{" october 2022" }}
-                            </td>
-                            <td>
-                            RM{{ $reportClasses->where('month','oct2022')->sum('allowance') }}
-                       
-                            </td>
-                         
-                           
-
-                        </tr>
-                          
-                  
-                   
-                   
-                </tbody>
-            </table>
-           
-        </div>
-    </div>
-</div>-->
 
 
     <div style="margin-bottom: 10px;" class="row">
@@ -216,6 +30,20 @@
     </div>
 @endcan
 
+<div class="form-group">
+                <label class="required" for="title">{{ trans('cruds.reportClass.fields.month') }}</label>
+                <select name="class_names_id" class="form-control select2"style="width:250px">
+                <option>--selct month--</option>
+                <option value="jan2023">january 2023</option>
+                 
+                </select>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-danger" type="submit">
+                    {{ trans('global.filter') }}
+                </button>
+            </div>
+        </form>
 <div class="card">
     <div class="card-header">
         {{ trans('cruds.reportClass.title_singular') }} {{ trans('global.list') }}
@@ -463,7 +291,7 @@
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
     order: [[ 1, 'desc' ]],
-    pageLength: 100,
+    pageLength: 10,
   });
   let table = $('.datatable-ReportClass:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){

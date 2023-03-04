@@ -92,7 +92,7 @@ class ReportClassController extends Controller
         ->orderBy('report.created_by_id', 'DESC')
         ->get();
       
-
+        
         return view('admin.reportClasses.index', compact('reportClasses', 'users','registrars','teachers'));
  
        
