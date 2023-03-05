@@ -16,7 +16,7 @@
             </a>
         </li>
 
-        
+        <li class="c-department">Administration</li>
         @can('user_management_access')
             <li class="c-sidebar-nav-dropdown {{ request()->is("admin/permissions*") ? "c-show" : "" }} {{ request()->is("admin/roles*") ? "c-show" : "" }} {{ request()->is("admin/users*") ? "c-show" : "" }} {{ request()->is("admin/audit-logs*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
@@ -69,6 +69,7 @@
                 </ul>
             </li>
         @endcan
+        <li class="c-department">Human Resource</li>
         @can('teacher_management_access')
             <li class="c-sidebar-nav-dropdown {{ request()->is("admin/teachers*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
@@ -288,6 +289,7 @@
                 </ul>
             </li>
         @endcan
+        <li class="c-department">Finance</li>
         @can('expense_management_access')
             <li class="c-sidebar-nav-dropdown {{ request()->is("admin/expense-categories*") ? "c-show" : "" }} {{ request()->is("admin/income-categories*") ? "c-show" : "" }} {{ request()->is("admin/expenses*") ? "c-show" : "" }} {{ request()->is("admin/incomes*") ? "c-show" : "" }} {{ request()->is("admin/expense-reports*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
@@ -350,6 +352,7 @@
                 </ul>
             </li>
         @endcan
+        <li class="c-department">Operation</li>
         @can('fee_management_access')
             <li class="c-sidebar-nav-dropdown {{ request()->is("admin/fees*") ? "c-show" : "" }} {{ request()->is("admin/invoices*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
@@ -427,7 +430,7 @@
             </li>
         @endcan
          
-            
+        <li class="c-department">Marketing</li>
         @php($unread = \App\Models\QaTopic::unreadCount())
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.messenger.index") }}" class="{{ request()->is("admin/messenger") || request()->is("admin/messenger/*") ? "c-active" : "" }} c-sidebar-nav-link">
@@ -452,6 +455,7 @@
                     </li>
                 @endcan
             @endif
+            <li class="c-department">Sales</li>
             <li class="c-sidebar-nav-item">
                 <a href="#" class="c-sidebar-nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                     <i class="c-sidebar-nav-icon fas fa-fw fa-sign-out-alt">
