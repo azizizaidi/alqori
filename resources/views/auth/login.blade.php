@@ -2,11 +2,12 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-6">
+    <h1 class="login-title">{{ trans('panel.site_title') }}</h1>
         <div class="card mx-4">
             <div class="card-body p-4">
-                <h1>{{ trans('panel.site_title') }}</h1>
+                
 
-                <p class="text-muted">{{ trans('global.login') }}</p>
+                <p class="login-h1 text-muted ">{{ trans('global.login') }}</p>
 
                 @if(session('message'))
                     <div class="alert alert-info" role="alert">
@@ -57,8 +58,8 @@
                     </div>-->
 
                     <div class="row">
-                        <div class="col-6">
-                            <button type="submit" class="btn btn-primary px-4">
+                        <div class="col-12 button-login ">
+                            <button type="submit" class="btn btn-danger px-4  ">
                                 {{ trans('global.login') }}
                             </button>
                         </div>

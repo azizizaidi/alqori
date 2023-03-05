@@ -1,5 +1,22 @@
+.login-title{
+    color: #FF1493;
+    text-align: center;
+}
 
+.card{
+    border-radius: 10px;
+}
 
+.login-h1{
+  text-align: center;
+  font-size: 26px;
+  font-family: serif;
+}
+
+.button-login{
+    text-align: center;
+    font-family: serif;
+}
 .ck-editor__editable,
 textarea {
     min-height: 150px;
