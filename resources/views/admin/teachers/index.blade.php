@@ -20,13 +20,13 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-Teacher">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-Teacher" >
                 <thead>
                     <tr>
                         <th width="10">
 
                         </th>
-                        <th>
+                        <th width="10">
                             {{ trans('cruds.teacher.fields.id') }}
                         </th>
                         <th>
@@ -35,16 +35,16 @@
                         <th>
                             {{ trans('cruds.user.fields.email') }}
                         </th>
-                        <th>
+                        <th width="10">
                             {{ trans('cruds.teacher.fields.code') }}
                         </th>
-                        <th>
+                        <th width="13">
                             {{ trans('cruds.teacher.fields.phone') }}
                         </th>
                         <th>
                             {{ trans('cruds.teacher.fields.address') }}
                         </th>
-                        <th>
+                        <th width="10">
                             {{ trans('cruds.teacher.fields.position') }}
                         </th>
                         <th>
@@ -67,7 +67,7 @@
                         <td>
                         </td>
                         <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                           
                         </td>
                         <td>
                             <select class="search">
@@ -106,9 +106,9 @@
                         </td>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody >
                     @foreach($teachers as $key => $teacher)
-                        <tr data-entry-id="{{ $teacher->id }}">
+                        <tr data-entry-id="{{ $teacher->id }}" >
                             <td>
 
                             </td>
@@ -219,9 +219,10 @@
 @endcan
 
   $.extend(true, $.fn.dataTable.defaults, {
+    scrollY: '50vh',
     orderCellsTop: true,
     order: [[ 1, 'desc' ]],
-    pageLength: 100,
+    pageLength: 10,
   });
   let table = $('.datatable-Teacher:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){

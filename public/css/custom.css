@@ -147,9 +147,17 @@ table.dataTable thead .sorting_desc {
     text-decoration: none;
 }
 
+.c-sidebar .c-sidebar-nav .c-department{
+  color: #7b7779;
+  font-weight: 600;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
 .c-sidebar .c-sidebar-nav .c-sidebar-nav-dropdown .c-sidebar-nav-dropdown-toggle {
-    color: #7b7779;
+    color: #9b999a;
+    font-weight: 500;
    
 
    
@@ -170,12 +178,17 @@ table.dataTable thead .sorting_desc {
 
    
 }
- 
+.c-sidebar .c-sidebar-nav .c-sidebar-nav-item {
+   
+    
+   
+ }
   
 .c-sidebar .c-sidebar-nav .c-sidebar-nav-item .c-sidebar-nav-link  {
    
-    color: #7b7779;
+    color: #9b999a;
     background-color: #ffffff;
+    font-weight: 500;
    
  }
  .c-sidebar .c-sidebar-nav .c-sidebar-nav-item .c-sidebar-nav-link:hover  {
