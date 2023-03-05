@@ -153,6 +153,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Report Class
     Route::get('report-classes/index-student', 'ReportClassController@indexstudent')->name('report-classes.index-student');
+    Route::get('report-classes/filterreportclass', 'ReportClassController@filterreportclass')->name('report-classes.filterreportclass');
+    Route::get('report-classes/getreportclass/{report}', 'ReportClassController@getreportclass')->name('report-classes.getreportclass');
     Route::get('report-classes/showinvoice/{reportClass}', 'ReportClassController@showinvoice')->name('report-classes.showinvoice');
     Route::get('report-classes/payment-page/{reportClass}', 'ReportClassController@paymentPage')->name('report-classes.paymentpage');
     

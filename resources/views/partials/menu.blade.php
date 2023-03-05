@@ -394,7 +394,7 @@
                 <ul class="c-sidebar-nav-dropdown-items">
                     @can('report_class_access')
                         <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.report-classes.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/report-classes") || request()->is("admin/report-classes") ? "c-active" : "" }}">
+                            <a href="{{ route("admin.report-classes.filterreportclass") }}" class="c-sidebar-nav-link {{ request()->is("admin/report-classes/filterreportclass") || request()->is("admin/report-classes/filterreportclass") ? "c-active" : "" }}">
                                 <i class="fa-fw fas fa-edit c-sidebar-nav-icon">
 
                                 </i>

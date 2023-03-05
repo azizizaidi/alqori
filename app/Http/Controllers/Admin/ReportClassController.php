@@ -79,7 +79,6 @@ class ReportClassController extends Controller
 
        
         $reportClasses = ReportClass::with(['registrar', 'created_by','class_name'])
-                                    ->where('month','dec2022')
                                      ->get();
         
         $users = User::get();
@@ -131,7 +130,45 @@ class ReportClassController extends Controller
         return view('admin.reportClasses.indexstudent', compact('reportClasses', 'users'));
         }
     }
+    public function filterreportclass()
+    {
+        abort_if(Gate::denies('report_class_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+       
+        $reportClasses = ReportClass::with(['registrar', 'created_by','class_name'])
+                                     ->select('month')
+                                     ->groupBy('month')
+                                     ->get();
+        //dd($reportClasses);
+       // $users = User::get();
+        //$registrars =DB::table('users')->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
+      
+
+        
+        return view('admin.reportClasses.filter-reportclass', compact('reportClasses'));
+ 
+       
+
+         }
+    public function getreportclass(ReportClass $report)
+    {
+        abort_if(Gate::denies('report_class_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+       
+        $reportClasses = ReportClass::with(['registrar', 'created_by','class_name'])
+                                      ->where($report)
+                                     ->get();
+        
+        $users = User::get();
+        $registrars =DB::table('users')->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
+      
+
+        
+        return view('admin.reportClasses.index', compact('reportClasses', 'users','registrars'));
+ 
+       
+
+         }
     public function create()
     {
         abort_if(Gate::denies('report_class_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
