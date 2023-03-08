@@ -143,7 +143,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    
 <script>
-var xValues = ['feb22','mar22','apr22','may22','jun22','jul22','ogs22','sep22','oct22','nov22','dec22','jan23','feb23'];
+var xValues = ['mar22','apr22','may22','jun22','jul22','ogs22','sep22','oct22','nov22','dec22','jan23','feb23'];
 
 
 
@@ -193,7 +193,7 @@ new Chart("myChart", {
       lineTension: 0,
       backgroundColor: "rgba(255, 99, 71, 1)",
       borderColor: "rgba(255, 108, 49, 0.3)",
-      data: [alwmar22,alwapr22,alwmay22,alwjun22,alwjul22,alwogs22,alwsep22,alwoct22,alwnov22,alwdec22,alwjan23,feefeb23],
+      data: [alwmar22,alwapr22,alwmay22,alwjun22,alwjul22,alwogs22,alwsep22,alwoct22,alwnov22,alwdec22,alwjan23,alwfeb23],
       label:'Total Allowance',
     }
   ]
