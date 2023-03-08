@@ -43,6 +43,10 @@ class UpdateReportClassRequest extends FormRequest
                 'integer',
                
             ],
+            'allowance_note' => [
+                
+               
+            ],
             'total_hour' => [
                 'required',
                
