@@ -21,6 +21,20 @@
     </div>
 @endcan
 
+<div class="form-group">
+                <label class="required" for="title">{{ trans('cruds.reportClass.fields.month') }}</label>
+                <select name="class_names_id" class="form-control select2"style="width:250px">
+                <option>--selct month--</option>
+                <option value="jan2023">january 2023</option>
+                 
+                </select>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-danger " type="submit">
+                    {{ trans('global.filter') }}
+                </button>
+            </div>
+        </form>
 <div class="card border shadow p-1">
     <div class="card-header">
         {{ trans('cruds.reportClass.title_singular') }} {{ trans('global.list') }}
