@@ -44,7 +44,7 @@ class ReportClassController extends Controller
      ->join('users AS user', 'report.created_by_id', 'user.id')
      ->orderBy('report.created_at', 'desc')
      ->get();
-     dd($teachers);
+  
       
       
         return view('admin.reportClasses.allowance', compact('teachers'));
