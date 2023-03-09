@@ -17,14 +17,7 @@
     </div>
 @endcan
 
-<!--<div class="card text-white bg-danger " style="width: 18rem;">
-  
-  <div class="card-body">
-    <h5 class="card-title">RM{{ $reportClasses->sum('fee_student') ?? '' }}</h5>
-    <p class="card-text">Total Unpaid Fee</p>
-   
-  </div>-->
-</div>
+
 <div class="card">
     <div class="card-header">
         {{ trans('cruds.invoiceStudent.title_singular') }} {{ trans('global.list') }}
