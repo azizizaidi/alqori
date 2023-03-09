@@ -39,7 +39,7 @@ class ReportClassController extends Controller
 
      $teachers = DB::table('report_classes AS report')
      ->whereNull('report.deleted_at')
-     ->select('report.id', 'report.created_by_id', 'user.name', DB::raw('SUM(report.allowance) AS alw'), 'report.month', 'report.created_at')
+     ->select('report.id', 'report.allowance_note','report.created_by_id', 'user.name', DB::raw('SUM(report.allowance) AS alw'), 'report.month', 'report.created_at')
      ->groupBy('report.id', 'report.created_by_id', 'user.name', 'report.month', 'report.created_at')
      ->join('users AS user', 'report.created_by_id', 'user.id')
      ->orderBy('report.created_at', 'desc')
