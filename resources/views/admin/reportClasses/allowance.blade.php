@@ -97,7 +97,7 @@
                             
                             <td>
                                
-                           RM{{ $teacher->alw ?? '' }}
+                           RM{{ $teacher->allowance ?? '' }}
                            </td>
                            <td>
                            {{ $teacher->allowance_note ?? '' }}
