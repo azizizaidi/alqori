@@ -132,44 +132,6 @@ class ReportClassController extends Controller
         }
     }
 
-<<<<<<< Updated upstream
-=======
-       
-        $reportClasses = ReportClass::with(['registrar', 'created_by','class_name'])
-                                     ->select('month')
-                                     ->groupBy('month')
-                                     ->get();
-        //dd($reportClasses);
-       // $users = User::get();
-        //$registrars =DB::table('users')->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
-      
-
-        
-        return view('admin.reportClasses.filter-reportclass', compact('reportClasses'));
- 
-       
-
-         }
-    public function getreportclass(ReportClass $report)
-    {
-        abort_if(Gate::denies('report_class_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-           dd($report);
-       
-        $reportClasses = ReportClass::with(['registrar', 'created_by','class_name'])
-                                      ->whereHas($report)
-                                     ->get();
-        
-        $users = User::get();
-        $registrars =DB::table('users')->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
-      
-
-        
-        return view('admin.reportClasses.index', compact('reportClasses', 'users','registrars'));
- 
-       
-
-         }
->>>>>>> Stashed changes
     public function create()
     {
         abort_if(Gate::denies('report_class_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
