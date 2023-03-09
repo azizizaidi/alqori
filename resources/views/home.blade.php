@@ -16,7 +16,7 @@
                        <div class="card-body">
                       
                            <h5 class="card-title text-bold">{{ $registrars->count('id') ?? '' }}</h5>
-                           <img src="{{ asset('image/linechart.png') }}" class="float-right  ">
+                           <img src="{{ url('/images/linechart.png') }}" class="float-right  ">
                       
                              <p class="card-text ">Total Registrars</p>
                            
@@ -30,7 +30,7 @@
                        <div class="card-body">
                       
                            <h5 class="card-title text-bold">{{ $teachers->count('id') ?? '' }}</h5>
-                           <img src="{{ asset('image/linechart2.png') }}" class="float-right  ">
+                           <img src="{{ url('/images/linechart2.png') }}" class="float-right  ">
                       
                              <p class="card-text ">Total Teachers</p>
                            
@@ -44,7 +44,7 @@
                        <div class="card-body">
                       
                            <h5 class="card-title text-bold">{{ $students->count('id') ?? '' }}</h5>
-                           <img src="{{ asset('image/linechart3.png') }}" class="float-right  ">
+                           <img src="{{url('/images/linechart3.png')}}" class="float-right  ">
                       
                              <p class="card-text ">Total Students</p>
                            
