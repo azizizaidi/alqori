@@ -79,7 +79,7 @@ class ReportClassController extends Controller
 
        
         $reportClasses = ReportClass::with(['registrar', 'created_by','class_name'])
-                                    ->where('month','dec2022')
+                                    //->where('month','dec2022')
                                      ->get();
         
         $users = User::get();
