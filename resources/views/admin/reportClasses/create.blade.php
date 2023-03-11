@@ -34,7 +34,7 @@
                 <select class="form-control select2" name="registrar_id"  required>
                <option value="">--- Select Registrar ---</option>
                 @foreach($registrars as $key => $value)
-                         <option value="{{ $key }}">{{ $value }}</option>
+                         <option value="{{ $key }}">{{ $value->name }}</option>
                     @endforeach
                 </select>
               
@@ -44,14 +44,10 @@
            
             <div class="form-group">
                 <label class="required" for="class_names">{{ trans('cruds.reportClass.fields.classname') }}</label>
-                   <p class="text-danger">AQ: Kelas yang ada diskaun harga yuran bila buat kelas penuh</br>
-                   BQ: Kelas yang harga yuran tetap</br> CQ:Hanya Untuk Kelas Online Al-Quran 30 minit(PAKEJ PKP)</p>
-                   <p class="text-danger">KESALAHAN NAMA KELAS AKAN MENYEBABKAN ELAUN MASUK LAMBAT</p>
+              
                 <select name="class_names_id" class="form-control select2"style="width:250px">
                 <option>--Class Name--</option>
-                  @foreach($classnames as $key => $value)
-                         <option value="{{ $key }}">{{ $value }}</option>
-                    @endforeach
+                 
                 </select>
             </div>
         
@@ -120,9 +116,7 @@
            
             <div class="form-group">
                 <label class="" for="class_names_id_2">{{ trans('cruds.reportClass.fields.classname_2') }}</label>
-                   <p class="text-danger">AQ: Kelas yang ada diskaun harga yuran bila buat kelas penuh</br>
-                   BQ: Kelas yang harga yuran tetap</br> CQ:Hanya Untuk Kelas Online Al-Quran 30 minit(PAKEJ PKP)</p>
-                    <p class="text-danger">KESALAHAN NAMA KELAS AKAN MENYEBABKAN ELAUN MASUK LAMBAT</p>
+                 
                <select name="class_names_id_2" class="form-control select2"style="width:250px">
                 <option value="">--Class Name--</option>
                   @foreach($classnames as $key => $value)

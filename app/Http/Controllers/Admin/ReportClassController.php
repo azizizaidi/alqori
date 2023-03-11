@@ -139,19 +139,21 @@ class ReportClassController extends Controller
        // whereRelation('roles','id', 'like', '%'.'4'.'%')
        //->whereRelation('registrar','teacher_id', 'like', '%'.Auth::user()->id.'%')
      
-        $registrars = User::with('registrar')->whereRelation('roles','id', 'like', '%'.'4'.'%')->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
+        //$registrars = User::with('registrar')->whereRelation('roles','id', 'like', '%'.'4'.'%')->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
    
    //$registrars= AssignClassTeacher::with('registrar')->whereRelation('registrar','teacher_id', 'like', '%'.Auth::user()->id.'%'//)->select('id','registrar_id','teacher_id')->get();
  // dd($registrars);
   
   
     
-   // $registrars = DB::table('assign_class_teachers AS assignclass')
-     //   ->whereRelation('registrar_id','teacher_id', 'like', '%'.Auth::user()->id.'%')
-       // ->select('assignclass.registrar_id', 'user.name')
-        //->join('users AS user', 'assignclass.registrar_id', 'user.id')
-        //->get();
-         //dd($registrars);
+ $registrars = DB::table('assign_class_teachers AS assignclass')
+ ->where('assignclass.teacher_id', Auth::user()->id)
+ ->whereNull('assignclass.deleted_at')
+ ->select('assignclass.registrar_id', 'user.name')
+ ->join('users AS user', 'assignclass.registrar_id', '=', 'user.id')
+ ->get();
+ //dd($registrars);
+         
         
        $classnames = ClassName:: orderBy('name', 'ASC')->get()->pluck("name","id");
        return view('admin.reportClasses.create', compact( ['registrars','classnames']));
