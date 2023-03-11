@@ -46,7 +46,7 @@ class AssignClassTeacher extends Model
     public function classes()
     {
        
-         return $this->belongsToMany(ClassName::class);
+         return $this->belongsToMany(ClassName::class,'classname_id');
     }
 
     protected function serializeDate(DateTimeInterface $date)

@@ -53,4 +53,11 @@ class ClassName extends Model
      {
         return $this->hasOne(RegisterClass::class, '');
      }
+
+     public function assignclass()
+     {
+        
+          return $this->belongsToMany(AssignClassTeacher::class);
+     }
 }
+

@@ -28,31 +28,32 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.reportClass.fields.month_helper') }}</span>
             </div>
+
+            <div class="form-group">
+                <label class="required" for="class_names">{{ trans('cruds.reportClass.fields.classname') }}</label>
+              
+                <select name="class_names_id" class="form-control select2"style="width:250px">
+                <option value="">Select Class </option>
+                @foreach($classnames as $key => $value)
+                         <option value="{{ $key }}">{{ $value }}</option>
+                    @endforeach
+              
+                 
+                </select>
+            </div>
         
               <div class="form-group">
                 <label class="required" for="registrar_id">{{ trans('cruds.reportClass.fields.registrar') }}</label>
                 <select class="form-control select2" name="registrar_id"  required>
                <option value="">--- Select Registrar ---</option>
-                @foreach($registrars as $key => $value)
-                         <option value="{{ $key }}">{{ $value }}</option>
-                    @endforeach
+              
                 </select>
               
             </div>
 
           
            
-            <div class="form-group">
-                <label class="required" for="class_names">{{ trans('cruds.reportClass.fields.classname') }}</label>
-              
-                <select name="class_names_id" class="form-control select2"style="width:250px">
-                <option>--Class Name--</option>
-                @foreach($classnames as $key => $value)
-                         <option value="{{ $key }}">{{ $value }}</option>
-                    @endforeach
-                 
-                </select>
-            </div>
+           
         
            
             <div class="form-group">
@@ -202,31 +203,32 @@
 <script type="text/javascript">
     jQuery(document).ready(function ()
     {
-            jQuery('select[name="registrar"]').on('change',function(){
-               var registrarID = jQuery(this).val();
-               if(registrarID)
+            jQuery('select[name="class_names_id"]').on('change',function(){
+               var classnameID = jQuery(this).val();
+               if(classnameID)
                {
                   jQuery.ajax({
-                     url : 'report-classes/getclassnames/' +registrarID,
+                     url : 'report-classes/getregistrar/' +classnameID,
                      type : "GET",
                      dataType : "json",
                      success:function(data)
                      {
                         console.log(data);
-                        jQuery('select[name="class_names"]').empty();
+                        jQuery('select[name="registrar_id"]').empty();
                         jQuery.each(data, function(key,value){
-                           $('select[name="class_names"]').append('<option value="'+ key +'">'+ value +'</option>');
+                           $('select[name="registrar_id"]').append('<option value="'+ key +'">'+ value +'</option>');
                         });
                      }
                   });
                }
                else
                {
-                  $('select[name="class_names"]').empty();
+                  $('select[name="registrar_id"]').empty();
                }
             });
     });
     </script>
+    
 
 
 

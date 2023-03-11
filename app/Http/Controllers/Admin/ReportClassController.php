@@ -139,7 +139,7 @@ class ReportClassController extends Controller
        // whereRelation('roles','id', 'like', '%'.'4'.'%')
        //->whereRelation('registrar','teacher_id', 'like', '%'.Auth::user()->id.'%')
      
-       $registrars = User::whereRelation('roles','id', 'like', '%'.'4'.'%')->whereRelation('registrar','teacher_id','like',Auth::user()->id)->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
+       //$registrars = User::whereRelation('roles','id', 'like', '%'.'4'.'%')->whereRelation('registrar','teacher_id','like',Auth::user()->id)->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
       // dd($registrars);
    //$registrars= AssignClassTeacher::with('registrar')->whereRelation('registrar','teacher_id', 'like', '%'.Auth::user()->id.'%'//)->select('id','registrar_id','teacher_id')->get();
  // dd($registrars);
@@ -162,17 +162,23 @@ class ReportClassController extends Controller
          
         
        $classnames = ClassName:: orderBy('name', 'ASC')->get()->pluck("name","id");
-       return view('admin.reportClasses.create', compact( ['registrars','classnames']));
+       return view('admin.reportClasses.create', compact( ['classnames']));
  
       
           }
          
           
-    public function getClassNames($id) 
+    public function getRegistrar($id) 
     {        
-        $classnames = DB::table("assign_class_teacher_class_name")->where("assign_class_teacher_id",$id)->pluck("class_names_id","");
-         //dd( $classnames);
-        return json_encode($classnames);
+      
+        // $registrar = AssignClassTeacher::whereRelation('classes','classname_id','LIKE',$id)->get()->pluck('id','teacher_code');
+        
+       // return json_encode($registrar);
+
+       $registrar = DB::table("assign_class_teachers")
+                    ->where("classname_id",$id)
+                    ->pluck('student_code','id');
+        return json_encode($registrar);
     }
 
    /* public function store(StoreReportClassRequest $request)
