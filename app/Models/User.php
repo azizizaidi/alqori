@@ -110,6 +110,6 @@ class User extends Authenticatable
     public function registrar()
     {
       
-     return $this->hasMany(AssignClassTeacher::class,'registrar_id','id');
+     return $this->hasMany(AssignClassTeacher::class,'registrar_id');
     }
 }

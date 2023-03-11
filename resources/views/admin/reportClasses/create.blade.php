@@ -34,7 +34,7 @@
                 <select class="form-control select2" name="registrar_id"  required>
                <option value="">--- Select Registrar ---</option>
                 @foreach($registrars as $key => $value)
-                         <option value="{{ $key }}">{{ $value->name }}</option>
+                         <option value="{{ $key }}">{{ $value }}</option>
                     @endforeach
                 </select>
               
@@ -47,6 +47,9 @@
               
                 <select name="class_names_id" class="form-control select2"style="width:250px">
                 <option>--Class Name--</option>
+                @foreach($classnames as $key => $value)
+                         <option value="{{ $key }}">{{ $value }}</option>
+                    @endforeach
                  
                 </select>
             </div>
