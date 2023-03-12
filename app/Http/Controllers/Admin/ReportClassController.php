@@ -136,50 +136,28 @@ class ReportClassController extends Controller
     {
         abort_if(Gate::denies('report_class_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         
-       // whereRelation('roles','id', 'like', '%'.'4'.'%')
-       //->whereRelation('registrar','teacher_id', 'like', '%'.Auth::user()->id.'%')
-     
-       //$registrars = User::whereRelation('roles','id', 'like', '%'.'4'.'%')->whereRelation('registrar','teacher_id','like',Auth::user()->id)->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
-      // dd($registrars);
-   //$registrars= AssignClassTeacher::with('registrar')->whereRelation('registrar','teacher_id', 'like', '%'.Auth::user()->id.'%'//)->select('id','registrar_id','teacher_id')->get();
- // dd($registrars);
-  
-  
-    
- /*$registrars = DB::table('assign_class_teachers AS assignclass')
- ->where('assignclass.teacher_id', Auth::user()->id)
- ->whereNull('assignclass.deleted_at')
- ->select('assignclass.registrar_id', 'user.name')
- ->join('users AS user', 'assignclass.registrar_id', '=', 'user.id')
- ->get();
-
- $registrars = User::select('assignclass.registrar_id', 'users.name')
-    ->join('assign_class_teachers AS assignclass', 'users.id', '=', 'assignclass.registrar_id')
-    ->where('assignclass.teacher_id', Auth::user()->id)
-    ->whereNull('assignclass.deleted_at')
-    ->get();
-    dd($registrars);*/
-         
-        
        $classnames = ClassName:: orderBy('name', 'ASC')->get()->pluck("name","id");
        return view('admin.reportClasses.create', compact( ['classnames']));
  
       
-          }
+   }
          
           
     public function getRegistrar($id) 
     {        
       
-        // $registrar = AssignClassTeacher::whereRelation('classes','classname_id','LIKE',$id)->get()->pluck('id','teacher_code');
-        
-       // return json_encode($registrar);
-
-       $registrar = DB::table("assign_class_teachers")
-                    ->where("classname_id",$id)
-                    ->pluck('student_code','id');
+      
+        $registrar = AssignClassTeacher::where('classname_id', $id)
+        ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
+        ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'assign_class_teachers.id')
+        ->pluck('full_name', 'assign_class_teachers.id');
         return json_encode($registrar);
+
+     
     }
+
+    
+ 
 
    /* public function store(StoreReportClassRequest $request)
     {

@@ -28,15 +28,15 @@ class HomeController
 
      
 
-        $assignclasses = AssignClassTeacher::with('teacher','registrar','classes')
-                        ->whereRelation('teacher','id', 'like', '%'.Auth::user()->id.'%')
-                        ->get();
+       // $assignclasses = AssignClassTeacher::with('teacher','registrar','classes')
+         //               ->whereRelation('teacher','id', 'like', '%'.Auth::user()->id.'%')
+                     //   ->get();
     //dd($reportclasses);
         
         //$students = AssignClassTeacher::with([ 'student', 'teacher','class'])
                                      // ->whereRelation('teacher','id', 'like', '%'.Auth::user()->id.'%')
                                    //   ->get();;
         
-        return view('home', compact('registrars','students','teachers','reportclasses','assignclasses'));
+        return view('home', compact('registrars','students','teachers','reportclasses'));
     }
 }

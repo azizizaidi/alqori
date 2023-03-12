@@ -208,7 +208,7 @@
                if(classnameID)
                {
                   jQuery.ajax({
-                     url : 'report-classes/getregistrar/' +classnameID,
+                     url : '/admin/report-classes/getregistrar/' +classnameID,
                      type : "GET",
                      dataType : "json",
                      success:function(data)
