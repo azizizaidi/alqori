@@ -149,9 +149,10 @@ class ReportClassController extends Controller
       
         $registrar = AssignClassTeacher::where('classname_id', $id)
         ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
-        ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'assign_class_teachers.id')
+        ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'users.id')
         ->pluck('full_name', 'assign_class_teachers.id');
         return json_encode($registrar);
+
 
      
     }
@@ -342,7 +343,7 @@ class ReportClassController extends Controller
         $reportClass = ReportClass::create($request->all());
         $classname = ClassName::find($request->id = $reportClass->class_names_id);
         $classname_2 = ClassName::find($request->id = $reportClass->class_names_id_2);
-    
+      
         $total_hour = $reportClass->total_hour;
         $fee_student = $total_hour * $classname->allowanceperhour;
     
@@ -416,7 +417,7 @@ class ReportClassController extends Controller
         $reportClass->allowance = $fee_student;
         $reportClass->status = 0;
         $reportClass->save();
-
+      
         return redirect()->route('admin.report-classes.index');
     }
    

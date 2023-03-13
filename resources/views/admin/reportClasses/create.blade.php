@@ -45,7 +45,7 @@
               <div class="form-group">
                 <label class="required" for="registrar_id">{{ trans('cruds.reportClass.fields.registrar') }}</label>
                 <select class="form-control select2" name="registrar_id"  required>
-               <option value="">--- Select Registrar ---</option>
+               <option value="">--- Select class first ---</option>
               
                 </select>
               
@@ -216,6 +216,7 @@
                         console.log(data);
                         jQuery('select[name="registrar_id"]').empty();
                         jQuery.each(data, function(key,value){
+                    
                            $('select[name="registrar_id"]').append('<option value="'+ key +'">'+ value +'</option>');
                         });
                      }

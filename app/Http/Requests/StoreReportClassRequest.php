@@ -20,6 +20,7 @@ class StoreReportClassRequest extends FormRequest
          
             'registrar_id' => [
                 'required',
+                'integer',
                
             ],
 
