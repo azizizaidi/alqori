@@ -35,18 +35,39 @@
                 <span class="help-block">{{ trans('cruds.assignClassTeacher.fields.teacher_code_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="student_id">{{ trans('cruds.assignClassTeacher.fields.student') }}</label>
-                <select class="form-control select2 {{ $errors->has('student') ? 'is-invalid' : '' }}" name="student_id" id="student_id" required>
-                    @foreach($students as $id => $entry)
-                        <option value="{{ $id }}" {{ (old('student_id') ? old('student_id') : $assignClassTeacher->student->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('student'))
+                <label class="required" for="classname_id">{{ trans('cruds.assignClassTeacher.fields.class') }}</label>
+
+                <select class="form-control select2 {{ $errors->has('classes') ? 'is-invalid' : '' }}" name="classname_id[]" id="classname_id" multiple required>
+    @foreach($classes as $id => $entry)
+        <option value="{{ $id }}" {{ ($assignClassTeacher->classes->pluck('id')->contains($id)) ? 'selected' : ''}}>
+            {{ $entry }}
+        </option>
+    @endforeach
+</select>
+
+             
+
+
+                @if($errors->has('class'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('student') }}
+                        {{ $errors->first('class') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.assignClassTeacher.fields.student_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.assignClassTeacher.fields.class_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="registrar_id">{{ trans('cruds.assignClassTeacher.fields.registrar') }}</label>
+                <select class="form-control select2 {{ $errors->has('registrar') ? 'is-invalid' : '' }}" name="registrar_id" id="registrar_id" required>
+                    @foreach($registrars as $id => $entry)
+                        <option value="{{ $id }}" {{ (old('registrar_id') ? old('registrar_id') : $assignClassTeacher->registrar->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('registrar'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('registrar') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.assignClassTeacher.fields.registrar_helper') }}</span>
             </div>
             <div class="form-group">
                 <label class="required" for="student_code">{{ trans('cruds.assignClassTeacher.fields.student_code') }}</label>
@@ -58,20 +79,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.assignClassTeacher.fields.student_code_helper') }}</span>
             </div>
-            <div class="form-group">
-                <label class="required" for="class_id">{{ trans('cruds.assignClassTeacher.fields.class') }}</label>
-                <select class="form-control select2 {{ $errors->has('class') ? 'is-invalid' : '' }}" name="class_id" id="class_id" required>
-                    @foreach($classes as $id => $entry)
-                        <option value="{{ $id }}" {{ (old('class_id') ? old('class_id') : $assignClassTeacher->class->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('class'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('class') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.assignClassTeacher.fields.class_helper') }}</span>
-            </div>
+           
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}

@@ -24,18 +24,11 @@ class AssignClassTeacherController extends Controller
     {
         abort_if(Gate::denies('assign_class_teacher_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $assignClassTeachers = AssignClassTeacher::with(['teacher', 'registrar', 'classes'])->get();
+        $assignClassTeachers = AssignClassTeacher::with(['teacher', 'registrar'])->get();
 
-        $teachers=User::whereHas('roles', function($q){$q->whereIn('title', ['teacher']);})->get();
+       $teachers=User::whereHas('roles', function($q){$q->whereIn('title', ['teacher']);})->get();
        $students=User::whereHas('roles', function($q){$q->whereIn('title', ['registrar']);})->get();
-        //$teachers = User::with(['roles'])
-                    // ->join('roles', 'roles.user_id', '=', 'users.id')
-                  //   ->where('roles.title', 'teacher')
-                //     ->get();
-        //$students = User::with(['roles'])
-          //           ->join('roles', 'roles.user_id', '=', 'users.id')
-            //         ->where('roles.title', 'registrar')
-              //       ->get();
+       
 
         $register_classes = ClassName::get();
 
@@ -84,16 +77,16 @@ class AssignClassTeacherController extends Controller
         ->whereRelation('roles','id', 'like', '%'.'2'.'%')
         ->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
         
-         $students = User::with('roles')
+         $registrars = User::with('roles')
         ->whereRelation('roles','id', 'like', '%'.'4'.'%')
         ->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
 
         $classes = ClassName::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $assignClassTeacher->load('teacher', 'student', 'class');
+        $assignClassTeacher->load('teacher', 'registrar', 'classes');
 
-        return view('admin.assignClassTeachers.edit', compact('teachers', 'students', 'classes', 'assignClassTeacher'));
+        return view('admin.assignClassTeachers.edit', compact('teachers', 'registrars', 'classes', 'assignClassTeacher'));
     }
 
     public function update(UpdateAssignClassTeacherRequest $request, AssignClassTeacher $assignClassTeacher)
