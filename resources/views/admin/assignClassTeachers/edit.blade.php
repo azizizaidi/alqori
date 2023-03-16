@@ -40,6 +40,7 @@
                 <select class="form-control select2 {{ $errors->has('classes') ? 'is-invalid' : '' }}" name="classname_id[]" id="classname_id" multiple required>
     @foreach($classes as $id => $entry)
         <option value="{{ $id }}" {{ ($assignClassTeacher->classes->pluck('id')->contains($id)) ? 'selected' : ''}}>
+            
             {{ $entry }}
         </option>
     @endforeach
