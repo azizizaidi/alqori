@@ -146,11 +146,13 @@ class ReportClassController extends Controller
     public function getRegistrar($id) 
     {        
       
-      
-        $registrar = AssignClassTeacher::where('classname_id', $id)
-        ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
-        ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'users.id')
-        ->pluck('full_name', 'assign_class_teachers.id');
+      $registrar = AssignClassTeacher::with('classes')
+      ->whereRelation('classes', 'class_name_id', 'LIKE', $id)
+      ->whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)
+        //$registrar = AssignClassTeacher::where('classname_id', $id)
+       ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
+      ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'users.id')
+       ->pluck('full_name', 'assign_class_teachers.id');
         return json_encode($registrar);
 
 

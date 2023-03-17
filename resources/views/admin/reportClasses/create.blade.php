@@ -32,7 +32,7 @@
             <div class="form-group">
                 <label class="required" for="class_names">{{ trans('cruds.reportClass.fields.classname') }}</label>
               
-                <select name="class_names_id" class="form-control select2"style="width:250px">
+                <select name="class_names_id" class="form-control select2"style="width:250px" multiple>
                 <option value="">Select Class </option>
                 @foreach($classnames as $key => $value)
                          <option value="{{ $key }}">{{ $value }}</option>
