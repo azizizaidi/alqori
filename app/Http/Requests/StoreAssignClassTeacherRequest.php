@@ -34,10 +34,10 @@ class StoreAssignClassTeacherRequest extends FormRequest
                 'required',
             ],
             
-            'classname_id' => [
+            'classes' => [
                 'required',
                 'array',
-                'integer',
+               
             ],
         ];
     }

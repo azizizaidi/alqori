@@ -39,10 +39,7 @@ class AssignClassTeacherController extends Controller
     {
         abort_if(Gate::denies('assign_class_teacher_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        //$teachers = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-       // $students = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-       
+        
         $teachers = User::with('roles')
                         ->whereRelation('roles','id', 'like', '%'.'2'.'%')
                         ->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
@@ -50,11 +47,7 @@ class AssignClassTeacherController extends Controller
         $students = User::with('roles')
                         ->whereRelation('roles','id', 'like', '%'.'4'.'%')
                         ->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
-                        //->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-                        
-                         
-
-       // $classes = RegisterClass::pluck('code_class', 'id')->prepend(trans('global.pleaseSelect'), '');
+                
        $classes = ClassName::pluck('name', 'id');
        
 
@@ -63,6 +56,7 @@ class AssignClassTeacherController extends Controller
 
     public function store(StoreAssignClassTeacherRequest $request)
     {
+      
         $assignClassTeacher = AssignClassTeacher::create($request->all());
         $assignClassTeacher->classes()->sync($request->input('classes', []));
 
@@ -82,8 +76,8 @@ class AssignClassTeacherController extends Controller
         ->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
 
-        $classes = ClassName::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
+        $classes = ClassName::pluck('name', 'id');
+      // dd($classes);
         $assignClassTeacher->load('teacher', 'registrar', 'classes');
 
         return view('admin.assignClassTeachers.edit', compact('teachers', 'registrars', 'classes', 'assignClassTeacher'));
@@ -92,6 +86,7 @@ class AssignClassTeacherController extends Controller
     public function update(UpdateAssignClassTeacherRequest $request, AssignClassTeacher $assignClassTeacher)
     {
         $assignClassTeacher->update($request->all());
+        $assignClassTeacher->classes()->sync($request->input('classes', []));
 
         return redirect()->route('admin.assign-class-teachers.index');
     }

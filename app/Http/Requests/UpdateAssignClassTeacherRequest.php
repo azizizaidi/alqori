@@ -33,10 +33,11 @@ class UpdateAssignClassTeacherRequest extends FormRequest
                 'string',
                 'required',
             ],
-            'classname_id' => [
+           
+            'classes' => [
                 'required',
                 'array',
-                'integer',
+               
             ],
         ];
     }

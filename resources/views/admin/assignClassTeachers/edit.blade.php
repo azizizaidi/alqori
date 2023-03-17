@@ -34,28 +34,8 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.assignClassTeacher.fields.teacher_code_helper') }}</span>
             </div>
-            <div class="form-group">
-                <label class="required" for="classname_id">{{ trans('cruds.assignClassTeacher.fields.class') }}</label>
+           
 
-                <select class="form-control select2 {{ $errors->has('classes') ? 'is-invalid' : '' }}" name="classname_id[]" id="classname_id" multiple required>
-    @foreach($classes as $id => $entry)
-        <option value="{{ $id }}" {{ ($assignClassTeacher->classes->pluck('id')->contains($id)) ? 'selected' : ''}}>
-            
-            {{ $entry }}
-        </option>
-    @endforeach
-</select>
-
-             
-
-
-                @if($errors->has('class'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('class') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.assignClassTeacher.fields.class_helper') }}</span>
-            </div>
             <div class="form-group">
                 <label class="required" for="registrar_id">{{ trans('cruds.assignClassTeacher.fields.registrar') }}</label>
                 <select class="form-control select2 {{ $errors->has('registrar') ? 'is-invalid' : '' }}" name="registrar_id" id="registrar_id" required>
@@ -70,6 +50,30 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.assignClassTeacher.fields.registrar_helper') }}</span>
             </div>
+
+            <div class="form-group">
+                <label class="required" for="classes">{{ trans('cruds.assignClassTeacher.fields.class') }}</label>
+
+                <select class="form-control select2 {{ $errors->has('classes') ? 'is-invalid' : '' }}" name="classes[]" id="classes" multiple required>
+                @foreach($classes as $id => $class)
+             
+                  <option value="{{ $id }}" {{ (in_array($id,  old('classes', [])) || $assignClassTeacher->classes->contains($id)) ? 'selected' : ''}}>
+                  {{ $class }}
+                   </option>
+                  @endforeach
+                 </select>
+
+
+              
+
+                @if($errors->has('classes'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('classes') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.assignClassTeacher.fields.class_helper') }}</span>
+            </div>
+
             <div class="form-group">
                 <label class="required" for="student_code">{{ trans('cruds.assignClassTeacher.fields.student_code') }}</label>
                 <input class="form-control {{ $errors->has('student_code') ? 'is-invalid' : '' }}" type="text" name="student_code" id="student_code" value="{{ old('student_code', $assignClassTeacher->student_code) }}" required>
