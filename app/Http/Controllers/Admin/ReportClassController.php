@@ -343,6 +343,7 @@ class ReportClassController extends Controller
     public function store(StoreReportClassRequest $request)
     {
         $reportClass = ReportClass::create($request->all());
+       // dd($reportClass);
         $classname = ClassName::find($request->id = $reportClass->class_names_id);
         $classname_2 = ClassName::find($request->id = $reportClass->class_names_id_2);
       

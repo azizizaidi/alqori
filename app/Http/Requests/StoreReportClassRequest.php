@@ -33,10 +33,7 @@ class StoreReportClassRequest extends FormRequest
                 'string',
                 'required',
             ],
-            'subject' => [
-                'string',
-               
-            ],
+          
             'month' => [
                 'string',
                
@@ -58,6 +55,10 @@ class StoreReportClassRequest extends FormRequest
             'class_names_id' => [
                 'required',
                 'integer',
+            ],
+            'class_names_id_2' => [
+                
+              
             ],
         ];
     }

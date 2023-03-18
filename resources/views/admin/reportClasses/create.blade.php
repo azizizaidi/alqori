@@ -32,7 +32,7 @@
             <div class="form-group">
                 <label class="required" for="class_names">{{ trans('cruds.reportClass.fields.classname') }}</label>
               
-                <select name="class_names_id" class="form-control select2"style="width:250px" multiple>
+                <select name="class_names_id" class="form-control select2"style="width:250px">
                 <option value="">Select Class </option>
                 @foreach($classnames as $key => $value)
                          <option value="{{ $key }}">{{ $value }}</option>
@@ -119,15 +119,19 @@
              
            
             <div class="form-group">
-                <label class="" for="class_names_id_2">{{ trans('cruds.reportClass.fields.classname_2') }}</label>
+                <label class="" for="class_names_2">{{ trans('cruds.reportClass.fields.classname_2') }}</label>
                  
                <select name="class_names_id_2" class="form-control select2"style="width:250px">
-                <option value="">--Class Name--</option>
-                  @foreach($classnames as $key => $value)
+               <option value="">Select Class </option>
+                @foreach($classnames as $key => $value)
                          <option value="{{ $key }}">{{ $value }}</option>
                     @endforeach
+                
                 </select>
             </div>
+
+
+          
         
            
             <div class="form-group">
@@ -200,35 +204,34 @@
 </div>
 
 
-<script type="text/javascript">
-    jQuery(document).ready(function ()
-    {
-            jQuery('select[name="class_names_id"]').on('change',function(){
-               var classnameID = jQuery(this).val();
-               if(classnameID)
-               {
-                  jQuery.ajax({
-                     url : '/admin/report-classes/getregistrar/' +classnameID,
-                     type : "GET",
-                     dataType : "json",
-                     success:function(data)
-                     {
+
+    <script type="text/javascript">
+    jQuery(document).ready(function () {
+    
+        jQuery('select[name="class_names_id"]').on('change', function () {
+            var classnameID = jQuery(this).val();
+            if (classnameID) {
+                jQuery.ajax({
+                    url: '/admin/report-classes/getregistrar/' + classnameID,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
                         console.log(data);
                         jQuery('select[name="registrar_id"]').empty();
-                        jQuery.each(data, function(key,value){
-                    
-                           $('select[name="registrar_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        jQuery.each(data, function (key, value) {
+                            $('select[name="registrar_id"]').append('<option value="' + key + '">' + value + '</option>');
                         });
-                     }
-                  });
-               }
-               else
-               {
-                  $('select[name="registrar_id"]').empty();
-               }
-            });
+                    }
+                });
+
+                   
+            } else {
+                $('select[name="registrar_id"]').empty();
+            }
+        });
+        
     });
-    </script>
+</script>
     
 
 
