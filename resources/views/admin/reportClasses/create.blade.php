@@ -28,31 +28,32 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.reportClass.fields.month_helper') }}</span>
             </div>
+
+            <div class="form-group">
+                <label class="required" for="class_names">{{ trans('cruds.reportClass.fields.classname') }}</label>
+              
+                <select name="class_names_id" class="form-control select2"style="width:250px">
+                <option value="">Select Class </option>
+                @foreach($classnames as $key => $value)
+                         <option value="{{ $key }}">{{ $value }}</option>
+                    @endforeach
+              
+                 
+                </select>
+            </div>
         
               <div class="form-group">
                 <label class="required" for="registrar_id">{{ trans('cruds.reportClass.fields.registrar') }}</label>
                 <select class="form-control select2" name="registrar_id"  required>
-               <option value="">--- Select Registrar ---</option>
-                @foreach($registrars as $key => $value)
-                         <option value="{{ $key }}">{{ $value }}</option>
-                    @endforeach
+               <option value="">--- Select class first ---</option>
+              
                 </select>
               
             </div>
 
           
            
-            <div class="form-group">
-                <label class="required" for="class_names">{{ trans('cruds.reportClass.fields.classname') }}</label>
-              
-                <select name="class_names_id" class="form-control select2"style="width:250px">
-                <option>--Class Name--</option>
-                @foreach($classnames as $key => $value)
-                         <option value="{{ $key }}">{{ $value }}</option>
-                    @endforeach
-                 
-                </select>
-            </div>
+           
         
            
             <div class="form-group">
@@ -118,15 +119,19 @@
              
            
             <div class="form-group">
-                <label class="" for="class_names_id_2">{{ trans('cruds.reportClass.fields.classname_2') }}</label>
+                <label class="" for="class_names_2">{{ trans('cruds.reportClass.fields.classname_2') }}</label>
                  
                <select name="class_names_id_2" class="form-control select2"style="width:250px">
-                <option value="">--Class Name--</option>
-                  @foreach($classnames as $key => $value)
+               <option value="">Select Class </option>
+                @foreach($classnames as $key => $value)
                          <option value="{{ $key }}">{{ $value }}</option>
                     @endforeach
+                
                 </select>
             </div>
+
+
+          
         
            
             <div class="form-group">
@@ -199,34 +204,35 @@
 </div>
 
 
-<script type="text/javascript">
-    jQuery(document).ready(function ()
-    {
-            jQuery('select[name="registrar"]').on('change',function(){
-               var registrarID = jQuery(this).val();
-               if(registrarID)
-               {
-                  jQuery.ajax({
-                     url : 'report-classes/getclassnames/' +registrarID,
-                     type : "GET",
-                     dataType : "json",
-                     success:function(data)
-                     {
+
+    <script type="text/javascript">
+    jQuery(document).ready(function () {
+    
+        jQuery('select[name="class_names_id"]').on('change', function () {
+            var classnameID = jQuery(this).val();
+            if (classnameID) {
+                jQuery.ajax({
+                    url: '/admin/report-classes/getregistrar/' + classnameID,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
                         console.log(data);
-                        jQuery('select[name="class_names"]').empty();
-                        jQuery.each(data, function(key,value){
-                           $('select[name="class_names"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        jQuery('select[name="registrar_id"]').empty();
+                        jQuery.each(data, function (key, value) {
+                            $('select[name="registrar_id"]').append('<option value="' + key + '">' + value + '</option>');
                         });
-                     }
-                  });
-               }
-               else
-               {
-                  $('select[name="class_names"]').empty();
-               }
-            });
+                    }
+                });
+
+                   
+            } else {
+                $('select[name="registrar_id"]').empty();
+            }
+        });
+        
     });
-    </script>
+</script>
+    
 
 
 

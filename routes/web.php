@@ -164,7 +164,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('report-classes/destroy', 'ReportClassController@massDestroy')->name('report-classes.massDestroy');
     Route::post('report-classes/parse-csv-import', 'ReportClassController@parseCsvImport')->name('report-classes.parseCsvImport');
     Route::post('report-classes/process-csv-import', 'ReportClassController@processCsvImport')->name('report-classes.processCsvImport');
-    Route::get('report-classes/getclassnames/{id}','ReportClassController@getClassNames');
+    Route::get('report-classes/getregistrar/{id}','ReportClassController@getRegistrar');
     Route::resource('report-classes', 'ReportClassController');
 
     //Report Card

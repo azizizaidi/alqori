@@ -33,12 +33,11 @@ class StoreAssignClassTeacherRequest extends FormRequest
                 'string',
                 'required',
             ],
-             'classes.*' => [
-                'integer',
-            ],
+            
             'classes' => [
                 'required',
                 'array',
+               
             ],
         ];
     }

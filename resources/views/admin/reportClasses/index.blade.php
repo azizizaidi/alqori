@@ -136,7 +136,7 @@
                 <tbody>
                     @foreach($reportClasses as $key => $reportClass)
                     
-                        <tr data-entry-id="{{ $reportClass->id }}">
+                    <tr data-entry-id="{{ $reportClass->id }}">
                             <td>
 
                             </td>
