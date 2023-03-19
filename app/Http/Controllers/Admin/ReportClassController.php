@@ -740,10 +740,14 @@ class ReportClassController extends Controller
 
     public function createBill(ReportClass $reportClass)
     {
-        //$reportClass->load( 'registrar', 'created_by');
-        $report = request('reportClass','id');
-        //$response->fee_student."00";
-        //dd
+        //$reports = ReportClass::whereIn('id', $reportClass)->get();
+        $reports = ReportClass::
+        where('registrar_id', Auth::user()->id)
+        ->where('status', 0)
+        ->get();
+                   
+  
+        dd($reports);
         $some_data = array(
             'userSecretKey'=> config('toyyibpay.key'),
             'categoryCode'=> config('toyyibpay.category'),
@@ -768,13 +772,15 @@ class ReportClassController extends Controller
           );
  
 
- //dd('$some_data');
+ 
           $url = 'https://toyyibpay.com/index.php/api/createBill';
           $response = Http::asForm()->post($url, $some_data);
           $billCode = $response[0]["BillCode"];
          
           return redirect('https://toyyibpay.com/'. $billCode);
     }
+
+ 
 
     public function paymentStatus(ReportClass $reportClass)
     {

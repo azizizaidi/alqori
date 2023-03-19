@@ -191,7 +191,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('messenger/{topic}/reply', 'MessengerController@showReply')->name('messenger.showReply');
 
     //toyyibpay
+  
     Route::get('toyyibpay/createbill/{reportClass}', 'ReportClassController@createBill')->name('toyyibpay.createBill');
+
+    //Route::get('toyyibpay/createbill/{reportClass}', 'ReportClassController@createBill')->name('toyyibpay.createBill');
+    Route::get('create-bill-with-sum/{ids}/{sum}', 'ReportClassController@createBill')->name('toyyibpay.createBillWithSum');
     Route::get('toyyibpay/paymentstatus/{reportClass}', 'ReportClassController@paymentStatus')->name('toyyibpay.paymentstatus');
     Route::get('toyyibpay/callback', 'ReportClassController@callback')->name('toyyibpay.callback');
 

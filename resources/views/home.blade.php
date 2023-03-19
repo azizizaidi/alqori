@@ -129,7 +129,27 @@
                      </div>-->
                      
 
-                 
+                 @elseif(Auth::user()->roles->contains(4 ))
+
+                 <div class="row">
+                      <div class="col-lg-4">
+                   <div class="card text-grey bg-white rounded-3 shadow p-1 " style="width: 18rem;">
+                       <div class="card-body">
+                      
+                           <h5 class="card-title text-bold">RM{{ $reportclasses->where('registrar_id',Auth::user()->id)->where('status',0)->sum('fee_student') ?? '' }}</h5>
+                           <img src="{{ url('/Image/pay2.png') }}" class="float-right  " width="100px" >
+                             <p class="card-text ">Total Unpaid</p>
+                             <a class="btn btn-xs btn-danger" href="{{ route('admin.toyyibpay.createBill', $reportclasses->where('registrar_id',Auth::user()->id)->where('status',0)->pluck('id')->toArray()) }}">pay</a>
+
+<!--<a class="btn btn-xs btn-danger" href="{{ route('admin.toyyibpay.createBill', ['reportClass' => implode(',', $reportclasses->where('registrar_id',Auth::user()->id)->where('status',0)->pluck('id')->toArray())]) }}">pay</a>
+<a class="btn btn-xs btn-danger" href="{{ route('admin.toyyibpay.createBill', implode(',', $reportclass->where('registrar_id',Auth::user()->id)->where('status',0)->pluck('id')->toArray())) }}">pay</a>-->
+
+
+                    
+                     </div>
+                     </div>
+                     </div>
+
                    @else
                    @endif
 
