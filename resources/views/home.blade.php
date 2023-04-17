@@ -139,10 +139,7 @@
                            <h5 class="card-title text-bold">RM{{ $reportclasses->where('registrar_id',Auth::user()->id)->where('status',0)->sum('fee_student') ?? '' }}</h5>
                            <img src="{{ url('/Image/pay2.png') }}" class="float-right  " width="100px" >
                              <p class="card-text ">Total Unpaid</p>
-                             <a class="btn btn-xs btn-danger" href="{{ route('admin.toyyibpay.createBill', $reportclasses->where('registrar_id',Auth::user()->id)->where('status',0)->pluck('id')->toArray()) }}">pay</a>
-
-<!--<a class="btn btn-xs btn-danger" href="{{ route('admin.toyyibpay.createBill', ['reportClass' => implode(',', $reportclasses->where('registrar_id',Auth::user()->id)->where('status',0)->pluck('id')->toArray())]) }}">pay</a>
-<a class="btn btn-xs btn-danger" href="{{ route('admin.toyyibpay.createBill', implode(',', $reportclass->where('registrar_id',Auth::user()->id)->where('status',0)->pluck('id')->toArray())) }}">pay</a>-->
+                            
 
 
                     

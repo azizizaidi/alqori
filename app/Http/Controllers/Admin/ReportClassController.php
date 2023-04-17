@@ -740,14 +740,11 @@ class ReportClassController extends Controller
 
     public function createBill(ReportClass $reportClass)
     {
-        //$reports = ReportClass::whereIn('id', $reportClass)->get();
-        $reports = ReportClass::
-        where('registrar_id', Auth::user()->id)
-        ->where('status', 0)
-        ->get();
-                   
-  
-        dd($reports);
+      
+        //$reportClass->load( 'registrar', 'created_by');
+        $report = request('reportClass','id');
+        //$response->fee_student."00";
+        //dd
         $some_data = array(
             'userSecretKey'=> config('toyyibpay.key'),
             'categoryCode'=> config('toyyibpay.category'),
@@ -767,6 +764,9 @@ class ReportClassController extends Controller
             'billPaymentChannel'=>0,
             'billContentEmail'=>'Terima kasih kerana telah bayar yuran mengaji!:)',
             'billChargeToCustomer'=>1,
+           
+           
+          
            
            
           );
