@@ -132,28 +132,53 @@ class ReportClassController extends Controller
         }
     }
 
-    public function create()
-    {
-        abort_if(Gate::denies('report_class_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+  //  public function create()
+  //  {
+ //       abort_if(Gate::denies('report_class_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         
-       $classnames = ClassName:: orderBy('name', 'ASC')->get()->pluck("name","id");
-       return view('admin.reportClasses.create', compact( ['classnames']));
+  //     $classnames = ClassName:: orderBy('name', 'ASC')->get()->pluck("name","id");
+   //    return view('admin.reportClasses.create', compact( ['classnames']));
  
       
-   }
+  // }
+
+   public function create()
+   {
+       abort_if(Gate::denies('report_class_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+       
+      $registrars = AssignClassTeacher:: orderBy('student_code', 'ASC')->get()->pluck("student_code","id");
+      return view('admin.reportClasses.create', compact( ['registrars']));
+
+     
+  }
          
           
-    public function getRegistrar($id) 
+   // public function getRegistrar($id) 
+   // {        
+      
+  //    $registrar = AssignClassTeacher::with('classes')
+   //   ->whereRelation('classes', 'class_name_id', 'LIKE', $id)
+    //  ->whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)
+     
+    //   ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
+    //  ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'users.id')
+     //  ->pluck('full_name', 'assign_class_teachers.id');
+    //    return json_encode($registrar);
+
+
+     
+  //  }
+
+    public function getClass($id) 
     {        
       
-      $registrar = AssignClassTeacher::with('classes')
-      ->whereRelation('classes', 'class_name_id', 'LIKE', $id)
-      ->whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)
-        //$registrar = AssignClassTeacher::where('classname_id', $id)
-       ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
-      ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'users.id')
-       ->pluck('full_name', 'assign_class_teachers.id');
-        return json_encode($registrar);
+      $classname = ClassName::with('assignclass')
+      ->whereRelation('assignclass', 'registrar_id', 'LIKE', $id)
+      //->whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)
+      //->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
+      //->select('class_names.id')
+       ->pluck('class_names.name', 'class_names.id');
+        return json_encode($classname);
 
 
      
