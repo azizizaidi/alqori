@@ -166,6 +166,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('report-classes/process-csv-import', 'ReportClassController@processCsvImport')->name('report-classes.processCsvImport');
    // Route::get('report-classes/getregistrar/{id}','ReportClassController@getRegistrar');
     Route::get('report-classes/getclass/{id}','ReportClassController@getClass');
+    Route::get('report-classes/getclass_2/{id}','ReportClassController@getClass_2');
     Route::resource('report-classes', 'ReportClassController');
 
     //Report Card

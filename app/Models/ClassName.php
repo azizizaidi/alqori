@@ -60,5 +60,12 @@ class ClassName extends Model
           return $this->belongsToMany(AssignClassTeacher::class,'assign_class_teacher_class_name', 'class_name_id','assign_class_teacher_id');
          
      }
+
+     public function assignclass_2()
+     {
+        
+          return $this->belongsToMany(AssignClassTeacher::class,'assign_class_teacher_class_name', 'class_name_id','assign_class_teacher_id');
+         
+     }
 }
 

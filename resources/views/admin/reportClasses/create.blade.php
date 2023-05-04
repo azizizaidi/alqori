@@ -117,8 +117,6 @@
                 <span class="help-block">{{ trans('cruds.reportClass.fields.total_hour_helper') }}</span>
             </div>
 
-             
-           
             <div class="form-group">
                 <label class="" for="class_names_2">{{ trans('cruds.reportClass.fields.classname_2') }}</label>
                  
@@ -128,6 +126,8 @@
                 
                 </select>
             </div>
+           
+           
 
 
           
@@ -147,7 +147,7 @@
             <div class="form-group">
                 <label class="" for="total_hour_2">{{ trans('cruds.reportClass.fields.total_hour_2') }}</label>
                  <p class="text-danger">SILA PILIH BERAPA JAM ANDA BUAT KELAS DALAM SEBULAN</p>
-                <select class="form-control select2 {{ $errors->has('total_hour_2') ? 'is-invalid' : '' }}" name="total_hour_2" id="total_hour_2" >
+                <select class="form-control {{ $errors->has('total_hour_2') ? 'is-invalid' : '' }}" name="total_hour_2" id="total_hour_2" >
                
                <option value="" >Please select</option>
               
@@ -230,9 +230,72 @@
         });
         
     });
-</script>-->
+</script>--><script type="text/javascript">
+    jQuery(document).ready(function () {
+    
+    jQuery('select[name="registrar_id"]').on('change', function () {
+        var registrarID = jQuery(this).val();
+        if (registrarID) {
+            jQuery.ajax({
+                url: '/admin/report-classes/getclass/' + registrarID,
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    jQuery('select[name="class_names_id"]').empty();
+                    jQuery.each(data, function (key, value) {
+                        $('select[name="class_names_id"]').append('<option value="' + key + '">' + value + '</option>');
+                        
+                    });
+                    if ($('select[name="class_names_id"] option').length > 1) {
+                        $('select[name="class_names_id"] option:last').remove();
+                    } 
+                }
+            });
+               
+        } else {
+            $('select[name="class_names_id"]').empty();
+        }
+    });
 
-<script type="text/javascript">
+    jQuery('select[name="registrar_id"]').on('change', function () {
+        var registrarID = jQuery(this).val();
+        if (registrarID) {
+            jQuery.ajax({
+                url: '/admin/report-classes/getclass_2/' + registrarID,
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    jQuery('select[name="class_names_id_2"]').empty();
+                    jQuery.each(data, function (key, value) {
+                        $('select[name="class_names_id_2"]').append('<option value="' + key + '">' + value + '</option>');
+                    });
+                    if ($('select[name="class_names_id_2"] option').length <= 1) {
+                        $('select[name="class_names_id_2"]').parent().hide();
+                        $('input[name="date_2"]').parent().hide();
+                        $('select[name="total_hour_2"]').parent().hide();
+                    } else {
+                        $('select[name="class_names_id_2"]').parent().show();
+                        $('select[name="class_names_id_2"] option:first').remove();
+                        $('input[name="date_2"]').parent().show();
+                        $('select[name="total_hour_2"]').parent().show();
+                    }
+                }
+            });   
+        } else {
+            $('select[name="class_names_id_2"]').empty().parent().hide();
+            $('input[name="date_2"]').hide();
+            $('input[name="total_hour_2"]').hide();
+        }
+    });
+    
+});
+</script>
+
+
+
+<!--<script type="text/javascript">
     jQuery(document).ready(function () {
     
         jQuery('select[name="registrar_id"]').on('change', function () {
@@ -248,17 +311,33 @@
                         jQuery.each(data, function (key, value) {
                             $('select[name="class_names_id"]').append('<option value="' + key + '">' + value + '</option>');
                         });
+
+                        // Check if the registrar has two classes
+                        if (data.length > 1) {
+                            jQuery('select[name="class_names_id_2"]').empty();
+                            jQuery.each(data, function (key, value) {
+                                if (key != "") {
+                                    $('select[name="class_names_id_2"]').append('<option value="' + key + '">' + value + '</option>');
+                                }
+                            });
+                            jQuery('select[name="class_names_id_2"]').parent().show();
+                        } else {
+                            jQuery('select[name="class_names_id_2"]').empty();
+                            jQuery('select[name="class_names_id_2"]').parent().hide();
+                        }
                     }
                 });
 
                    
             } else {
-                $('select[name="class_names_id"]').empty();
+                jQuery('select[name="class_names_id"]').empty();
+                jQuery('select[name="class_names_id_2"]').empty();
+                jQuery('select[name="class_names_id_2"]').parent().hide();
             }
         });
         
     });
-</script>
+</script>-->
     
 
 

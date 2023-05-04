@@ -144,10 +144,10 @@ class ReportClassController extends Controller
 
    public function create()
    {
-       abort_if(Gate::denies('report_class_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+      abort_if(Gate::denies('report_class_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
        
-      $registrars = AssignClassTeacher:: orderBy('student_code', 'ASC')->get()->pluck("student_code","id");
-      return view('admin.reportClasses.create', compact( ['registrars']));
+     $registrars = AssignClassTeacher:: whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)->orderBy('student_code', 'ASC')->get()->pluck("student_code","id");
+    return view('admin.reportClasses.create', compact( ['registrars']));
 
      
   }
@@ -173,16 +173,42 @@ class ReportClassController extends Controller
     {        
       
       $classname = ClassName::with('assignclass')
-      ->whereRelation('assignclass', 'registrar_id', 'LIKE', $id)
-      //->whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)
-      //->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
-      //->select('class_names.id')
+      ->whereRelation('assignclass', 'assign_class_teacher_id', 'LIKE', $id)
        ->pluck('class_names.name', 'class_names.id');
-        return json_encode($classname);
+       return json_encode($classname);
 
 
      
-    }
+   }
+
+   public function getClass_2($id) 
+   {        
+     
+     $classname_2 = ClassName::with('assignclass')
+     ->whereRelation('assignclass', 'assign_class_teacher_id', 'LIKE', $id)
+      ->pluck('class_names.name', 'class_names.id');
+      return json_encode($classname_2);
+
+
+    
+  }
+
+
+//public function getClass($id)
+//{   
+  //  $classData = ClassName::with(['assignclass' => function($query) use ($id) {
+    //        $query->where('registrar_id', $id);
+     //   }, 'teacher' => function($query) {
+      //      $query->where('teacher_id', Auth::user()->id);
+   //     }])->get();
+  //  $classNames = collect([]);
+  //  foreach ($classData as $class) {
+  //      if ($class->assignclass->count() > 0) {
+ //           $classNames[$class->assignclass->first()->id][$class->id] = $class->name;
+//        }
+ //   }
+ //   return $classNames->toJson();
+//}
 
     
  
