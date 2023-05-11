@@ -83,8 +83,13 @@ class ReportClassController extends Controller
                                      ->get();
         
         $users = User::get();
-        $registrars =DB::table('users')->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
-      
+       // $registrars =DB::table('users')->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
+        $registrars = AssignClassTeacher:: whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)
+        ->orderBy('student_code', 'ASC')
+        ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
+        ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'assign_class_teachers.id')
+        ->pluck('full_name', 'assign_class_teachers.id');
+        //->toArray();
 
         
         return view('admin.reportClasses.index', compact('reportClasses', 'users','registrars'));
@@ -146,8 +151,20 @@ class ReportClassController extends Controller
    {
       abort_if(Gate::denies('report_class_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
        
-     $registrars = AssignClassTeacher:: whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)->orderBy('student_code', 'ASC')->get()->pluck("student_code","id");
-    return view('admin.reportClasses.create', compact( ['registrars']));
+     $registrars = AssignClassTeacher:: whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)
+                  ->orderBy('student_code', 'ASC')
+                 // ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
+                 // ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'users.id')
+                 // ->pluck('full_name', 'assign_class_teachers.id');
+                 // ->get()
+                  //->pluck("student_code","id");
+
+                  ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
+                  ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'assign_class_teachers.id')
+                  ->pluck('full_name', 'assign_class_teachers.id');
+                  //->toArray();
+
+                  return view('admin.reportClasses.create', compact( ['registrars']));
 
      
   }
@@ -216,7 +233,12 @@ class ReportClassController extends Controller
     public function store(StoreReportClassRequest $request)
     {
         $reportClass = ReportClass::create($request->all());
-       // dd($reportClass);
+        //$assignClassTeacher = AssignClassTeacher::find($request->id = $reportClass->registrar_id);
+        $assignClassTeacher = AssignClassTeacher::find($reportClass->registrar_id);
+        $registrarName = $assignClassTeacher->registrar->id;
+        $reportClass->registrar_id = $registrarName;
+        //$reportClass->save();
+       //dd( $reportClass);
         $classname = ClassName::find($request->id = $reportClass->class_names_id);
         $classname_2 = ClassName::find($request->id = $reportClass->class_names_id_2);
       

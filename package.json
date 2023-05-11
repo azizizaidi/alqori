@@ -18,6 +18,8 @@
     "dependencies": {
         "@chartisan/chartjs": "^2.1.0",
         "@coreui/coreui": "^4.2.6",
-        "chart.js": "^2.9.4"
+        "chart.js": "^2.9.4",
+        "flatpickr": "^4.6.13",
+        "jquery-ui-multidatespicker": "^1.6.6"
     }
 }

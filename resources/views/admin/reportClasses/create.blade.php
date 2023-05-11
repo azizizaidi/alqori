@@ -10,17 +10,11 @@
         <form method="POST" action="{{ route("admin.report-classes.store") }}" enctype="multipart/form-data">
             @csrf
             
-            
+           
             <div class="form-group">
                 <label class="required" for="month">{{ trans('cruds.reportClass.fields.month') }}</label>
-                <select class="form-control select2 {{ $errors->has('month') ? 'is-invalid' : '' }}" name="month" id="month" required>
-               
-                          <option value="" >Please select</option>
-                         
-                           <option value="feb2023" >{{ "February 2023" }}</option>
-                          
-                   
-                </select>
+                <input type="month" id="month" name="month"
+       min="2023-05" max="2023-05" required/>
                 @if($errors->has('month'))
                     <div class="invalid-feedback">
                         {{ $errors->first('month') }}
@@ -55,7 +49,7 @@
             
            
            
-        
+           
            
             <div class="form-group">
                 <label class="required" for="date">{{ trans('cruds.reportClass.fields.date') }}</label>
@@ -68,6 +62,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.reportClass.fields.date_helper') }}</span>
             </div>
+
             <div class="form-group">
                 <label class="required" for="total_hour">{{ trans('cruds.reportClass.fields.total_hour') }}</label>
                 <p class="text-danger">SILA PILIH BERAPA JAM ANDA BUAT KELAS DALAM SEBULAN</p>
@@ -285,14 +280,27 @@
             });   
         } else {
             $('select[name="class_names_id_2"]').empty().parent().hide();
-            $('input[name="date_2"]').hide();
-            $('input[name="total_hour_2"]').hide();
+            $('input[name="date_2"]').empty().parent().hide();
+            $('select[name="total_hour_2"]').empty().parent().hide();
         }
     });
     
 });
 </script>
-
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      flatpickr('#date', {
+    mode: "multiple",
+    dateFormat: "d-m-Y"
+});
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      flatpickr('#date_2', {
+    mode: "multiple",
+    dateFormat: "d-m-Y"
+});
+    });
+  </script>
 
 
 <!--<script type="text/javascript">
