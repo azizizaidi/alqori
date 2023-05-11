@@ -83,8 +83,13 @@ class ReportClassController extends Controller
                                      ->get();
         
         $users = User::get();
-        $registrars =DB::table('users')->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
-      
+       // $registrars =DB::table('users')->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
+        $registrars = AssignClassTeacher:: whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)
+        ->orderBy('student_code', 'ASC')
+        ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
+        ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'assign_class_teachers.id')
+        ->pluck('full_name', 'assign_class_teachers.id');
+        //->toArray();
 
         
         return view('admin.reportClasses.index', compact('reportClasses', 'users','registrars'));
@@ -132,218 +137,108 @@ class ReportClassController extends Controller
         }
     }
 
-    public function create()
-    {
-        abort_if(Gate::denies('report_class_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+  //  public function create()
+  //  {
+ //       abort_if(Gate::denies('report_class_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         
-       $classnames = ClassName:: orderBy('name', 'ASC')->get()->pluck("name","id");
-       return view('admin.reportClasses.create', compact( ['classnames']));
+  //     $classnames = ClassName:: orderBy('name', 'ASC')->get()->pluck("name","id");
+   //    return view('admin.reportClasses.create', compact( ['classnames']));
  
       
-   }
+  // }
+
+   public function create()
+   {
+      abort_if(Gate::denies('report_class_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+       
+     $registrars = AssignClassTeacher:: whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)
+                  ->orderBy('student_code', 'ASC')
+                 // ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
+                 // ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'users.id')
+                 // ->pluck('full_name', 'assign_class_teachers.id');
+                 // ->get()
+                  //->pluck("student_code","id");
+
+                  ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
+                  ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'assign_class_teachers.id')
+                  ->pluck('full_name', 'assign_class_teachers.id');
+                  //->toArray();
+
+                  return view('admin.reportClasses.create', compact( ['registrars']));
+
+     
+  }
          
           
-    public function getRegistrar($id) 
-    {        
+   // public function getRegistrar($id) 
+   // {        
       
-      $registrar = AssignClassTeacher::with('classes')
-      ->whereRelation('classes', 'class_name_id', 'LIKE', $id)
-      ->whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)
-        //$registrar = AssignClassTeacher::where('classname_id', $id)
-       ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
-      ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'users.id')
-       ->pluck('full_name', 'assign_class_teachers.id');
-        return json_encode($registrar);
+  //    $registrar = AssignClassTeacher::with('classes')
+   //   ->whereRelation('classes', 'class_name_id', 'LIKE', $id)
+    //  ->whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)
+     
+    //   ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
+    //  ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'users.id')
+     //  ->pluck('full_name', 'assign_class_teachers.id');
+    //    return json_encode($registrar);
 
 
      
-    }
+  //  }
+
+    public function getClass($id) 
+    {        
+      
+      $classname = ClassName::with('assignclass')
+      ->whereRelation('assignclass', 'assign_class_teacher_id', 'LIKE', $id)
+       ->pluck('class_names.name', 'class_names.id');
+       return json_encode($classname);
+
+
+     
+   }
+
+   public function getClass_2($id) 
+   {        
+     
+     $classname_2 = ClassName::with('assignclass')
+     ->whereRelation('assignclass', 'assign_class_teacher_id', 'LIKE', $id)
+      ->pluck('class_names.name', 'class_names.id');
+      return json_encode($classname_2);
+
+
+    
+  }
+
+
+//public function getClass($id)
+//{   
+  //  $classData = ClassName::with(['assignclass' => function($query) use ($id) {
+    //        $query->where('registrar_id', $id);
+     //   }, 'teacher' => function($query) {
+      //      $query->where('teacher_id', Auth::user()->id);
+   //     }])->get();
+  //  $classNames = collect([]);
+  //  foreach ($classData as $class) {
+  //      if ($class->assignclass->count() > 0) {
+ //           $classNames[$class->assignclass->first()->id][$class->id] = $class->name;
+//        }
+ //   }
+ //   return $classNames->toJson();
+//}
 
     
  
-
-   /* public function store(StoreReportClassRequest $request)
-    {
-        
-        
-       
-        $reportClass = ReportClass::create($request->all());
-        
-              
-        $classname = ClassName::find($request->id = $reportClass->class_names_id);
-        $classname_2 = ClassName::find($request->id = $reportClass->class_names_id_2);
-
-        if($reportClass->total_hour_2 == null){
-            
-            $reportClass->allowance = $reportClass->total_hour * $classname->allowanceperhour;
-            if($classname->name == "Al-Quran Online AQ"){
-                if($reportClass->total_hour <= 7.9){
-                    $reportClass->fee_student = 35 * $reportClass->total_hour;
-                }elseif($reportClass->total_hour <= 11.9){
-                    $reportClass->fee_student = 30 * $reportClass->total_hour;
-                }elseif($reportClass->total_hour >= 12){
-                    $reportClass->fee_student = 25 * $reportClass->total_hour;
-                }
-                 
-            }elseif($classname->name == "Fardhu Ain Online AQ"){
-                if($reportClass->total_hour <= 7.9){
-                    $reportClass->fee_student = 40 * $reportClass->total_hour;
-                }elseif($reportClass->total_hour <= 11.9){
-                    $reportClass->fee_student = 35 * $reportClass->total_hour;
-                }elseif($reportClass->total_hour >= 12){
-                    $reportClass->fee_student = 30 * $reportClass->total_hour;
-                }
-                 
-            }elseif($classname->name == "Al-Quran Fizikal AQ"){
-                if($reportClass->total_hour <= 7.9){
-                    $reportClass->fee_student = 50 * $reportClass->total_hour;
-                }elseif($reportClass->total_hour <= 11.9){
-                    $reportClass->fee_student = 45 * $reportClass->total_hour;
-                }elseif($reportClass->total_hour >= 12){
-                    $reportClass->fee_student = 40 * $reportClass->total_hour;
-                }
-                 
-            }elseif($classname->name == "Fardhu Ain Fizikal AQ"){
-                if($reportClass->total_hour <= 7.9){
-                    $reportClass->fee_student = 60 * $reportClass->total_hour;
-                }elseif($reportClass->total_hour <= 11.9){
-                    $reportClass->fee_student = 55 * $reportClass->total_hour;
-                }elseif($reportClass->total_hour >= 12){
-                    $reportClass->fee_student = 50 * $reportClass->total_hour;
-                }
-                 
-            }elseif($classname->name == "Al-Quran Online BQ"){
-                $reportClass->fee_student = 35 * $reportClass->total_hour;
-            }elseif($classname->name == "Al-Quran Online CQ"){
-                $reportClass->fee_student = 40 * $reportClass->total_hour;
-            }elseif($classname->name == "Fardhu Ain Online BQ"){
-                $reportClass->fee_student = 40 * $reportClass->total_hour;
-            }elseif($classname->name == "Al-Quran Fizikal BQ"){
-                $reportClass->fee_student = 50 * $reportClass->total_hour;
-            }elseif($classname->name == "Fardhu Ain Fizikal BQ"){
-                $reportClass->fee_student = 60 * $reportClass->total_hour;
-            }
-        }
-
-        else{
-            $reportClass->allowance = ($reportClass->total_hour * $classname->allowanceperhour)
-            +($reportClass->total_hour_2 * $classname_2->allowanceperhour);
-
-            if($classname->name == "Al-Quran Online AQ"){
-                if($reportClass->total_hour <= 7.9){
-                    $reportClass->fee_student = 35 * $reportClass->total_hour;
-                }elseif($reportClass->total_hour <= 11.9){
-                    $reportClass->fee_student = 30 * $reportClass->total_hour;
-                }elseif($reportClass->total_hour >= 12){
-                    $reportClass->fee_student = 25 * $reportClass->total_hour;
-                }
-                 
-            }elseif($classname->name == "Fardhu Ain Online AQ"){
-                if($reportClass->total_hour <= 7.9){
-                    $reportClass->fee_student = 40 * $reportClass->total_hour;
-                }elseif($reportClass->total_hour <=11.9){
-                    $reportClass->fee_student = 35 * $reportClass->total_hour;
-                }elseif($reportClass->total_hour >= 12){
-                    $reportClass->fee_student = 30 * $reportClass->total_hour;
-                }
-                 
-            }elseif($classname->name == "Al-Quran Fizikal AQ"){
-                if($reportClass->total_hour <= 7.9){
-                    $reportClass->fee_student = 50 * $reportClass->total_hour;
-                }elseif($reportClass->total_hour <= 11.9){
-                    $reportClass->fee_student = 45 * $reportClass->total_hour;
-                }elseif($reportClass->total_hour >= 12){
-                    $reportClass->fee_student = 40 * $reportClass->total_hour;
-                }
-                 
-            }elseif($classname->name == "Fardhu Ain Fizikal AQ"){
-                if($reportClass->total_hour <= 7.9){
-                    $reportClass->fee_student = 60 * $reportClass->total_hour;  
-                }elseif($reportClass->total_hour <= 11.9){
-                    $reportClass->fee_student = 55 * $reportClass->total_hour;
-                }elseif($reportClass->total_hour >= 12){
-                    $reportClass->fee_student = 50 * $reportClass->total_hour;
-                }
-                 
-            }elseif($classname->name == "Al-Quran Online BQ"){
-                $reportClass->fee_student = 35 * $reportClass->total_hour;
-            }elseif($classname->name == "Al-Quran Online CQ"){
-                $reportClass->fee_student = 40 * $reportClass->total_hour;
-            }elseif($classname->name == "Fardhu Ain Online BQ"){
-                $reportClass->fee_student = 40 * $reportClass->total_hour;
-            }elseif($classname->name == "Al-Quran Fizikal BQ"){
-                $reportClass->fee_student = 50 * $reportClass->total_hour;
-            }elseif($classname->name == "Fardhu Ain Fizikal BQ"){
-                $reportClass->fee_student = 60 * $reportClass->total_hour;
-            }
-
-           
-            $feestudent = $reportClass->fee_student;
-            if($classname_2->name == "Al-Quran Online AQ"){
-                if($reportClass->total_hour_2 <= 7.9){
-                    $reportClass->fee_student = $feestudent + (35 * $reportClass->total_hour_2);
-                }elseif($reportClass->total_hour_2 <= 11.9){
-                    $reportClass->fee_student = $feestudent + (30 * $reportClass->total_hour_2);
-                }elseif($reportClass->total_hour_2 >= 12){
-                    $reportClass->fee_student = $feestudent + (25 * $reportClass->total_hour_2);
-                }
-                 
-            }elseif($classname_2->name == "Fardhu Ain Online AQ"){
-                if($reportClass->total_hour_2 <= 7.9){
-                    $reportClass->fee_student = $feestudent + (40 * $reportClass->total_hour_2);
-                }elseif($reportClass->total_hour_2 <= 11.9){
-                    $reportClass->fee_student = $feestudent + (35 * $reportClass->total_hour_2);
-                }elseif($reportClass->total_hour_2 >= 12){
-                    $reportClass->fee_student = $feestudent + (30 * $reportClass->total_hour_2);
-                }
-                 
-            }elseif($classname_2->name == "Al-Quran Fizikal AQ"){
-                if($reportClass->total_hour_2 <= 7.9){
-                    $reportClass->fee_student = $feestudent + (50 * $reportClass->total_hour_2);
-                }elseif($reportClass->total_hour_2 <= 11.9){
-                    $reportClass->fee_student = $feestudent + (45 * $reportClass->total_hour_2);
-                }elseif($reportClass->total_hour_2 >= 12){
-                    $reportClass->fee_student = $feestudent + (40 * $reportClass->total_hour_2);
-                }
-                 
-            }elseif($classname_2->name == "Fardhu Ain Fizikal AQ"){
-                if($reportClass->total_hour_2 <= 7.9){
-                    $reportClass->fee_student = $feestudent + (60 * $reportClass->total_hour_2);
-                }elseif($reportClass->total_hour_2 <= 11.9){
-                    $reportClass->fee_student = $feestudent + (55 * $reportClass->total_hour_2);
-                }elseif($reportClass->total_hour_2 >= 12){
-                    $reportClass->fee_student = $feestudent + (50 * $reportClass->total_hour_2);
-                }
-                 
-            }elseif($classname_2->name == "Al-Quran Online BQ"){
-                $reportClass->fee_student = $feestudent + (35 * $reportClass->total_hour_2);
-            }elseif($classname_2->name == "Al-Quran Online CQ"){
-                $reportClass->fee_student = $feestudent + (40 * $reportClass->total_hour_2);
-            }elseif($classname_2->name == "Fardhu Ain Online BQ"){
-                $reportClass->fee_student = $feestudent + (40 * $reportClass->total_hour_2);
-            }elseif($classname_2->name == "Al-Quran Fizikal BQ"){
-                $reportClass->fee_student = $feestudent + (50 * $reportClass->total_hour_2);
-            }elseif($classname_2->name == "Fardhu Ain Fizikal BQ"){
-                $reportClass->fee_student = $feestudent + (60 * $reportClass->total_hour_2);
-            }
-
-
-
-        }
-       
-        $reportClass->status = 0;
-        $reportClass->save();
-
-
-        return redirect()->route('admin.report-classes.index');
-
-      
-    }*/
    
     public function store(StoreReportClassRequest $request)
     {
         $reportClass = ReportClass::create($request->all());
-       // dd($reportClass);
+        //$assignClassTeacher = AssignClassTeacher::find($request->id = $reportClass->registrar_id);
+        $assignClassTeacher = AssignClassTeacher::find($reportClass->registrar_id);
+        $registrarName = $assignClassTeacher->registrar->id;
+        $reportClass->registrar_id = $registrarName;
+        //$reportClass->save();
+       //dd( $reportClass);
         $classname = ClassName::find($request->id = $reportClass->class_names_id);
         $classname_2 = ClassName::find($request->id = $reportClass->class_names_id_2);
       
@@ -740,6 +635,7 @@ class ReportClassController extends Controller
 
     public function createBill(ReportClass $reportClass)
     {
+      
         //$reportClass->load( 'registrar', 'created_by');
         $report = request('reportClass','id');
         //$response->fee_student."00";
@@ -765,16 +661,21 @@ class ReportClassController extends Controller
             'billChargeToCustomer'=>1,
            
            
+          
+           
+           
           );
  
 
- //dd('$some_data');
+ 
           $url = 'https://toyyibpay.com/index.php/api/createBill';
           $response = Http::asForm()->post($url, $some_data);
           $billCode = $response[0]["BillCode"];
          
           return redirect('https://toyyibpay.com/'. $billCode);
     }
+
+ 
 
     public function paymentStatus(ReportClass $reportClass)
     {

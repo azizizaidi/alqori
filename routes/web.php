@@ -164,7 +164,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('report-classes/destroy', 'ReportClassController@massDestroy')->name('report-classes.massDestroy');
     Route::post('report-classes/parse-csv-import', 'ReportClassController@parseCsvImport')->name('report-classes.parseCsvImport');
     Route::post('report-classes/process-csv-import', 'ReportClassController@processCsvImport')->name('report-classes.processCsvImport');
-    Route::get('report-classes/getregistrar/{id}','ReportClassController@getRegistrar');
+   // Route::get('report-classes/getregistrar/{id}','ReportClassController@getRegistrar');
+    Route::get('report-classes/getclass/{id}','ReportClassController@getClass');
+    Route::get('report-classes/getclass_2/{id}','ReportClassController@getClass_2');
     Route::resource('report-classes', 'ReportClassController');
 
     //Report Card
@@ -191,7 +193,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('messenger/{topic}/reply', 'MessengerController@showReply')->name('messenger.showReply');
 
     //toyyibpay
+  
     Route::get('toyyibpay/createbill/{reportClass}', 'ReportClassController@createBill')->name('toyyibpay.createBill');
+
+    //Route::get('toyyibpay/createbill/{reportClass}', 'ReportClassController@createBill')->name('toyyibpay.createBill');
+    //Route::get('create-bill-with-sum/{ids}/{sum}', 'ReportClassController@createBill')->name('toyyibpay.createBillWithSum');
     Route::get('toyyibpay/paymentstatus/{reportClass}', 'ReportClassController@paymentStatus')->name('toyyibpay.paymentstatus');
     Route::get('toyyibpay/callback', 'ReportClassController@callback')->name('toyyibpay.callback');
 
