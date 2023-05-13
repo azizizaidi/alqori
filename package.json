@@ -19,7 +19,6 @@
         "@chartisan/chartjs": "^2.1.0",
         "@coreui/coreui": "^4.2.6",
         "chart.js": "^2.9.4",
-        "flatpickr": "^4.6.13",
-        "jquery": "^3.7.0"
+        "flatpickr": "^4.6.13"
     }
 }
