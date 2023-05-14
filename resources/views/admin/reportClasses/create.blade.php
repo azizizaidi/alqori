@@ -112,6 +112,9 @@
                 <span class="help-block">{{ trans('cruds.reportClass.fields.total_hour_helper') }}</span>
             </div>
 
+           
+
+
             <div class="form-group">
                 <label class="" for="class_names_2">{{ trans('cruds.reportClass.fields.classname_2') }}</label>
                  
@@ -121,11 +124,7 @@
                 
                 </select>
             </div>
-           
-           
-
-
-          
+                  
         
            
             <div class="form-group">
@@ -186,8 +185,11 @@
                         {{ $errors->first('total_hour_2') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.reportClass.fields.total_hour_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.reportClass.fields.total_hour_2_helper') }}</span>
             </div>
+
+
+         
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
@@ -285,11 +287,13 @@
                         $('select[name="class_names_id_2"]').parent().hide();
                         $('input[name="date_2"]').parent().hide();
                         $('select[name="total_hour_2"]').parent().hide();
+                   
                     } else {
                         $('select[name="class_names_id_2"]').parent().show();
                         $('select[name="class_names_id_2"] option:first').remove();
                         $('input[name="date_2"]').parent().show();
                         $('select[name="total_hour_2"]').parent().show();
+                     
                     }
                 }
             });   
@@ -297,6 +301,7 @@
             $('select[name="class_names_id_2"]').empty().parent().hide();
             $('input[name="date_2"]').empty().parent().hide();
             $('select[name="total_hour_2"]').empty().parent().hide();
+          
         }
     });
     
@@ -317,72 +322,7 @@
 });
     });
   </script>
-<!--
-<script type="text/javascript">
-    jQuery(document).ready(function () {
-        // Determine the base URL dynamically based on the environment
-        var baseUrl = window.location.origin;
-        var apiUrl = baseUrl + '/admin/report-classes/getclass/';
-        var apiUrl2 = baseUrl + '/admin/report-classes/getclass_2/';
 
-        jQuery('select[name="registrar_id"]').on('change', function () {
-            var registrarID = jQuery(this).val();
-            if (registrarID) {
-                jQuery.ajax({
-                    url: apiUrl + registrarID,
-                    type: "GET",
-                    dataType: "json",
-                    success: function (data) {
-                        console.log(data);
-                        jQuery('select[name="class_names_id"]').empty();
-                        jQuery.each(data, function (key, value) {
-                            $('select[name="class_names_id"]').append('<option value="' + key + '">' + value + '</option>');
-                        });
-                        if ($('select[name="class_names_id"] option').length > 1) {
-                            $('select[name="class_names_id"] option:last').remove();
-                        } 
-                    }
-                });
-                   
-            } else {
-                $('select[name="class_names_id"]').empty();
-            }
-        });
-
-        jQuery('select[name="registrar_id"]').on('change', function () {
-            var registrarID = jQuery(this).val();
-            if (registrarID) {
-                jQuery.ajax({
-                    url: apiUrl2 + registrarID,
-                    type: "GET",
-                    dataType: "json",
-                    success: function (data) {
-                        console.log(data);
-                        jQuery('select[name="class_names_id_2"]').empty();
-                        jQuery.each(data, function (key, value) {
-                            $('select[name="class_names_id_2"]').append('<option value="' + key + '">' + value + '</option>');
-                        });
-                        if ($('select[name="class_names_id_2"] option').length <= 1) {
-                            $('select[name="class_names_id_2"]').parent().hide();
-                            $('input[name="date_2"]').hide();
-                            $('input[name="total_hour_2"]').hide();
-                        } else {
-                            $('select[name="class_names_id_2"]').parent().show();
-                            $('select[name="class_names_id_2"] option:first').remove();
-                            $('input[name="date_2"]').show();
-                            $('input[name="total_hour_2"]').show();
-                        }
-                    }
-                });   
-            } else {
-                $('select[name="class_names_id_2"]').empty().parent().hide();
-                $('input[name="date_2"]').hide();
-                $('input[name="total_hour_2"]').hide();
-            }
-        });
-        
-    });
-</script>-->
 
 
 @endsection

@@ -570,7 +570,10 @@ return [
             'id_helper'         => ' ',
             'teacher'           => 'Teacher',
             'teacher_helper'    => ' ',
-            
+            'student_achievement'           => 'Student Achievement',
+            'student_achievement_helper'    => ' ',
+            'student_achievement_2'           => 'Student Achievement(2)',
+            'student_achievement_2_helper'    => ' ',
             'registrar'           => 'Registrar',
             'registrar_helper'    => ' ',
             'classname'           => 'Class Name',

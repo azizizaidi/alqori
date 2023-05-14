@@ -16,9 +16,8 @@
         "postcss": "^8.4.23"
     },
     "dependencies": {
-        "@chartisan/chartjs": "^2.1.0",
         "@coreui/coreui": "^4.2.6",
-        "chart.js": "^2.9.4",
+        "chart.js": "^4.3.0",
         "flatpickr": "^4.6.13"
     }
 }
