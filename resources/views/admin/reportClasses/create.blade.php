@@ -225,14 +225,20 @@
         });
         
     });
-</script>--><script type="text/javascript">
+</script>-->
+
+<script type="text/javascript">
     jQuery(document).ready(function () {
+
+        var baseUrl = window.location.origin;
+        var apiUrl = baseUrl + '/admin/report-classes/getclass/';
+        var apiUrl2 = baseUrl + '/admin/report-classes/getclass_2/';
     
     jQuery('select[name="registrar_id"]').on('change', function () {
         var registrarID = jQuery(this).val();
         if (registrarID) {
             jQuery.ajax({
-                url: '/admin/report-classes/getclass/' + registrarID,
+                url: apiUrl + registrarID,
                 type: "GET",
                 dataType: "json",
                 success: function (data) {
@@ -257,7 +263,7 @@
         var registrarID = jQuery(this).val();
         if (registrarID) {
             jQuery.ajax({
-                url: '/admin/report-classes/getclass_2/' + registrarID,
+                url: apiUrl2 + registrarID,
                 type: "GET",
                 dataType: "json",
                 success: function (data) {
@@ -301,16 +307,19 @@
 });
     });
   </script>
-
-
-<!--<script type="text/javascript">
+<!--
+<script type="text/javascript">
     jQuery(document).ready(function () {
-    
+        // Determine the base URL dynamically based on the environment
+        var baseUrl = window.location.origin;
+        var apiUrl = baseUrl + '/admin/report-classes/getclass/';
+        var apiUrl2 = baseUrl + '/admin/report-classes/getclass_2/';
+
         jQuery('select[name="registrar_id"]').on('change', function () {
             var registrarID = jQuery(this).val();
             if (registrarID) {
                 jQuery.ajax({
-                    url: '/admin/report-classes/getclass/' + registrarID,
+                    url: apiUrl + registrarID,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
@@ -319,35 +328,51 @@
                         jQuery.each(data, function (key, value) {
                             $('select[name="class_names_id"]').append('<option value="' + key + '">' + value + '</option>');
                         });
-
-                        // Check if the registrar has two classes
-                        if (data.length > 1) {
-                            jQuery('select[name="class_names_id_2"]').empty();
-                            jQuery.each(data, function (key, value) {
-                                if (key != "") {
-                                    $('select[name="class_names_id_2"]').append('<option value="' + key + '">' + value + '</option>');
-                                }
-                            });
-                            jQuery('select[name="class_names_id_2"]').parent().show();
-                        } else {
-                            jQuery('select[name="class_names_id_2"]').empty();
-                            jQuery('select[name="class_names_id_2"]').parent().hide();
-                        }
+                        if ($('select[name="class_names_id"] option').length > 1) {
+                            $('select[name="class_names_id"] option:last').remove();
+                        } 
                     }
                 });
-
                    
             } else {
-                jQuery('select[name="class_names_id"]').empty();
-                jQuery('select[name="class_names_id_2"]').empty();
-                jQuery('select[name="class_names_id_2"]').parent().hide();
+                $('select[name="class_names_id"]').empty();
+            }
+        });
+
+        jQuery('select[name="registrar_id"]').on('change', function () {
+            var registrarID = jQuery(this).val();
+            if (registrarID) {
+                jQuery.ajax({
+                    url: apiUrl2 + registrarID,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                        jQuery('select[name="class_names_id_2"]').empty();
+                        jQuery.each(data, function (key, value) {
+                            $('select[name="class_names_id_2"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                        if ($('select[name="class_names_id_2"] option').length <= 1) {
+                            $('select[name="class_names_id_2"]').parent().hide();
+                            $('input[name="date_2"]').hide();
+                            $('input[name="total_hour_2"]').hide();
+                        } else {
+                            $('select[name="class_names_id_2"]').parent().show();
+                            $('select[name="class_names_id_2"] option:first').remove();
+                            $('input[name="date_2"]').show();
+                            $('input[name="total_hour_2"]').show();
+                        }
+                    }
+                });   
+            } else {
+                $('select[name="class_names_id_2"]').empty().parent().hide();
+                $('input[name="date_2"]').hide();
+                $('input[name="total_hour_2"]').hide();
             }
         });
         
     });
 </script>-->
-    
-
 
 
 @endsection
