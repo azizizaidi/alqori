@@ -284,9 +284,9 @@
                         $('select[name="class_names_id_2"]').append('<option value="' + key + '">' + value + '</option>');
                     });
                     if ($('select[name="class_names_id_2"] option').length <= 1) {
-                        $('select[name="class_names_id_2"]').parent().hide();
-                        $('input[name="date_2"]').parent().hide();
-                        $('select[name="total_hour_2"]').parent().hide();
+                        $('select[name="class_names_id_2"]').empty().parent().hide();
+                        $('input[name="date_2"]').empty().parent().hide();
+                        $('select[name="total_hour_2"]').empty().parent().hide();
                    
                     } else {
                         $('select[name="class_names_id_2"]').parent().show();

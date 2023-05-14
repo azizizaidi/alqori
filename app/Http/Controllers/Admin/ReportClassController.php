@@ -31,6 +31,8 @@ use Illuminate\Support\Facades\DB;
 class ReportClassController extends Controller
 {
     use CsvImportTrait;
+
+
   
     public function allowance()
     {
@@ -91,12 +93,38 @@ class ReportClassController extends Controller
         ->pluck('full_name', 'assign_class_teachers.id');
         //->toArray();
 
+        $years = ReportClass::selectRaw('YEAR(created_at) as year')
+        ->distinct()
+        ->orderBy('year', 'desc')
+        ->get();
+        $selected_year = $years->first()->year;
+        $allowances_by_month = ReportClass::where('created_at', $selected_year)
+            ->selectRaw('month, sum(allowance) as total_allowance')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+      //dd( $allowances_by_month);
         
-        return view('admin.reportClasses.index', compact('reportClasses', 'users','registrars'));
+        return view('admin.reportClasses.index', compact('reportClasses', 'users','registrars','years', 'selected_year', 'allowances_by_month'));
  
        
 
          }
+
+        
+
+    public function getData(Request $request)
+    {
+        $year = $request->input('year');
+        $allowances_by_month = ReportClass::whereYear('created_at', $year)
+        ->selectRaw('month, sum(allowance) as total_allowance')
+        ->groupBy('month')
+        ->orderBy('month')
+        ->get();
+        return response()->json([
+            'allowances_by_month' => $allowances_by_month,
+        ]);
+    }
 
     public function indexstudent()
     {
@@ -137,15 +165,7 @@ class ReportClassController extends Controller
         }
     }
 
-  //  public function create()
-  //  {
- //       abort_if(Gate::denies('report_class_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        
-  //     $classnames = ClassName:: orderBy('name', 'ASC')->get()->pluck("name","id");
-   //    return view('admin.reportClasses.create', compact( ['classnames']));
  
-      
-  // }
 
    public function create()
    {
@@ -153,12 +173,6 @@ class ReportClassController extends Controller
        
      $registrars = AssignClassTeacher:: whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)
                   ->orderBy('student_code', 'ASC')
-                 // ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
-                 // ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'users.id')
-                 // ->pluck('full_name', 'assign_class_teachers.id');
-                 // ->get()
-                  //->pluck("student_code","id");
-
                   ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
                   ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'assign_class_teachers.id')
                   ->pluck('full_name', 'assign_class_teachers.id');
@@ -170,22 +184,7 @@ class ReportClassController extends Controller
   }
          
           
-   // public function getRegistrar($id) 
-   // {        
-      
-  //    $registrar = AssignClassTeacher::with('classes')
-   //   ->whereRelation('classes', 'class_name_id', 'LIKE', $id)
-    //  ->whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)
-     
-    //   ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
-    //  ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'users.id')
-     //  ->pluck('full_name', 'assign_class_teachers.id');
-    //    return json_encode($registrar);
-
-
-     
-  //  }
-
+   
     public function getClass($id) 
     {        
       
@@ -211,23 +210,6 @@ class ReportClassController extends Controller
   }
 
 
-//public function getClass($id)
-//{   
-  //  $classData = ClassName::with(['assignclass' => function($query) use ($id) {
-    //        $query->where('registrar_id', $id);
-     //   }, 'teacher' => function($query) {
-      //      $query->where('teacher_id', Auth::user()->id);
-   //     }])->get();
-  //  $classNames = collect([]);
-  //  foreach ($classData as $class) {
-  //      if ($class->assignclass->count() > 0) {
- //           $classNames[$class->assignclass->first()->id][$class->id] = $class->name;
-//        }
- //   }
- //   return $classNames->toJson();
-//}
-
-    
  
    
     public function store(StoreReportClassRequest $request)
