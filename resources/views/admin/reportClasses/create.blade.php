@@ -53,7 +53,7 @@
            
             <div class="form-group">
                 <label class="required" for="date">{{ trans('cruds.reportClass.fields.date') }}</label>
-                 <p class="text-danger">SILA SENARAIKAN TARIKH ANDA BUAT KELAS DALAM SEBULAN, CONTOH: 3/4,5/4,20/4</p>
+              
                 <input class="form-control {{ $errors->has('date') ? 'is-invalid' : '' }}" type="text" name="date" id="date" value="{{ old('date', '') }}" required>
                 @if($errors->has('date'))
                     <div class="invalid-feedback">
@@ -65,7 +65,7 @@
 
             <div class="form-group">
                 <label class="required" for="total_hour">{{ trans('cruds.reportClass.fields.total_hour') }}</label>
-                <p class="text-danger">SILA PILIH BERAPA JAM ANDA BUAT KELAS DALAM SEBULAN</p>
+               
                 <select class="form-control select2 {{ $errors->has('total_hour') ? 'is-invalid' : '' }}" name="total_hour" id="total_hour" required>
                
                <option value="" >Please select</option>
@@ -130,7 +130,7 @@
            
             <div class="form-group">
                 <label class="" for="date_2">{{ trans('cruds.reportClass.fields.date_2') }}</label>
-                   <p class="text-danger">SILA SENARAIKAN TARIKH ANDA BUAT KELAS DALAM SEBULAN, CONTOH: 3/4,5/4,20/4</p>
+               
                 <input class="form-control {{ $errors->has('date_2') ? 'is-invalid' : '' }}" type="text" name="date_2" id="date_2" value="{{ old('date_2', '') }}" >
                 @if($errors->has('date_2'))
                     <div class="invalid-feedback">
@@ -141,7 +141,7 @@
             </div>
             <div class="form-group">
                 <label class="" for="total_hour_2">{{ trans('cruds.reportClass.fields.total_hour_2') }}</label>
-                 <p class="text-danger">SILA PILIH BERAPA JAM ANDA BUAT KELAS DALAM SEBULAN</p>
+        
                 <select class="form-control {{ $errors->has('total_hour_2') ? 'is-invalid' : '' }}" name="total_hour_2" id="total_hour_2" >
                
                <option value="" >Please select</option>
@@ -235,7 +235,7 @@
         var apiUrl2 = baseUrl + '/admin/report-classes/getclass_2/';
 
         // Check if the web server environment uses '/public' path
-        var isPublicPath = baseUrl.includes('localhost') ? false : true;
+        var isPublicPath = baseUrl.includes(':8000') ? false : true;
 
         if (isPublicPath) {
             apiUrl = baseUrl + '/public/admin/report-classes/getclass/';
@@ -306,7 +306,8 @@
     document.addEventListener('DOMContentLoaded', function() {
       flatpickr('#date', {
     mode: "multiple",
-    dateFormat: "d-m-Y"
+    dateFormat: "d-m-Y",
+    
 });
     });
     document.addEventListener('DOMContentLoaded', function() {
