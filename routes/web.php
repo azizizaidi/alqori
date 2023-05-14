@@ -169,6 +169,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('report-classes/getclass_2/{id}','ReportClassController@getClass_2');
     Route::resource('report-classes', 'ReportClassController');
 
+    //chart
+    Route::get('/allowances/get-data', 'ReportClassController@getData')->name('chart.getData');
+
+
     //Report Card
     Route::delete('report-card/destroy', 'ReportCardController@massDestroy')->name('report-card.massDestroy');
     Route::post('report-card/parse-csv-import', 'ReportCardController@parseCsvImport')->name('report-card.parseCsvImport');
@@ -205,6 +209,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     //pdfinvoice
     Route::get('pdfinvoice', 'pdfInvoiceController@index')->name('pdfinvoice.index');
+
+   
+   
+    
+
 
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {

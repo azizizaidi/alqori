@@ -2,20 +2,28 @@
 @section('content')
 @can('report_class_create')
 
-
 <div>
-<canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+        <label for="year">Select Year:</label>
+        <select id="year" name="year">
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <!-- Add more options for other years as needed -->
+        </select>
+    </div>
+<div>
+<canvas id="allowanceChart" style="width:100%;max-width:700px"></canvas>
 </div>
-
+<br>
 
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route('admin.report-classes.create') }}">
                 {{ trans('global.add') }} {{ trans('cruds.reportClass.title_singular') }}
             </a>
-            <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
-                {{ trans('global.app_csvImport') }}
-            </button>
+           
             @include('csvImport.modal', ['model' => 'ReportClass', 'route' => 'admin.report-classes.parseCsvImport'])
         </div>
     </div>
@@ -303,10 +311,76 @@ table.on('column-visibility.dt', function(e, settings, column, state) {
 
 
 
-
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Initial chart data
+        var initialData = @json($allowances_by_month);
+
+        // Chart options
+        var options = {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Allowance Amount',
+                    },
+                },
+            },
+        };
+
+        // Render the chart
+        var ctx = document.getElementById('allowanceChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: initialData.map((data) => data.month),
+        datasets: [{
+            label: 'Total Allowance',
+            data: initialData.map((data) => data.total_allowance),
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1,
+        }],
+            },
+            options: {
+    maintainAspectRatio:false,
+    legend: {
+      display: true,
+      
+    },
+    scales: {
+      yAxes: [{ticks: {min: 0, max:6000}}],
+    }
+  }
+        });
+
+        // Handle year selection change
+        $('#year').on('change', function () {
+            var selectedYear = $(this).val();
+            $.ajax({
+                url: '{{ route('admin.chart.getData') }}',
+                method: 'GET',
+                data: { year: selectedYear },
+                success: function (response) {
+                    var newData = response.allowances_by_month;
+                    chart.data.labels = newData.map((data) => data.month);
+                    chart.data.datasets[0].data = newData.map((data) => data.total_allowance);
+                    chart.update();
+                },
+                error: function (xhr) {
+                    console.log(xhr.responseText);
+                },
+            });
+        });
+    });
+</script>
+<!------------------------->
 <script>
 var xAllowance = ['mar22','apr22','may22','jun22','jul22','ogs22','sep22','oct22','nov22','dec22','jan23','feb23'];
 
@@ -326,7 +400,7 @@ var alwteacherdec22 = <?php echo $reportClasses->where('month','dec2022')->where
 var alwteacherjan23 = <?php echo $reportClasses->where('month','jan2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
 var alwteacherfeb23 = <?php echo $reportClasses->where('month','feb2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
 
-new Chart("myChart", {
+new Chart("", {
   type: "line",
   data: {
     labels: xAllowance,
