@@ -233,6 +233,15 @@
         var baseUrl = window.location.origin;
         var apiUrl = baseUrl + '/admin/report-classes/getclass/';
         var apiUrl2 = baseUrl + '/admin/report-classes/getclass_2/';
+
+        // Check if the web server environment uses '/public' path
+        var isPublicPath = baseUrl.includes('localhost') ? false : true;
+
+        if (isPublicPath) {
+            apiUrl = baseUrl + '/public/admin/report-classes/getclass/';
+            apiUrl2 = baseUrl + '/public/admin/report-classes/getclass_2/';
+        }
+
     
     jQuery('select[name="registrar_id"]').on('change', function () {
         var registrarID = jQuery(this).val();
