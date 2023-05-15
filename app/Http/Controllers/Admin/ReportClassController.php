@@ -98,12 +98,12 @@ class ReportClassController extends Controller
         ->orderBy('year', 'desc')
         ->get();
         $selected_year = $years->first()->year;
-        $allowances_by_month = ReportClass::where('created_at', $selected_year)
+        $allowances_by_month = ReportClass::whereYear('created_at', $selected_year)
             ->selectRaw('month, sum(allowance) as total_allowance')
             ->groupBy('month')
             ->orderBy('month')
             ->get();
-      //dd( $allowances_by_month);
+      //dd(  $allowances_by_month);
         
         return view('admin.reportClasses.index', compact('reportClasses', 'users','registrars','years', 'selected_year', 'allowances_by_month'));
  

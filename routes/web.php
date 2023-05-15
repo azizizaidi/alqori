@@ -171,6 +171,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     //chart
     Route::get('/allowances/get-data', 'ReportClassController@getData')->name('chart.getData');
+    
 
 
     //Report Card
