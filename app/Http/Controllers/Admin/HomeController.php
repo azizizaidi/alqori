@@ -8,6 +8,11 @@ use App\Models\AssignClassTeacher;
 use App\Models\ReportClass;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
+use Gate;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+use ConsoleTVs\Charts\Facades\Charts;
 
 
 class HomeController
@@ -26,17 +31,15 @@ class HomeController
          $reportclasses = ReportClass::get();
 
 
-     
+ 
 
-       // $assignclasses = AssignClassTeacher::with('teacher','registrar','classes')
-         //               ->whereRelation('teacher','id', 'like', '%'.Auth::user()->id.'%')
-                     //   ->get();
-    //dd($reportclasses);
-        
-        //$students = AssignClassTeacher::with([ 'student', 'teacher','class'])
-                                     // ->whereRelation('teacher','id', 'like', '%'.Auth::user()->id.'%')
-                                   //   ->get();;
-        
+
+           
+           
         return view('home', compact('registrars','students','teachers','reportclasses'));
     }
+
+    
 }
+
+
