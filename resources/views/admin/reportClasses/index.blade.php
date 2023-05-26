@@ -4,17 +4,14 @@
 
 <div>
         <label for="year">Select Year:</label>
-        <select id="year" name="year">
-            <option value="2019">2019</option>
-            <option value="2020">2020</option>
-            <option value="2021">2021</option>
-            <option value="2022">2022</option>
-            <option value="2023">2023</option>
-            <!-- Add more options for other years as needed -->
-        </select>
+        <select id="yearSelect" onchange="updateChart()">
+        <option value="">select year</option>
+       <option value="2022">2022</option>
+       <option value="2023">2023</option>
+</select>
     </div>
 <div>
-<canvas id="allowanceChart" style="width:100%;max-width:700px"></canvas>
+<canvas id="myChart" style="width:100%;max-width:700px"></canvas>
 </div>
 <br>
 
@@ -142,7 +139,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($reportClasses as $key => $reportClass)
+                    @foreach($reportclasses as $key => $reportClass)
                     
                     <tr data-entry-id="{{ $reportClass->id }}">
                             <td>
@@ -315,115 +312,108 @@ table.on('column-visibility.dt', function(e, settings, column, state) {
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
+
 <script>
-    $(document).ready(function () {
-        // Initial chart data
-        var initialData = @json($allowances_by_month);
-
-        // Chart options
-        var options = {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Allowance Amount',
-                    },
-                },
-            },
-        };
-
-        // Render the chart
-        var ctx = document.getElementById('allowanceChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-              labels: initialData.map((data) => data.month),
-        datasets: [{
-            label: 'Total Allowance',
-            data: initialData.map((data) => data.total_allowance),
-            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1,
-        }],
-            },
-            options: {
-    maintainAspectRatio:false,
-    legend: {
-      display: true,
-      
-    },
-    scales: {
-      yAxes: [{ticks: {min: 0, max:6000}}],
-    }
-  }
-        });
-
-        // Handle year selection change
-        $('#year').on('change', function () {
-            var selectedYear = $(this).val();
-            $.ajax({
-                url: '{{ route('admin.chart.getData') }}',
-                method: 'GET',
-                data: { year: selectedYear },
-                success: function (response) {
-                    var newData = response.allowances_by_month;
-                    chart.data.labels = newData.map((data) => data.month);
-                    chart.data.datasets[0].data = newData.map((data) => data.total_allowance);
-                    chart.update();
-                },
-                error: function (xhr) {
-                    console.log(xhr.responseText);
-                },
-            });
-        });
-    });
-</script>
-<!------------------------->
-<script>
-var xAllowance = ['mar22','apr22','may22','jun22','jul22','ogs22','sep22','oct22','nov22','dec22','jan23','feb23'];
 
 
+//var feejan22 = <?php echo $reportclasses->where('month',null)->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
+//var feefeb22 = <?php echo $reportclasses->where('month','02-2022')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;  
+//var feemar22 = <?php echo $reportclasses->where('month','03-2022')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
+//var feeapr22 = <?php echo $reportclasses->where('month','04-2022')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
+//var feemay22 = <?php echo $reportclasses->where('month','05-2022')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
+//var feejun22 = <?php echo $reportclasses->where('month','06-2022')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
+//var feejul22 = <?php echo $reportclasses->where('month','07-2022')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
+//var feeogs22 = <?php echo $reportclasses->where('month','08-2022')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
+//var feesep22 = <?php echo $reportclasses->where('month','09-2022')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
+//var feeoct22 = <?php echo $reportclasses->where('month','10-2022')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
+//var feenov22 = <?php echo $reportclasses->where('month','11-2022')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
+//var feedec22 = <?php echo $reportclasses->where('month','12-2022')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
+//var feejan23 = <?php echo $reportclasses->where('month','01-2023')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
+//var feefeb23 = <?php echo $reportclasses->where('month','02-2023')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
 
 
-var alwteachermar22 = <?php echo $reportClasses->where('month','mar2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwteacherapr22 = <?php echo $reportClasses->where('month','apr2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwteachermay22 = <?php echo $reportClasses->where('month','may2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwteacherjun22 = <?php echo $reportClasses->where('month','june2022')->whereNull('deleted_at')->sum('allowance') ?? ''?>;
-var alwteacherjul22 = <?php echo $reportClasses->where('month','jul2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwteacherogs22 = <?php echo $reportClasses->where('month','ogs2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwteachersep22 = <?php echo $reportClasses->where('month','sep2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwteacheroct22 = <?php echo $reportClasses->where('month','oct2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwteachernov22 = <?php echo $reportClasses->where('month','nov2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwteacherdec22 = <?php echo $reportClasses->where('month','dec2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwteacherjan23 = <?php echo $reportClasses->where('month','jan2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwteacherfeb23 = <?php echo $reportClasses->where('month','feb2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwjan22 = <?php echo $reportclasses->where('month',null)->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwfeb22 = <?php echo $reportclasses->where('month','02-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwmar22 = <?php echo $reportclasses->where('month','03-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwapr22 = <?php echo $reportclasses->where('month','04-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwmay22 = <?php echo $reportclasses->where('month','05-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwjun22 = <?php echo $reportclasses->where('month','06-2022')->whereNull('deleted_at')->sum('allowance') ?? ''?>;
+var alwjul22 = <?php echo $reportclasses->where('month','07-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwogs22 = <?php echo $reportclasses->where('month','08-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwsep22 = <?php echo $reportclasses->where('month','09-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwoct22 = <?php echo $reportclasses->where('month','10-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwnov22 = <?php echo $reportclasses->where('month','11-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwdec22 = <?php echo $reportclasses->where('month','12-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwjan23 = <?php echo $reportclasses->where('month','01-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwfeb23 = <?php echo $reportclasses->where('month','02-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwmar23 = <?php echo $reportclasses->where('month','03-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwapr23 = <?php echo $reportclasses->where('month','04-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwmay23 = <?php echo $reportclasses->where('month','05-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
 
-new Chart("", {
-  type: "line",
-  data: {
-    labels: xAllowance,
+  // Define the chart data and options
+  var chartData = {
+    labels: ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november','december'],
     datasets: [{
+     // fill: false,
+    //  lineTension: 0,
+     // backgroundColor: 'rgba(0,0,255,1.0)',
+     // borderColor: 'rgba(0,0,255,0.1)',
+    //  data: [],
+    //  label: 'Total Fees(RM)',
+   // }, {
       fill: false,
       lineTension: 0,
-      backgroundColor: "rgba(255, 99, 71, 1)",
-      borderColor: "rgba(255, 108, 49, 0.3)",
-      data: [alwteachermar22,alwteacherapr22,alwteachermay22,alwteacherjun22,alwteacherjul22,alwteacherogs22,alwteachersep22,alwteacheroct22,alwteachernov22,alwteacherdec22,alwteacherjan23,alwteacherfeb23],
-      label:'Total Allowance',
-    }
-  ]
-  },
-  options: {
-    maintainAspectRatio:false,
+      backgroundColor: 'rgba(255, 99, 71, 1)',
+      borderColor: 'rgba(255, 108, 49, 0.3)',
+      data: [],
+      label: 'Total Allowance(RM)',
+    }]
+  };
+
+  var chartOptions = {
+    maintainAspectRatio: false,
     legend: {
       display: true,
-      
     },
     scales: {
-      yAxes: [{ticks: {min: 0, max:6000}}],
+      yAxes: [{ ticks: { min: 0, max: 50000 } }],
     }
+  };
+
+  // Create an empty chart instance
+  var chart = new Chart(document.getElementById('myChart'), {
+    type: 'line',
+    data: chartData,
+    options: chartOptions
+  });
+
+  // Function to update the chart based on the selected year
+  function updateChart() {
+    var selectedYear = document.getElementById('yearSelect').value;
+   // var feeData = [];
+    var allowanceData = [];
+
+    // Retrieve the data for the selected year
+    switch (selectedYear) {
+      case '2022':
+        //feeData = [feejan22,feefeb22,feemar22, feeapr22, feemay22, feejun22, feejul22, feeogs22, feesep22, feeoct22, feenov22, feedec22];
+        allowanceData = [alwjan22,alwfeb22,alwmar22, alwapr22, alwmay22, alwjun22, alwjul22, alwogs22, alwsep22, alwoct22, alwnov22, alwdec22];
+        break;
+      case '2023':
+       // feeData =[feejan23,feefeb23];
+        allowanceData =[alwjan23,alwfeb23,alwmar23, alwapr23, alwmay23];
+        break;
+      default:
+        // Handle default case or show an error message
+        break;
+    }
+
+    // Update the chart data
+    //chart.data.datasets[0].data = feeData;
+    chart.data.datasets[0].data = allowanceData;
+    chart.update();
   }
-});
 </script>
+
 @endsection

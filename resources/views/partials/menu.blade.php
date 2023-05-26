@@ -229,6 +229,17 @@
                 </a>
             </li>
         @endcan
+
+        @can('registrar_by_teacher_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.registrar-by-teacher.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/registrar-by-teacher") || request()->is("admin/registrar-by-teacher/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fa fa-paper-plane c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.registrarbyTeacher.title') }}
+                </a>
+            </li>
+        @endcan
          
          @can('debt_access')
             <li class="c-sidebar-nav-item">

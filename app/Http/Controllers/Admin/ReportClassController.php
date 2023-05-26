@@ -80,7 +80,7 @@ class ReportClassController extends Controller
         abort_if(Gate::denies('report_class_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
        
-        $reportClasses = ReportClass::with(['registrar', 'created_by','class_name'])
+        $reportclasses = ReportClass::with(['registrar', 'created_by','class_name'])
                                     //->where('month','dec2022')
                                      ->get();
         
@@ -93,19 +93,9 @@ class ReportClassController extends Controller
         ->pluck('full_name', 'assign_class_teachers.id');
         //->toArray();
 
-        $years = ReportClass::selectRaw('YEAR(created_at) as year')
-        ->distinct()
-        ->orderBy('year', 'desc')
-        ->get();
-        $selected_year = $years->first()->year;
-        $allowances_by_month = ReportClass::whereYear('created_at', $selected_year)
-            ->selectRaw('month, sum(allowance) as total_allowance')
-            ->groupBy('month')
-            ->orderBy('month')
-            ->get();
-      //dd(  $allowances_by_month);
+       
         
-        return view('admin.reportClasses.index', compact('reportClasses', 'users','registrars','years', 'selected_year', 'allowances_by_month'));
+        return view('admin.reportClasses.index', compact('reportclasses', 'users','registrars'));
  
        
 
@@ -113,18 +103,7 @@ class ReportClassController extends Controller
 
         
 
-    public function getData(Request $request)
-    {
-        $year = $request->input('year');
-        $allowances_by_month = ReportClass::whereYear('created_at', $year)
-        ->selectRaw('month, sum(allowance) as total_allowance')
-        ->groupBy('month')
-        ->orderBy('month')
-        ->get();
-        return response()->json([
-            'allowances_by_month' => $allowances_by_month,
-        ]);
-    }
+    
 
     public function indexstudent()
     {
@@ -618,10 +597,9 @@ class ReportClassController extends Controller
     public function createBill(ReportClass $reportClass)
     {
       
-        //$reportClass->load( 'registrar', 'created_by');
+       
         $report = request('reportClass','id');
-        //$response->fee_student."00";
-        //dd
+       
         $some_data = array(
             'userSecretKey'=> config('toyyibpay.key'),
             'categoryCode'=> config('toyyibpay.category'),
@@ -663,10 +641,8 @@ class ReportClassController extends Controller
     {
         $report = request('reportClass','id');
       
-       //tambah if status id
-      
-      
-      
+         
+           
         $response = request()->all(['status_id','billcode','order_id']);
         if(request()->status_id == 1)
        {
@@ -699,7 +675,6 @@ class ReportClassController extends Controller
     public function paymentPage(ReportClass $reportClass)
     {
         $response = request('reportClass','id');
-        //dd($response);
         return view('admin.reportClasses.paymentpage', compact( ['response']));
     }
 }

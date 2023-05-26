@@ -9,6 +9,7 @@ use App\Http\Requests\StoreAssignClassTeacherRequest;
 use App\Http\Requests\UpdateAssignClassTeacherRequest;
 use App\Models\AssignClassTeacher;
 use App\Models\ClassName;
+use App\Models\ClassPackage;
 use App\Models\RegisterClass;
 use App\Models\User;
 use Gate;
@@ -77,16 +78,27 @@ class AssignClassTeacherController extends Controller
 
 
         $classes = ClassName::pluck('name', 'id');
-      // dd($classes);
-        $assignClassTeacher->load('teacher', 'registrar', 'classes');
 
-        return view('admin.assignClassTeachers.edit', compact('teachers', 'registrars', 'classes', 'assignClassTeacher'));
+        $classpackages = ClassPackage::pluck('name', 'id');
+      // dd($classes);
+        $assignClassTeacher->load('teacher', 'registrar', 'classes','classpackage');
+
+        return view('admin.assignClassTeachers.edit', compact('teachers', 'registrars', 'classes', 'assignClassTeacher','classpackages'));
     }
 
     public function update(UpdateAssignClassTeacherRequest $request, AssignClassTeacher $assignClassTeacher)
     {
         $assignClassTeacher->update($request->all());
-        $assignClassTeacher->classes()->sync($request->input('classes', []));
+        //$assignClassTeacher->classpackage()->sync($request->input('classpackage', []));
+       // $assignClassTeacher->classes()->sync($request->input('classes', []));
+       if ($request->has('classpackage')) {
+        $assignClassTeacher->classpackage()->sync($request->input('classpackage'));
+    }
+
+    if ($request->has('classes')) {
+        $assignClassTeacher->classes()->sync($request->input('classes'));
+    }
+       
 
         return redirect()->route('admin.assign-class-teachers.index');
     }
