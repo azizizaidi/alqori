@@ -74,6 +74,31 @@
                 <span class="help-block">{{ trans('cruds.assignClassTeacher.fields.class_helper') }}</span>
             </div>
 
+
+
+            <div class="form-group">
+                <label class="required" for="classpackage">{{ trans('cruds.assignClassTeacher.fields.classpackage') }}</label>
+
+                <select class="form-control select2 {{ $errors->has('classpackage') ? 'is-invalid' : '' }}" name="classpackage[]" id="classpackage" required>
+                @foreach($classpackages as $id => $classpackage)
+             
+                  <option value="{{ $id }}" {{ (in_array($id,  old('classpackage', [])) || $assignClassTeacher->classpackage->contains($id)) ? 'selected' : ''}}>
+                  {{ $classpackage }}
+                   </option>
+                  @endforeach
+                 </select>
+
+
+              
+
+                @if($errors->has('classpackage'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('classpackage') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.assignClassTeacher.fields.class_helper') }}</span>
+            </div>
+
             <div class="form-group">
                 <label class="required" for="student_code">{{ trans('cruds.assignClassTeacher.fields.student_code') }}</label>
                 <input class="form-control {{ $errors->has('student_code') ? 'is-invalid' : '' }}" type="text" name="student_code" id="student_code" value="{{ old('student_code', $assignClassTeacher->student_code) }}" required>

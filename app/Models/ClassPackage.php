@@ -34,4 +34,11 @@ class ClassPackage extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function assignclass()
+    {
+       
+         return $this->belongsToMany(AssignClassTeacher::class,'assign_class_teacher_class_name', 'class_package_id','assign_class_teacher_id');
+        
+    }
 }

@@ -6,6 +6,7 @@ use App\Models\AssignClassTeacher;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
+use App\Rules\NoNullInArray;
 
 class UpdateAssignClassTeacherRequest extends FormRequest
 {
@@ -37,6 +38,13 @@ class UpdateAssignClassTeacherRequest extends FormRequest
             'classes' => [
                 'required',
                 'array',
+                new NoNullInArray,
+               
+            ],
+            'classpackage' => [
+                'required',
+                'array',
+                new NoNullInArray,
                
             ],
         ];

@@ -718,5 +718,36 @@ return [
     'allowance' => [
         'title'          => 'Allowance',
         'title_singular' => 'Allowance',
-    ]
+    ],
+
+    'registrarbyteacher' => [
+        'title'          => 'Your Class',
+        'title_singular' => 'Your Class',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => ' ',
+            'registrar'            => 'Registrar',
+            'registrar_helper'     => ' ',
+            'classname'          => 'Classname',
+            'classname_helper'   => ' ',
+            'allowanceperhour'            => 'Allowance per Hour',
+            'allowanceperhour_helper'     => ' ',
+            'class'              => 'Class',
+            'class_helper'       => ' ',
+            'total_hour'         => 'Total Hour',
+            'total_hour_helper'  => ' ',
+            'amount_fee'         => 'Amount Fee',
+            'amount_fee_helper'  => ' ',
+            'date_class'         => 'Date Class',
+            'date_class_helper'  => ' ',
+            'fee_perhour'        => 'Fee Perhour',
+            'fee_perhour_helper' => ' ',
+            'created_at'         => 'Created at',
+            'created_at_helper'  => ' ',
+            'updated_at'         => 'Updated at',
+            'updated_at_helper'  => ' ',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => ' ',
+        ],
+    ],
 ];

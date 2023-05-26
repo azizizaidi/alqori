@@ -45,6 +45,9 @@
                             {{ trans('cruds.assignClassTeacher.fields.class') }}
                         </th>
                         <th>
+                            {{ trans('cruds.assignClassTeacher.fields.class_package') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -55,7 +58,9 @@
                             <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
                         <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                             <select class="search">
+                                
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach($teachers as $key => $item)
                                     <option value="{{ $item->name }}">{{ $item->name }}</option>
@@ -86,6 +91,8 @@
                         </td>
                         <td>
                         </td>
+                        <td>
+                        </td>
                     </tr>
                 </thead>
                 <tbody>
@@ -112,6 +119,11 @@
                             <td>
                                
                                   @foreach($assignClassTeacher->classes as $key => $item)
+                                    <span class="badge badge-info">{{ $item->name }}</span>
+                                @endforeach
+                            </td>
+                            <td>
+                            @foreach($assignClassTeacher->classpackage as $key => $item)
                                     <span class="badge badge-info">{{ $item->name }}</span>
                                 @endforeach
                             </td>

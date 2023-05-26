@@ -67,5 +67,12 @@ class ClassName extends Model
           return $this->belongsToMany(AssignClassTeacher::class,'assign_class_teacher_class_name', 'class_name_id','assign_class_teacher_id');
          
      }
+
+     public function classpackage()
+     {
+        
+          return $this->belongsToMany(ClassPackage::class,'assign_class_teacher_class_name', 'class_name_id','class_package_id');
+         
+     }
 }
 
