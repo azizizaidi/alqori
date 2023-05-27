@@ -80,7 +80,7 @@ class AssignClassTeacherController extends Controller
         $classes = ClassName::pluck('name', 'id');
 
         $classpackages = ClassPackage::pluck('name', 'id');
-      // dd($classes);
+      
         $assignClassTeacher->load('teacher', 'registrar', 'classes','classpackage');
 
         return view('admin.assignClassTeachers.edit', compact('teachers', 'registrars', 'classes', 'assignClassTeacher','classpackages'));
