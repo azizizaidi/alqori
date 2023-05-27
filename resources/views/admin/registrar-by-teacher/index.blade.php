@@ -27,10 +27,8 @@
             <th>{{ trans('cruds.registrarbyteacher.fields.allowanceperhour') }}</th>
             <th>{{ trans('cruds.registrarbyteacher.fields.total_hour') }}</th>
             <th>{{ trans('cruds.registrarbyteacher.fields.total_allowance') }}</th>
-            <th>&nbsp;</th>
-            @can('report_class_edit')
-            <th>{{ trans('cruds.reportClass.fields.note') }}</th>
-            @endcan
+           
+          
         </tr>
         <tr>
             <td></td>
@@ -45,10 +43,8 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            @can('report_class_edit')
-            <td></td>
-            @endcan
+          
+        
         </tr>
     </thead>
     <tbody>
@@ -127,17 +123,7 @@
                     </tr>
                 </table>
             </td>
-            <td>
-                @can('report_class_edit')
-                <a class="btn btn-xs btn-info"
-                    href="{{ route('admin.report-classes.edit', $reportClass->id) }}">{{ trans('global.edit') }}</a>
-                @endcan
-
-                @can('report_class_edit')
-                <a class="btn btn-xs btn-primary"
-                    href="{{ route('admin.report-classes.showinvoice', $reportClass->id) }}">{{ trans('global.viewinvoice') }}</a>
-                @endcan
-            </td>
+          
         </tr>
 
         @php
@@ -145,7 +131,8 @@
         @endphp
         @endforeach
         <tr>
-            <td colspan="6" align="right"><strong>Sum of Total Allowance: RM{{ $totalAllowanceSum }}</strong></td>
+            <td colspan="6" align="right"><strong>Sum of Total Allowance: </strong></td>
+            <td colspan="6" align="left"><strong> RM{{ $totalAllowanceSum }}</strong></td>
         </tr>
     </tbody>
 </table>
