@@ -721,8 +721,8 @@ return [
     ],
 
     'registrarbyteacher' => [
-        'title'          => 'Your Class',
-        'title_singular' => 'Your Class',
+        'title'          => 'Class Info',
+        'title_singular' => 'Class Info',
         'fields'         => [
             'id'                 => 'ID',
             'id_helper'          => ' ',
@@ -732,6 +732,8 @@ return [
             'classname_helper'   => ' ',
             'allowanceperhour'            => 'Allowance per Hour',
             'allowanceperhour_helper'     => ' ',
+            'total_allowance'            => 'Total Allowance',
+            'total_allowance_helper'     => ' ',
             'class'              => 'Class',
             'class_helper'       => ' ',
             'total_hour'         => 'Total Hour',

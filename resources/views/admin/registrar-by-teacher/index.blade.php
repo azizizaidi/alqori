@@ -20,7 +20,7 @@
         <table id="table" class="table table-bordered rounded table-striped table-hover datatable datatable-ReportClass">
     <thead>
         <tr>
-            <th width="10"></th>
+            
             <th>{{ trans('cruds.registrarbyteacher.fields.id') }}</th>
             <th>{{ trans('cruds.registrarbyteacher.fields.registrar') }}</th>
             <th>{{ trans('cruds.registrarbyteacher.fields.classname') }}</th>
@@ -31,7 +31,7 @@
           
         </tr>
         <tr>
-            <td></td>
+            
             <td>
             </td>
             <td>
@@ -53,7 +53,7 @@
         @endphp
         @foreach($registrars as $key => $registrar)
         <tr data-entry-id="{{ $registrar->id }}">
-            <td></td>
+          
             <td>{{ $registrar->id ?? '' }}</td>
             <td>
                 {{ $registrar->registrar->name ?? '' }}&nbsp; {{ $registrar->registrar->code ?? '' }}
@@ -118,9 +118,9 @@
                     </tr>
                     @endforeach
                     @endforeach
-                    <tr>
-                        <td>Total Allowance: RM{{ $totalAllowance }}</td>
-                    </tr>
+                    <!--<tr>
+                        <p>Total Allowance: RM{{ $totalAllowance }}</p>
+                    </tr>-->
                 </table>
             </td>
           
@@ -131,8 +131,8 @@
         @endphp
         @endforeach
         <tr>
-            <td colspan="6" align="right"><strong>Sum of Total Allowance: </strong></td>
-            <td colspan="6" align="left"><strong> RM{{ $totalAllowanceSum }}</strong></td>
+            <td colspan="5" align="right"><strong>Sum of Total Allowance: </strong></td>
+            <td colspan="5" align="left"><strong> RM{{ $totalAllowanceSum }}</strong></td>
         </tr>
     </tbody>
 </table>
