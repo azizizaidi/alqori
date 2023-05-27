@@ -7,6 +7,7 @@ use App\Http\Requests\MassDestroyClaimRequest;
 use App\Http\Requests\StoreClaimRequest;
 use App\Models\User;
 use App\Models\ClassName;
+use App\Models\ClassPackage;
 use App\Models\AssignClassTeacher;
 use Gate;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class RegistrarbyTeacherController extends Controller
     {
         abort_if(Gate::denies('registrar_by_teacher_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $registrars = AssignClassTeacher:: with('classes','registrar')
+        $registrars = AssignClassTeacher:: with('classes','registrar','classpackage')
         ->whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)
         //->whereRelation('classes', 'class_name_id', 'LIKE', $id)
         //->orderBy('student_code', 'ASC')
@@ -29,12 +30,8 @@ class RegistrarbyTeacherController extends Controller
        //->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'assign_class_teachers.id')
        // ->pluck('full_name', 'assign_class_teachers.id');
        ->get();
-
-       
-//foreach ($registrars as $registrar) {
-   // echo $registrar->registrar->name;
-//}
-      // dd($registrars);
+   
+      
 
         return view('admin.registrar-by-teacher.index', compact('registrars'));
     }

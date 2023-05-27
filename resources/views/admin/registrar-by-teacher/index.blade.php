@@ -17,172 +17,142 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table id="table "class=" table table-bordered rounded  table-striped table-hover datatable datatable-ReportClass" >
-                <thead>
+        <table id="table" class="table table-bordered rounded table-striped table-hover datatable datatable-ReportClass">
+    <thead>
+        <tr>
+            <th width="10"></th>
+            <th>{{ trans('cruds.registrarbyteacher.fields.id') }}</th>
+            <th>{{ trans('cruds.registrarbyteacher.fields.registrar') }}</th>
+            <th>{{ trans('cruds.registrarbyteacher.fields.classname') }}</th>
+            <th>{{ trans('cruds.registrarbyteacher.fields.allowanceperhour') }}</th>
+            <th>{{ trans('cruds.registrarbyteacher.fields.total_hour') }}</th>
+            <th>{{ trans('cruds.registrarbyteacher.fields.total_allowance') }}</th>
+            <th>&nbsp;</th>
+            @can('report_class_edit')
+            <th>{{ trans('cruds.reportClass.fields.note') }}</th>
+            @endcan
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+            </td>
+            <td>
+                <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+            </td>
+            <td>
+                <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            @can('report_class_edit')
+            <td></td>
+            @endcan
+        </tr>
+    </thead>
+    <tbody>
+        @php
+        $totalAllowanceSum = 0;
+        @endphp
+        @foreach($registrars as $key => $registrar)
+        <tr data-entry-id="{{ $registrar->id }}">
+            <td></td>
+            <td>{{ $registrar->id ?? '' }}</td>
+            <td>
+                {{ $registrar->registrar->name ?? '' }}&nbsp; {{ $registrar->registrar->code ?? '' }}
+            </td>
+            <td style="display: flex; justify-content: right;">
+                <table style="text-align: center;">
+                    @foreach($registrar->classes as $class)
                     <tr>
-                        <th width="10">
-
-                        </th>
-                        <th>
-                            {{ trans('cruds.registrarbyteacher.fields.id') }}
-                        </th>
-                                            
-                        <th>
-                            {{ trans('cruds.registrarbyteacher.fields.registrar') }}
-                        </th>
-                      
-                       
-                         <th>
-                            {{ trans('cruds.registrarbyteacher.fields.classname') }}
-                        </th>
-                          <th>
-                            {{ trans('cruds.registrarbyteacher.fields.allowanceperhour') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.registrarbyteacher.fields.total_hour') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.registrarbyteacher.fields.total_allowance') }}
-                        </th>
-                      
-                        <th>
-                            &nbsp;
-                        </th>
-                          @can('report_class_edit')
-                         
-                            <th> 
-                              {{ trans('cruds.reportClass.fields.note') }}
-                           
-                            </th>
-                            @endcan
+                        <td>{{ $class->name }}</td>
                     </tr>
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
-                           
-                        </td>
-                        <td>
-                             <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                        </td>
-                     
-                        <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                        </td>
-                         <td>
-                       
-                        </td>
-                       
-                        <td>
-                       
-                       </td> 
-                        <td>
-                       
-                       </td>
-                        <td>
-                        </td>
-                          @can('report_class_edit')
-                        
-                            <td>
-                                
-                            </td>
-                            @endcan
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($registrars as $key => $registrar)
-                    
-                    <tr data-entry-id="{{ $registrar->id }}">
-                            <td>
-
-                            </td>
-                            <td>
-                                {{ $registrar->id ?? '' }}
-                            </td>
-                           
-                            <td>
-                                {{ $registrar->registrar->name ?? '' }}&nbsp;
-                                 {{ $registrar->registrar->code ?? '' }}
-                            </td>
-                            <td style=" display: flex;justify-content: right;">
-                            <table style="text-align: center;">
-                             @foreach($registrar->classes as $class)
-                             <tr>
-                               <td >
-                                 {{ $class->name }}
-                              </td>
-                             </tr>
-                            @endforeach
-                           </table>
-                           </td>
-                     
-                            <td>
-                            <table>
-                             @foreach($registrar->classes as $class)
-                             <tr>
-                               <td>
-                                 RM{{ $class->allowanceperhour }}
-                              </td>
-                             </tr>
-                            @endforeach
-                           </table>
-                           </td>
-                           <td style=" display: flex;justify-content: center;">
-                            
-                             @foreach($registrar->classpackage as $classpackage)
-                         
-                            
-                                 {{ $classpackage->total_hour }}
-                             
-                             @endforeach
-                       
-                           </td>
-                           <td>
-                            <table>
-                             @foreach($registrar->classes as $class)
-                             @foreach($registrar->classpackage as $classpackage)
-                             <tr>
-                               <td>
-                                @if($classpackage->where('name', 'like', '%combo%'))
-                                 ada 
-                                 @else
-                                 takde
-                                 @endif
-                              </td>
-                             </tr>
-                             @endforeach
-                            @endforeach
-                           </table>
-                           </td>
-
-                            <td>
-                              
-
-                                @can('report_class_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.report-classes.edit', $reportClass->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan
-
-                                @can('report_class_edit')
-                                 <a class="btn btn-xs btn-primary" href="{{ route('admin.report-classes.showinvoice', $reportClass->id) }}">
-                                        {{ trans('global.viewinvoice') }}
-                                    </a>
-                                    @endcan
-                                
-                               
-                            </td>
-                             @can('report_class_edit')
-                            
-                       
-                             
-                            @endcan
-
-                        </tr>
-                          
                     @endforeach
-                </tbody>
-            </table>
+                </table>
+            </td>
+            <td>
+                <table>
+                    @foreach($registrar->classes as $class)
+                    <tr>
+                        <td>RM{{ $class->allowanceperhour }}</td>
+                    </tr>
+                    @endforeach
+                </table>
+            </td>
+            <td style="display: flex; justify-content: center;">
+                <table>
+                    @foreach($registrar->classes as $class)
+                    @foreach($registrar->classpackage as $classpackage)
+                    <tr>
+                        <td>
+                            @if(str_contains($classpackage->name, 'COMBO'))
+                            {{ $classpackage->total_hour / 2 }}
+                            @else
+                            {{ $classpackage->total_hour }}
+                            @endif
+                        </td>
+                    </tr>
+                    @endforeach
+                    @endforeach
+                </table>
+            </td>
+            <td>
+                <table>
+                    @php
+                    $totalAllowance = 0;
+                    @endphp
+                    @foreach($registrar->classes as $class)
+                    @foreach($registrar->classpackage as $classpackage)
+                    <tr>
+                        <td>
+                            @if(str_contains($classpackage->name, 'COMBO'))
+                            @php
+                            $allowance = $classpackage->total_hour / 2 * $class->allowanceperhour;
+                                $totalAllowance += $allowance;
+                                @endphp
+                            @else
+                                @php
+                                $allowance = $classpackage->total_hour * $class->allowanceperhour;
+                                $totalAllowance += $allowance;
+                                @endphp
+                            @endif
+                            RM{{ $allowance }}
+                        </td>
+                    </tr>
+                    @endforeach
+                    @endforeach
+                    <tr>
+                        <td>Total Allowance: RM{{ $totalAllowance }}</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                @can('report_class_edit')
+                <a class="btn btn-xs btn-info"
+                    href="{{ route('admin.report-classes.edit', $reportClass->id) }}">{{ trans('global.edit') }}</a>
+                @endcan
+
+                @can('report_class_edit')
+                <a class="btn btn-xs btn-primary"
+                    href="{{ route('admin.report-classes.showinvoice', $reportClass->id) }}">{{ trans('global.viewinvoice') }}</a>
+                @endcan
+            </td>
+        </tr>
+
+        @php
+        $totalAllowanceSum += $totalAllowance;
+        @endphp
+        @endforeach
+        <tr>
+            <td colspan="6" align="right"><strong>Sum of Total Allowance: RM{{ $totalAllowanceSum }}</strong></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+</div>
         </div>
     </div>
 </div>
