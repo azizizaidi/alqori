@@ -156,6 +156,7 @@
      
   
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/flatpickr.monthSelect.min.js"></script>
   
     
     <script src="{{ asset('js/main.js') }}"></script>

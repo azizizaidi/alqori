@@ -10,7 +10,7 @@ use App\Http\Requests\UpdateAssignClassTeacherRequest;
 use App\Models\AssignClassTeacher;
 use App\Models\ClassName;
 use App\Models\ClassPackage;
-use App\Models\RegisterClass;
+//use App\Models\RegisterClass;
 use App\Models\User;
 use Gate;
 use DB;
@@ -50,9 +50,11 @@ class AssignClassTeacherController extends Controller
                         ->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
                 
        $classes = ClassName::pluck('name', 'id');
+
+       $classpackage = ClassPackage::pluck('name', 'id');
        
 
-        return view('admin.assignClassTeachers.create', compact('teachers', 'students', 'classes'));
+        return view('admin.assignClassTeachers.create', compact('teachers', 'students', 'classes','classpackage'));
     }
 
     public function store(StoreAssignClassTeacherRequest $request)
@@ -60,6 +62,7 @@ class AssignClassTeacherController extends Controller
       
         $assignClassTeacher = AssignClassTeacher::create($request->all());
         $assignClassTeacher->classes()->sync($request->input('classes', []));
+        $assignClassTeacher->classpackage()->sync($request->input('classpackage', []));
 
         return redirect()->route('admin.assign-class-teachers.index');
     }

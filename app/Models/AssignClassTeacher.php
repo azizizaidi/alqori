@@ -24,9 +24,8 @@ class AssignClassTeacher extends Model
 
     protected $fillable = [
         'teacher_id',
-        'teacher_code',
         'registrar_id',
-        'student_code',
+        'assign_class_code',
         'classpackage_id',
         'class_id',
         'created_at',

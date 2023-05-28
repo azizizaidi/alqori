@@ -32,14 +32,12 @@
                         <th>
                             {{ trans('cruds.assignClassTeacher.fields.teacher') }}
                         </th>
-                        <th>
-                            {{ trans('cruds.assignClassTeacher.fields.teacher_code') }}
-                        </th>
+                     
                         <th>
                             {{ trans('cruds.assignClassTeacher.fields.student') }}
                         </th>
                         <th>
-                            {{ trans('cruds.assignClassTeacher.fields.student_code') }}
+                            {{ trans('cruds.assignClassTeacher.fields.assign_class_code') }}
                         </th>
                         <th>
                             {{ trans('cruds.assignClassTeacher.fields.class') }}
@@ -55,7 +53,7 @@
                         <td>
                         </td>
                         <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                           
                         </td>
                         <td>
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
@@ -91,8 +89,7 @@
                         </td>
                         <td>
                         </td>
-                        <td>
-                        </td>
+                       
                     </tr>
                 </thead>
                 <tbody>
@@ -107,14 +104,12 @@
                             <td>
                                 {{ $assignClassTeacher->teacher->name ?? '' }}
                             </td>
-                            <td>
-                                {{ $assignClassTeacher->teacher_code ?? '' }}
-                            </td>
+                           
                             <td>
                                 {{ $assignClassTeacher->registrar->name ?? '' }}
                             </td>
                             <td>
-                                {{ $assignClassTeacher->student_code ?? '' }}
+                                {{ $assignClassTeacher->assign_class_code ?? '' }}
                             </td>
                             <td>
                                
@@ -199,7 +194,7 @@
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
     order: [[ 1, 'desc' ]],
-    pageLength: 100,
+    pageLength: 10,
   });
   let table = $('.datatable-AssignClassTeacher:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){

@@ -20,20 +20,18 @@
         <table id="table" class="table table-bordered rounded table-striped table-hover datatable datatable-ReportClass">
     <thead>
         <tr>
-            <th width="10"></th>
+            
             <th>{{ trans('cruds.registrarbyteacher.fields.id') }}</th>
             <th>{{ trans('cruds.registrarbyteacher.fields.registrar') }}</th>
             <th>{{ trans('cruds.registrarbyteacher.fields.classname') }}</th>
             <th>{{ trans('cruds.registrarbyteacher.fields.allowanceperhour') }}</th>
             <th>{{ trans('cruds.registrarbyteacher.fields.total_hour') }}</th>
             <th>{{ trans('cruds.registrarbyteacher.fields.total_allowance') }}</th>
-            <th>&nbsp;</th>
-            @can('report_class_edit')
-            <th>{{ trans('cruds.reportClass.fields.note') }}</th>
-            @endcan
+           
+          
         </tr>
         <tr>
-            <td></td>
+            
             <td>
             </td>
             <td>
@@ -45,10 +43,8 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            @can('report_class_edit')
-            <td></td>
-            @endcan
+          
+        
         </tr>
     </thead>
     <tbody>
@@ -57,7 +53,7 @@
         @endphp
         @foreach($registrars as $key => $registrar)
         <tr data-entry-id="{{ $registrar->id }}">
-            <td></td>
+          
             <td>{{ $registrar->id ?? '' }}</td>
             <td>
                 {{ $registrar->registrar->name ?? '' }}&nbsp; {{ $registrar->registrar->code ?? '' }}
@@ -122,22 +118,12 @@
                     </tr>
                     @endforeach
                     @endforeach
-                    <tr>
-                        <td>Total Allowance: RM{{ $totalAllowance }}</td>
-                    </tr>
+                    <!--<tr>
+                        <p>Total Allowance: RM{{ $totalAllowance }}</p>
+                    </tr>-->
                 </table>
             </td>
-            <td>
-                @can('report_class_edit')
-                <a class="btn btn-xs btn-info"
-                    href="{{ route('admin.report-classes.edit', $reportClass->id) }}">{{ trans('global.edit') }}</a>
-                @endcan
-
-                @can('report_class_edit')
-                <a class="btn btn-xs btn-primary"
-                    href="{{ route('admin.report-classes.showinvoice', $reportClass->id) }}">{{ trans('global.viewinvoice') }}</a>
-                @endcan
-            </td>
+          
         </tr>
 
         @php
@@ -145,7 +131,8 @@
         @endphp
         @endforeach
         <tr>
-            <td colspan="6" align="right"><strong>Sum of Total Allowance: RM{{ $totalAllowanceSum }}</strong></td>
+            <td colspan="5" align="right"><strong>Sum of Total Allowance: </strong></td>
+            <td colspan="5" align="left"><strong> RM{{ $totalAllowanceSum }}</strong></td>
         </tr>
     </tbody>
 </table>

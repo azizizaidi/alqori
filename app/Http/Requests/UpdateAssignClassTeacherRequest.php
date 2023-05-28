@@ -22,15 +22,12 @@ class UpdateAssignClassTeacherRequest extends FormRequest
                 'required',
                 'integer',
             ],
-            'teacher_code' => [
-                'string',
-                'required',
-            ],
+         
             'registrar_id' => [
                 'required',
                 'integer',
             ],
-            'student_code' => [
+            'assign_class_code' => [
                 'string',
                 'required',
             ],

@@ -540,8 +540,10 @@ return [
             'class_helper'        => ' ',
             'teacher_code'        => 'Teacher Code',
             'teacher_code_helper' => ' ',
-            'student_code'        => 'Student Code',
-            'student_code_helper' => ' ',
+            'assign_class_code'        => 'Assign Class Code',
+            'assign_class_code_helper' => ' ',
+            'class_package'        => 'Class Package',
+            'class_package_helper' => ' ',
         ],
     ],
     'stdntRgstr' => [
@@ -721,8 +723,8 @@ return [
     ],
 
     'registrarbyteacher' => [
-        'title'          => 'Your Class',
-        'title_singular' => 'Your Class',
+        'title'          => 'Class Info',
+        'title_singular' => 'Class Info',
         'fields'         => [
             'id'                 => 'ID',
             'id_helper'          => ' ',
@@ -732,6 +734,8 @@ return [
             'classname_helper'   => ' ',
             'allowanceperhour'            => 'Allowance per Hour',
             'allowanceperhour_helper'     => ' ',
+            'total_allowance'            => 'Total Allowance',
+            'total_allowance_helper'     => ' ',
             'class'              => 'Class',
             'class_helper'       => ' ',
             'total_hour'         => 'Total Hour',

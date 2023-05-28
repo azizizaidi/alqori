@@ -87,7 +87,7 @@ class ReportClassController extends Controller
         $users = User::get();
        // $registrars =DB::table('users')->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
         $registrars = AssignClassTeacher:: whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)
-        ->orderBy('student_code', 'ASC')
+        ->orderBy('assign_class_code', 'ASC')
         ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
         ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'assign_class_teachers.id')
         ->pluck('full_name', 'assign_class_teachers.id');
@@ -151,7 +151,7 @@ class ReportClassController extends Controller
       abort_if(Gate::denies('report_class_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
        
      $registrars = AssignClassTeacher:: whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)
-                  ->orderBy('student_code', 'ASC')
+                  ->orderBy('assign_class_code', 'ASC')
                   ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
                   ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'assign_class_teachers.id')
                   ->pluck('full_name', 'assign_class_teachers.id');
@@ -198,6 +198,8 @@ class ReportClassController extends Controller
         $assignClassTeacher = AssignClassTeacher::find($reportClass->registrar_id);
         $registrarName = $assignClassTeacher->registrar->id;
         $reportClass->registrar_id = $registrarName;
+
+        $reportClass->month = "05-2023";
         //$reportClass->save();
        //dd( $reportClass);
         $classname = ClassName::find($request->id = $reportClass->class_names_id);
