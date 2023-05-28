@@ -25,14 +25,14 @@
                 <span class="help-block">{{ trans('cruds.assignClassTeacher.fields.teacher_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="teacher_code">{{ trans('cruds.assignClassTeacher.fields.teacher_code') }}</label>
-                <input class="form-control {{ $errors->has('teacher_code') ? 'is-invalid' : '' }}" type="text" name="teacher_code" id="teacher_code" value="{{ old('teacher_code', $assignClassTeacher->teacher_code) }}" required>
-                @if($errors->has('teacher_code'))
+                <label class="required" for="assign_class_code">{{ trans('cruds.assignClassTeacher.fields.assign_class_code') }}</label>
+                <input class="form-control {{ $errors->has('assign_class_code') ? 'is-invalid' : '' }}" type="text" name="assign_class_code" id="assign_class_code" value="{{ old('assign_class_code', $assignClassTeacher->assign_class_code) }}" required>
+                @if($errors->has('assign_class_code'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('teacher_code') }}
+                        {{ $errors->first('assign_class_code') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.assignClassTeacher.fields.teacher_code_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.assignClassTeacher.fields.assign_class_code_helper') }}</span>
             </div>
            
 
@@ -99,16 +99,7 @@
                 <span class="help-block">{{ trans('cruds.assignClassTeacher.fields.class_helper') }}</span>
             </div>
 
-            <div class="form-group">
-                <label class="required" for="student_code">{{ trans('cruds.assignClassTeacher.fields.student_code') }}</label>
-                <input class="form-control {{ $errors->has('student_code') ? 'is-invalid' : '' }}" type="text" name="student_code" id="student_code" value="{{ old('student_code', $assignClassTeacher->student_code) }}" required>
-                @if($errors->has('student_code'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('student_code') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.assignClassTeacher.fields.student_code_helper') }}</span>
-            </div>
+         
            
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

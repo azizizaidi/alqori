@@ -540,8 +540,10 @@ return [
             'class_helper'        => ' ',
             'teacher_code'        => 'Teacher Code',
             'teacher_code_helper' => ' ',
-            'student_code'        => 'Student Code',
-            'student_code_helper' => ' ',
+            'assign_class_code'        => 'Assign Class Code',
+            'assign_class_code_helper' => ' ',
+            'class_package'        => 'Class Package',
+            'class_package_helper' => ' ',
         ],
     ],
     'stdntRgstr' => [

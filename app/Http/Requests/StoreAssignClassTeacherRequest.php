@@ -6,6 +6,7 @@ use App\Models\AssignClassTeacher;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
+use App\Rules\NoNullInArray;
 
 class StoreAssignClassTeacherRequest extends FormRequest
 {
@@ -21,15 +22,12 @@ class StoreAssignClassTeacherRequest extends FormRequest
                 'required',
                 'integer',
             ],
-            'teacher_code' => [
-                'string',
-                'required',
-            ],
+           
             'registrar_id' => [
                 'required',
                 'integer',
             ],
-            'student_code' => [
+            'assign_class_code' => [
                 'string',
                 'required',
             ],
@@ -37,6 +35,14 @@ class StoreAssignClassTeacherRequest extends FormRequest
             'classes' => [
                 'required',
                 'array',
+                new NoNullInArray,
+               
+            ],
+
+            'classpackage' => [
+                'required',
+                'array',
+                new NoNullInArray,
                
             ],
         ];

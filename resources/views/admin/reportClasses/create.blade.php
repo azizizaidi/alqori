@@ -12,8 +12,9 @@
             
            
             <div class="form-group">
-                <label class="required" for="month">{{ trans('cruds.reportClass.fields.month') }}</label>
-                <input type="month" id="month" name="month"
+          
+                <label class="required" for="month-input">{{ trans('cruds.reportClass.fields.month') }}</label>
+                <input type="month" id="month" name="month" onchange="formatMonth()"
        min="2023-05" max="2023-05" required/>
                 @if($errors->has('month'))
                     <div class="invalid-feedback">
@@ -321,6 +322,15 @@
     dateFormat: "d-m-Y"
 });
     });
+  </script>
+
+   <script>
+    function formatMonth() {
+      var monthInput = document.getElementById('month-input');
+      var value = monthInput.value;
+      var formattedValue = value.split('-').reverse().join('-');
+      monthInput.value = formattedValue;
+    }
   </script>
 
 
