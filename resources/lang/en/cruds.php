@@ -542,8 +542,8 @@ return [
             'teacher_code_helper' => ' ',
             'assign_class_code'        => 'Assign Class Code',
             'assign_class_code_helper' => ' ',
-            'class_package'        => 'Class Package',
-            'class_package_helper' => ' ',
+            'classpackage'        => 'Class Package',
+            'classpackage_helper' => ' ',
         ],
     ],
     'stdntRgstr' => [
