@@ -103,10 +103,12 @@
                             </td>
                             <td>
                                 {{ $assignClassTeacher->teacher->name ?? '' }}
+                                {{ $assignClassTeacher->teacher->code ?? '' }}
                             </td>
                            
                             <td>
                                 {{ $assignClassTeacher->registrar->name ?? '' }}
+                                {{ $assignClassTeacher->registrar->code ?? '' }}
                             </td>
                             <td>
                                 {{ $assignClassTeacher->assign_class_code ?? '' }}
