@@ -30,7 +30,6 @@ class AssignClassTeacherController extends Controller
        $teachers=User::whereHas('roles', function($q){$q->whereIn('title', ['teacher']);})->get();
        $students=User::whereHas('roles', function($q){$q->whereIn('title', ['registrar']);})->get();
        
-
         $register_classes = ClassName::get();
 
         return view('admin.assignClassTeachers.index', compact('assignClassTeachers', 'teachers','students', 'register_classes'));
