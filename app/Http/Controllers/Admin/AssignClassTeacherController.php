@@ -10,7 +10,6 @@ use App\Http\Requests\UpdateAssignClassTeacherRequest;
 use App\Models\AssignClassTeacher;
 use App\Models\ClassName;
 use App\Models\ClassPackage;
-//use App\Models\RegisterClass;
 use App\Models\User;
 use Gate;
 use DB;
