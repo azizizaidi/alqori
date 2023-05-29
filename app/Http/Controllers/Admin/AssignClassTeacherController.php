@@ -88,9 +88,9 @@ class AssignClassTeacherController extends Controller
         ->whereRelation('roles','id', 'like', '%'.'2'.'%')
         ->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
         
-         $registrars = User::with('roles')
+        $registrars = User::with('roles')
         ->whereRelation('roles','id', 'like', '%'.'4'.'%')
-        ->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        ->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
 
 
         $classes = ClassName::pluck('name', 'id');

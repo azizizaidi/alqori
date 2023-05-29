@@ -25,7 +25,7 @@
             </div>
            
             <div class="form-group">
-                <label class="required" for="registrar_id">{{ trans('cruds.assignClassTeacher.fields.student') }}</label>
+                <label class="required" for="registrar_id">{{ trans('cruds.assignClassTeacher.fields.registrar') }}</label>
                 <select class="form-control select2 {{ $errors->has('registrar') ? 'is-invalid' : '' }}" name="registrar_id" id="registrar_id" required>
                     @foreach($students as $id => $entry)
                         <option value="{{ $id }}" {{ old('registrar_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
