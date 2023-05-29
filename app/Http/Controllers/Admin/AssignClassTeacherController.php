@@ -10,7 +10,6 @@ use App\Http\Requests\UpdateAssignClassTeacherRequest;
 use App\Models\AssignClassTeacher;
 use App\Models\ClassName;
 use App\Models\ClassPackage;
-//use App\Models\RegisterClass;
 use App\Models\User;
 use Gate;
 use DB;
@@ -28,8 +27,7 @@ class AssignClassTeacherController extends Controller
         $assignClassTeachers = AssignClassTeacher::with(['teacher', 'registrar'])->get();
 
        $teachers=User::whereHas('roles', function($q){$q->whereIn('title', ['teacher']);})->get();
-      // $students=User::whereHas('roles', function($q){$q->whereIn('title', ['registrar']);})->get();
-      $students = User::whereHas('roles', function ($q) {
+         $students = User::whereHas('roles', function ($q) {
         $q->whereIn('title', ['registrar']);
     })
     ->orWhere(function ($query) {
@@ -88,9 +86,9 @@ class AssignClassTeacherController extends Controller
         ->whereRelation('roles','id', 'like', '%'.'2'.'%')
         ->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
         
-         $registrars = User::with('roles')
+        $registrars = User::with('roles')
         ->whereRelation('roles','id', 'like', '%'.'4'.'%')
-        ->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        ->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
 
 
         $classes = ClassName::pluck('name', 'id');

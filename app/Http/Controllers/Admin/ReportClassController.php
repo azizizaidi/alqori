@@ -85,13 +85,13 @@ class ReportClassController extends Controller
                                      ->get();
         
         $users = User::get();
-       // $registrars =DB::table('users')->select('id', DB::raw("CONCAT(users.name,' ',code) AS full_name"))->get()->pluck('full_name', 'id');
+     
         $registrars = AssignClassTeacher:: whereRelation('teacher', 'teacher_id', 'LIKE',Auth::user()->id)
         ->orderBy('assign_class_code', 'ASC')
         ->join('users', 'assign_class_teachers.registrar_id', '=', 'users.id')
         ->select(DB::raw("CONCAT(users.name,' ',users.code) AS full_name"), 'assign_class_teachers.id')
         ->pluck('full_name', 'assign_class_teachers.id');
-        //->toArray();
+
 
        
         
@@ -298,13 +298,10 @@ class ReportClassController extends Controller
     public function update(UpdateReportClassRequest $request, ReportClass $reportClass)
     {
         $reportClass->update($request->all());
-        
-        //dd($reportClass);
-         //$classname = ClassName::find($request->id = $reportClass->class_names_id);
-        
+  
           $classname = ClassName::find($reportClass->class_name->id = $reportClass->class_names_id);
       
-         //dd( $classname_2);
+ 
 
         if($reportClass->total_hour_2 == null){
             
