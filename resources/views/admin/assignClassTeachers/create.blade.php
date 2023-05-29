@@ -69,7 +69,7 @@
               
             <div class="form-group">
                 <label class="required" for="classpackage">{{ trans('cruds.assignClassTeacher.fields.classpackage') }}</label>
-                <select class="form-control select2 {{ $errors->has('classpackage') ? 'is-invalid' : '' }}" name="classpackage[]" id="classpackage" multiple required>
+                <select class="form-control select2 {{ $errors->has('classpackage') ? 'is-invalid' : '' }}" name="classpackage[]" id="classpackage" required>
                     @foreach($classpackage as $id => $entry)
                         <option value="{{ $id }}" {{ in_array($id, old('classpackage', [])) ? 'selected' : '' }}>{{ $entry }}</option>
                       
