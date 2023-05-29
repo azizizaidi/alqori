@@ -27,8 +27,7 @@ class AssignClassTeacherController extends Controller
         $assignClassTeachers = AssignClassTeacher::with(['teacher', 'registrar'])->get();
 
        $teachers=User::whereHas('roles', function($q){$q->whereIn('title', ['teacher']);})->get();
-      // $students=User::whereHas('roles', function($q){$q->whereIn('title', ['registrar']);})->get();
-      $students = User::whereHas('roles', function ($q) {
+         $students = User::whereHas('roles', function ($q) {
         $q->whereIn('title', ['registrar']);
     })
     ->orWhere(function ($query) {
