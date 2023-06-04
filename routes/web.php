@@ -210,7 +210,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('pdfinvoice', 'pdfInvoiceController@index')->name('pdfinvoice.index');
 
    
-   
+   //calculator
+   //Route::match(['get', 'post'], '/calculate','CalculatorController@calculate');
+   Route::get('/calculate', function () {
+    return view('admin.calculator.index');
+   });
+
+  Route::post('/result', 'CalculatorController@calculate');
     
 
 
