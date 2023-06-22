@@ -29,7 +29,7 @@
     
    
 
-  
+     @livewireStyles
    
     
     @yield('styles')

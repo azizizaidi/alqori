@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+
 @section('content')
 @can('report_class_create')
 
@@ -25,208 +26,45 @@
         </div>
     </div>
 @endcan
+<!--<form>
+    <label for="month">Month:</label>
+    <select id="month" name="month">
+    <option value="">please select</option>
+        <option value="02-2022">February 2022</option>
+        <option value="03-2022">March 2022</option>
+        <option value="04-2022">April 2022</option>
+        <option value="05-2022">May 2022</option>
+        <option value="06-2022">June 2022</option>
+        <option value="07-2022">July 2022</option>
+        <option value="08-2022">August 2022</option>
+        <option value="09-2022">Septemberl 2022</option>
+        <option value="10-2022">October 2022</option>
+        <option value="11-2022">November 2022</option>
+        <option value="12-2022">December 2022</option>
+        <option value="01-2023">January 2023</option>
+        <option value="02-2023">February 2023</option>
+        <option value="03-2023">March 2023</option>
+        <option value="04-2023">April 2023</option>
+        <option value="05-2023">May 2023</option>
+
+
+    </select>
+
+    <button type="button" id="loadData">Load</button>
+</form>-->
+
 
 <div class="card border shadow p-1">
     <div class="card-header">
         {{ trans('cruds.reportClass.title_singular') }} {{ trans('global.list') }}
     </div>
+    
 
     <div class="card-body">
         <div class="table-responsive">
-            <table id="table "class=" table table-bordered rounded  table-striped table-hover datatable datatable-ReportClass" >
-                <thead>
-                    <tr>
-                        <th width="10">
+     
+            @livewire('report-class-table')
 
-                        </th>
-                        <th>
-                            {{ trans('cruds.reportClass.fields.id') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.reportClass.fields.teacher') }}
-                        </th>
-                      
-                        <th>
-                            {{ trans('cruds.reportClass.fields.registrar') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.reportClass.fields.month') }}
-                        </th>
-                           <th>
-                            {{ trans('cruds.reportClass.fields.created_at') }}
-                        </th>
-                         <th>
-                            {{ trans('cruds.reportClass.fields.classname') }}
-                        </th>
-                          <th>
-                            {{ trans('cruds.reportClass.fields.date') }}
-                        </th>
-                         <th>
-                            {{ trans('cruds.reportClass.fields.total_hour') }}
-                        </th>
-                             <th>
-                            {{ trans('cruds.reportClass.fields.classname_2') }}
-                        </th>
-                          <th>
-                            {{ trans('cruds.reportClass.fields.date_2') }}
-                        </th>
-                         <th>
-                            {{ trans('cruds.reportClass.fields.total_hour_2') }}
-                        </th>
-                      
-                      
-                        <th>
-                            {{ trans('cruds.reportClass.fields.allowance') }}
-                        </th>
-                        <th>
-                            &nbsp;
-                        </th>
-                          @can('report_class_edit')
-                         
-                            <th> 
-                              {{ trans('cruds.reportClass.fields.note') }}
-                           
-                            </th>
-                            @endcan
-                    </tr>
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
-                           
-                        </td>
-                        <td>
-                             <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                        </td>
-                     
-                        <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                        </td>
-                         <td>
-                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                        </td>
-                        <td>
-                            
-                        </td>
-                        <td>
-                        </td>
-                         <td>
-                 
-                        </td>
-                         <td>
-                 
-                        </td>
-                           <td>
-                        </td>
-                         <td>
-                 
-                        </td>
-                         <td>
-                 
-                        </td>
-                        <td>
-                            
-                        </td>
-                     
-                        <td>
-                        </td>
-                          @can('report_class_edit')
-                        
-                            <td>
-                                
-                            </td>
-                            @endcan
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($reportclasses as $key => $reportClass)
-                    
-                    <tr data-entry-id="{{ $reportClass->id }}">
-                            <td>
-
-                            </td>
-                            <td>
-                                {{ $reportClass->id ?? '' }}
-                            </td>
-                            <td>
-                                {{ $reportClass->created_by->name ?? '' }}
-                            </td>
-                           
-                            <td>
-                                {{ $reportClass->registrar->name ?? '' }}&nbsp;
-                                 {{ $reportClass->registrar->code ?? '' }}
-                            </td>
-                            <td>
-                              {{ $reportClass->month ?? '' }}
-                        </td>
-                         <td>
-                              {{ $reportClass->created_at->addHours(8) ?? '' }}
-                        </td>
-                         <td>
-                              {{ $reportClass->class_name->name ?? '' }}
-                        </td>
-                          <td>
-                            {{ $reportClass->date ?? '' }}
-                        </td>
-                            <td>
-                            {{ $reportClass->total_hour ?? '' }}
-                        </td>
-                         <td>
-                              {{ $reportClass->class_name_2->name ?? '' }}
-                        </td>
-                          <td>
-                            {{ $reportClass->date_2 ?? '' }}
-                        </td>
-                            <td>
-                            {{ $reportClass->total_hour_2 ?? '' }}
-                        </td>
-                           
-                            <td>
-                                RM{{$reportClass->allowance ?? '' }}
-                            </td>
-                            <td>
-                                <!--@can('report_class_show')
-                                    <a class="btn btn-xs btn-success" href="{{ route('admin.report-classes.show', $reportClass->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                @endcan-->
-
-                                @can('report_class_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.report-classes.edit', $reportClass->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan
-
-                                @can('report_class_edit')
-                                 <a class="btn btn-xs btn-primary" href="{{ route('admin.report-classes.showinvoice', $reportClass->id) }}">
-                                        {{ trans('global.viewinvoice') }}
-                                    </a>
-                                    @endcan
-                                   @can('report_class_delete')  
-                                    <form action="{{ route('admin.report-classes.destroy', $reportClass->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                       
-                                       <input type="submit" class="btn btn-xs btn-danger rounded" value="{{ trans('global.delete') }}">
-                                    </form>
-                                     
-                                @endcan
-                               
-                            </td>
-                             @can('report_class_edit')
-                            
-                       
-                            <td>
-                                 {{ $reportClass->note ?? '' }}
-                            </td>
-                             
-                            @endcan
-
-                        </tr>
-                          
-                    @endforeach
-                </tbody>
-            </table>
         </div>
     </div>
 </div>
@@ -238,6 +76,8 @@
 @parent
 
 
+
+@livewireScripts
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
@@ -415,5 +255,76 @@ var alwmay23 = <?php echo $reportclasses->where('month','05-2023')->whereNull('d
     chart.update();
   }
 </script>
+<!--
+<script>
+$(document).ready(function() {
+    $('#loadData').click(function() {
+        var month = $('#month').val();
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/report/get-data",
+            data: {
+                month: month,
+                _token: "{{ csrf_token() }}"
+            },
+            success: function (data) {
+                var thead = `
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Id</th>
+                            <th>Teacher</th>
+                            <th>Registrar</th>
+                            <th>Month</th>
+                            <th>Created at</th>
+                            <th>Class Name</th>
+                            <th>Date</th>
+                            <th>Total Hour</th>
+                            <th>Class Name 2</th>
+                            <th>Date 2</th>
+                            <th>Total Hour 2</th>
+                            <th>Allowance</th>
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+                
+                $.each(data, function(key, item){
+                    var createdAt = new Date(item.created_at);
+                    createdAt.setHours(createdAt.getHours() + 8);
+                    var options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+                    var dateStr = createdAt.toLocaleString('en-US', options);
+                    
+                    thead += '<tr>';
+                    thead += '<td></td>'; 
+                    thead += '<td>'+ item.id +'</td>'; 
+                    thead += '<td>'+ item.created_by.name +'</td>'; 
+                    thead += '<td>' + (item.registrar ? (item.registrar.name + '&nbsp;' + item.registrar.code) : '') + '</td>';
+                    thead += '<td>'+ item.month +'</td>'; 
+                    thead += '<td>'+ dateStr +'</td>'; 
+                    thead += '<td>'+ item.class_name.name +'</td>'; 
+                    thead += '<td>'+ item.date +'</td>'; 
+                    thead += '<td>'+ item.total_hour +'</td>'; 
+                    thead += '<td>'+ (item.class_name_2 ? item.class_name_2.name : 'null') +'</td>'; 
+                    thead += '<td>'+ item.date_2 +'</td>'; 
+                    thead += '<td>'+ item.total_hour_2 +'</td>'; 
+                    thead += '<td>'+ 'RM'+item.allowance +'</td>'; 
+                    thead += '<td>'+ item.note +'</td>'; 
+                    thead += '</tr>';
+                });
+
+                thead += '</tbody>';
+                $('#data').html(thead);
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+    });
+});
+</script>-->
+
+
 
 @endsection
