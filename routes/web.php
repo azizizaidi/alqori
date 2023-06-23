@@ -172,6 +172,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('report-classes/getclass_2/{id}','ReportClassController@getClass_2');
     Route::resource('report-classes', 'ReportClassController');
     
+    
     //registrar by teacher
     Route::get('registrar-by-teacher', 'RegistrarbyTeacherController@index')->name('registrar-by-teacher.index');
 

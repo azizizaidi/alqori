@@ -2,8 +2,9 @@
     <select wire:model="month">
         <option value="">Select a month</option>
         <!-- You may want to dynamically generate these options -->
-        <option value="03-2022">march</option>
-        <option value="04-2022">april</option>
+        @foreach($months as $month)
+            <option value="{{ $month }}">{{ $month }}</option>
+        @endforeach
         <!-- and so on -->
     </select>
     <div wire:loading wire:target="selectedMonth">
@@ -58,7 +59,10 @@
                     @endforeach
                 </tbody>
             </table>
-           
+            
+    {{ $reportclasses->links() }}
+
+
         @endif
     </div>
     
