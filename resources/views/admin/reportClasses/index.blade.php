@@ -26,32 +26,7 @@
         </div>
     </div>
 @endcan
-<!--<form>
-    <label for="month">Month:</label>
-    <select id="month" name="month">
-    <option value="">please select</option>
-        <option value="02-2022">February 2022</option>
-        <option value="03-2022">March 2022</option>
-        <option value="04-2022">April 2022</option>
-        <option value="05-2022">May 2022</option>
-        <option value="06-2022">June 2022</option>
-        <option value="07-2022">July 2022</option>
-        <option value="08-2022">August 2022</option>
-        <option value="09-2022">Septemberl 2022</option>
-        <option value="10-2022">October 2022</option>
-        <option value="11-2022">November 2022</option>
-        <option value="12-2022">December 2022</option>
-        <option value="01-2023">January 2023</option>
-        <option value="02-2023">February 2023</option>
-        <option value="03-2023">March 2023</option>
-        <option value="04-2023">April 2023</option>
-        <option value="05-2023">May 2023</option>
 
-
-    </select>
-
-    <button type="button" id="loadData">Load</button>
-</form>-->
 
 
 <div class="card border shadow p-1">
