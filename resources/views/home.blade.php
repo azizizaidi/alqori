@@ -84,7 +84,7 @@
                       <div class="alert alert-info" role="alert">
                         <h4 class="alert-heading">Makluman Guru</h4>
                       <ul>
-                        <li>Laporan bulan mei 2023 sudah boleh diisi</li>
+                        <li>Sila semak registrar(pendaftar) dan nama kelas anda di bahagian Class Info.Maklumkan kepada encik azizi jika ada maklumat salah atau tiada.</li>
                         <li>Jika ada data laporan guru bagi bulan-bulan yang lepas terpadam,sila maklumkan kepada encik azizi. </li>
                        
                       </ul>
