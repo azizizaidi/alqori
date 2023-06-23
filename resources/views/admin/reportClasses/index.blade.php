@@ -52,7 +52,7 @@
 
 
 
-@livewireScripts
+
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)

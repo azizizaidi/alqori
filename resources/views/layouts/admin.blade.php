@@ -30,7 +30,7 @@
    
 
      @livewireStyles
-   
+     @livewireScripts
     
     @yield('styles')
 </head>
