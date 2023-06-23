@@ -103,7 +103,20 @@ class ReportClassController extends Controller
 
         
 
+         public function getData(Request $request)
+         {
+            $month = $request->get('month');
+                      
+            $data = ReportClass::with(['registrar', 'created_by','class_name','class_name_2']) // eager load the registrar and created_by data
+            ->where('month', $month)
+            ->get();
     
+    
+        
+            return response()->json($data);
+
+       
+         }
 
     public function indexstudent()
     {

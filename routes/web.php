@@ -1,5 +1,7 @@
 <?php
 
+
+
 Route::redirect('/', '/login');
 Route::get('/home', function () {
     if (session('status')) {
@@ -155,7 +157,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('report-classes/index-student', 'ReportClassController@indexstudent')->name('report-classes.index-student');
     Route::get('report-classes/showinvoice/{reportClass}', 'ReportClassController@showinvoice')->name('report-classes.showinvoice');
     Route::get('report-classes/payment-page/{reportClass}', 'ReportClassController@paymentPage')->name('report-classes.paymentpage');
-    
+    Route::post('report/get-data', 'ReportClassController@getData');
+
     //admin.allowance
     Route::get('report-classes/allowance', 'ReportClassController@allowance')->name('report-classes.allowance');
     Route::get('report-classes/editallowance/{teacher}', 'ReportClassController@editallowance')->name('edit_allowance');
@@ -168,7 +171,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('report-classes/getclass/{id}','ReportClassController@getClass');
     Route::get('report-classes/getclass_2/{id}','ReportClassController@getClass_2');
     Route::resource('report-classes', 'ReportClassController');
-
+    
+    
     //registrar by teacher
     Route::get('registrar-by-teacher', 'RegistrarbyTeacherController@index')->name('registrar-by-teacher.index');
 

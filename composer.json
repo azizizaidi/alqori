@@ -21,6 +21,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
         "laraveldaily/laravel-invoices": "2.0",
+        "livewire/livewire": "^2.12",
         "luthfi/simple-crud-generator": "2.0",
         "nuovo/spreadsheet-reader": "^0.5.11",
         "phenx/php-font-lib": "0.5.4",
