@@ -11,7 +11,7 @@
             @csrf
             
            
-            <div class="form-group">
+           <!-- <div class="form-group">
           
                 <label class="required" for="month-input">{{ trans('cruds.reportClass.fields.month') }}</label>
                 <input type="month" id="month" name="month" onchange="formatMonth()"
@@ -22,7 +22,7 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.reportClass.fields.month_helper') }}</span>
-            </div>
+            </div>-->
 
 
             <div class="form-group">
@@ -70,7 +70,8 @@
                 <select class="form-control select2 {{ $errors->has('total_hour') ? 'is-invalid' : '' }}" name="total_hour" id="total_hour" required>
                
                <option value="" >Please select</option>
-              
+
+               <option value="0" >{{ 0 }}</option>
                <option value="0.5" >{{ 0.5 }}</option>
                <option value="1" >{{ 1 }}</option>
                 <option value="1.5" >{{ 1.5 }}</option>
@@ -145,7 +146,8 @@
                 <select class="form-control {{ $errors->has('total_hour_2') ? 'is-invalid' : '' }}" name="total_hour_2" id="total_hour_2" >
                
                <option value="" >Please select</option>
-              
+
+              <option value="0" >{{ 0 }}</option>
                <option value="0.5" >{{ 0.5 }}</option>
                <option value="1" >{{ 1 }}</option>
                 <option value="1.5" >{{ 1.5 }}</option>
