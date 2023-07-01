@@ -218,7 +218,7 @@ var alwjun23 = <?php echo $reportclasses->where('month','06-2023')->whereNull('d
         break;
       case '2023':
        // feeData =[feejan23,feefeb23];
-        allowanceData =[alwjan23,alwfeb23,alwmar23, alwapr23, alwmay23];
+        allowanceData =[alwjan23,alwfeb23,alwmar23, alwapr23, alwmay23, alwjun23];
         break;
       default:
         // Handle default case or show an error message
