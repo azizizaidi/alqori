@@ -55,10 +55,36 @@
                             @can('report_class_edit')
                                 <td>{{ $reportclass->note }}</td>
                             @endcan
+                            @can('report_class_delete')
+                            <td>
+                               <button wire:click="confirmDelete({{ $reportclass->id }})" class="btn btn-danger">Delete</button>
+                            </td>
+                                @endcan
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            @if($confirmingDelete)
+    <div class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirm Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="cancelDelete">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this record?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" wire:click="cancelDelete">Cancel</button>
+                    <button type="button" class="btn btn-danger" wire:click="delete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
             
     {{ $reportclasses->links() }}
 

@@ -10,6 +10,7 @@ class ReportClassTable extends Component
     public $month;
     public $page = 1;
     public $selectedMonth;
+    public $confirmingDelete = false;
 
 
     protected $reportclasses;
@@ -43,6 +44,24 @@ class ReportClassTable extends Component
         } else {
             return ReportClass::where('month', '04-2022')->paginate(10);
         }
+    }
+
+    public function confirmDelete($id)
+    {
+        $this->deleteId = $id;
+        $this->confirmingDelete = true;
+    }
+
+    public function cancelDelete()
+    {
+        $this->confirmingDelete = false;
+    }
+
+    public function delete()
+    {
+        ReportClass::find($this->deleteId)->delete();
+        $this->reportclasses = $this->getReportClasses();
+        $this->confirmingDelete = false;
     }
 
     public function render()
