@@ -11,7 +11,7 @@
             @csrf
             
            
-            <div class="form-group">
+           <!-- <div class="form-group">
           
                 <label class="required" for="month-input">{{ trans('cruds.reportClass.fields.month') }}</label>
                 <input type="month" id="month" name="month" onchange="formatMonth()"
@@ -22,7 +22,7 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.reportClass.fields.month_helper') }}</span>
-            </div>
+            </div>-->
 
 
             <div class="form-group">
