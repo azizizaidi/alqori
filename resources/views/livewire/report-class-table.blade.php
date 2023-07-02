@@ -13,6 +13,10 @@
 
     <div wire:loading.remove>
     @if ($selectedMonth)
+
+    <button wire:click="selectAll" class="btn btn-primary">Select All</button>
+    <button wire:click="downloadCSV" class="btn btn-success">Download CSV</button>
+
             <table id="data" class="table table-bordered rounded table-striped table-hover">
                 <thead>
                     <tr>
@@ -38,16 +42,16 @@
                 <tbody>
                     @foreach($reportclasses as $reportclass)
                         <tr>
-                            <td></td>
+                            <td><input type="checkbox" wire:model="selectedItems" value="{{ $reportclass->id }}"></td>
                             <td>{{ $reportclass->id }}</td>
-                            <td>{{ optional($reportclass->teacher)->name }}</td>
-        <td>{{ optional($reportclass->registrar)->name }}</td>
+                            <td>{{ optional($reportclass->created_by)->name }}</td>
+                            <td>{{ optional($reportclass->registrar)->name }}</td>
                             <td>{{ $reportclass->month }}</td>
                             <td>{{ $reportclass->created_at }}</td>
-                            <td>{{ $reportclass->classname }}</td>
+                            <td>{{ optional($reportclass->class_name)->name }}</td>
                             <td>{{ $reportclass->date }}</td>
                             <td>{{ $reportclass->total_hour }}</td>
-                            <td>{{ $reportclass->classname_2 }}</td>
+                            <td>{{ optional($reportclass->class_name_2)->name }}</td>
                             <td>{{ $reportclass->date_2 }}</td>
                             <td>{{ $reportclass->total_hour_2 }}</td>
                             <td>{{ $reportclass->allowance }}</td>

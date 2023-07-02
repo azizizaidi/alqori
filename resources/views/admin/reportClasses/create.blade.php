@@ -22,7 +22,7 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.reportClass.fields.month_helper') }}</span>
-            </div>-->
+            </div>
 
 
             <div class="form-group">
@@ -200,7 +200,7 @@
             </div>
         </form>
     </div>
-</div>
+</div>-->
 
 
 
