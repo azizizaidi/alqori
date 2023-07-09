@@ -22,7 +22,7 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.reportClass.fields.month_helper') }}</span>
-            </div>
+            </div>-->
 
 
             <div class="form-group">
@@ -143,7 +143,7 @@
             <div class="form-group">
                 <label class="" for="total_hour_2">{{ trans('cruds.reportClass.fields.total_hour_2') }}</label>
         
-                <select class="form-control {{ $errors->has('total_hour_2') ? 'is-invalid' : '' }}" name="total_hour_2" id="total_hour_2" >
+                <select class="form-control select2{{ $errors->has('total_hour_2') ? 'is-invalid' : '' }}" name="total_hour_2" id="total_hour_2" >
                
                <option value="" >Please select</option>
 
@@ -200,7 +200,7 @@
             </div>
         </form>
     </div>
-</div>-->
+</div>
 
 
 
