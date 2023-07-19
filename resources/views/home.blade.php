@@ -53,8 +53,109 @@
                      </div>
                      </div>
                      </div>
+<div class=" col-6 bg-white">
+                     <div class="table-responsive">
+                     <table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Month</th>
+            <th>Total Unpaid</th>
+        </tr>
+    </thead>
+    <tbody>
+      
+
+       
+            <tr>
+                <td>{{ $reportclasses->month = '03-2022' }}</td>
+                <td>RM{{ $reportclasses->where('month','03-2022')->where('status',0)->sum('fee_student')  ?? '' }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '04-2022' }}</td>
+                <td>RM{{ $reportclasses->where('month','04-2022')->where('status',0)->sum('fee_student')  ?? '' }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '05-2022' }}</td>
+                <td>RM{{ $reportclasses->where('month','05-2022')->where('status',0)->sum('fee_student')  ?? '' }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '06-2022' }}</td>
+                <td>RM{{ $reportclasses->where('month','06-2022')->where('status',0)->sum('fee_student')  ?? '' }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '07-2022' }}</td>
+                <td>RM{{ $reportclasses->where('month','07-2022')->where('status',0)->sum('fee_student')  ?? '' }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '08-2022' }}</td>
+                <td>RM{{ $reportclasses->where('month','08-2022')->where('status',0)->sum('fee_student')  ?? '' }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '09-2022' }}</td>
+                <td>RM{{ $reportclasses->where('month','09-2022')->where('status',0)->sum('fee_student')  ?? '' }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '10-2022' }}</td>
+                <td>RM{{ $reportclasses->where('month','10-2022')->where('status',0)->sum('fee_student') ?? ''  }}</td>
+                
+            </tr>
+                 
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '11-2022' }}</td>
+                <td>RM{{ $reportclasses->where('month','11-2022')->where('status',0)->sum('fee_student')  ?? ''  }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '12-2022' }}</td>
+                <td>RM{{ $reportclasses->where('month','02-2022')->where('status',0)->sum('fee_student')  ?? ''  }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '01-2023' }}</td>
+                <td>RM{{ $reportclasses->where('month','01-2023')->where('status',0)->sum('fee_student')  ?? ''  }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '02-2023' }}</td>
+                <td>RM{{ $reportclasses->where('month','02-2023')->where('status',0)->sum('fee_student')  ?? ''  }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '03-2023' }}</td>
+                <td>RM{{ $reportclasses->where('month','03-2023')->where('status',0)->sum('fee_student')  ?? ''  }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '04-2023' }}</td>
+                <td>RM{{ $reportclasses->where('month','04-2023')->where('status',0)->sum('fee_student')  ?? ''  }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '05-2023' }}</td>
+                <td>RM{{ $reportclasses->where('month','05-2023')->where('status',0)->sum('fee_student')  ?? ''  }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '06-2023' }}</td>
+                <td>RM{{ $reportclasses->where('month','06-2023')->where('status',0)->sum('fee_student')  ?? ''  }}</td>
+                
+            </tr>
+
+       
+    </tbody>
+</table>
+
+        </div>
                      
-                        
+        </div>      
                         
 <div>
         <label for="year">Select Year:</label>
@@ -74,6 +175,8 @@
                           </div>
                        
                       </div>          
+
+                  
 
                        
                      
