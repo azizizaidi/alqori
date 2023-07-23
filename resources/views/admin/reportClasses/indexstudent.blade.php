@@ -53,11 +53,16 @@
                             {{ trans('cruds.reportClass.fields.fee_student') }}
                         </th> <th> {{'note'}}</th>
                         <th>
-                            &nbsp;
+                            {{'action'}}
                         </th>
                         <th>
-                        &nbsp;
+                        {{'status'}}
                         </th>
+                        @can('report_class_delete')
+                        <th>
+                           {{'receipt payment'}}
+                        </th>
+                        @endcan
                     </tr>
                     <tr>
                         <td>
@@ -87,6 +92,11 @@
                         <td>
                               <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
+                        @can('report_class_delete')
+                        <td>
+
+                        </td>
+                        @endcan
                     </tr>
                 </thead>
                 <tbody>
@@ -157,7 +167,15 @@
                                
                                 @endif
                         </td>
-
+                        @can('report_class_delete')
+                        <td>
+                        @if(is_null($reportClass->receipt))
+    {{ 'tiada data' }}
+@else
+    <a href="{{ $reportClass->receipt ?? '' }}">lihat resit</a>
+@endif
+                        </td>
+                        @endcan
                         </tr>
                     @endforeach
                 </tbody>
