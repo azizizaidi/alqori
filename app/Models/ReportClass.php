@@ -45,6 +45,7 @@ class ReportClass extends Model
         'fee_student',
         'status',
         'note',
+        'receipt',
        'allowance_note',
     ];
 
