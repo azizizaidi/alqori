@@ -157,13 +157,13 @@
                            
                             <td>
                             @if($reportClass->status == 3)
-                                <button  class="btn btn-outline-danger"  disabled>fail</button>
+                                <button value="$reportClass->status == 3" class="btn btn-outline-danger"  disabled>fail</button>
                                 @elseif($reportClass->status == 2)
-                                <button  class="btn btn-outline-warning"  disabled>pending</button>
+                                <button value="$reportClass->status == 2" class="btn btn-outline-warning"  disabled>pending</button>
                                 @elseif($reportClass->status == 1)
-                                <button  class="btn btn-outline-success " disabled>paid</button>
+                                <button value="$reportClass->status == 1" class="btn btn-outline-success " disabled>paid</button>
                                 @elseif($reportClass->status == 0)
-                                <button  class="btn btn-outline-primary " disabled>unpaid</button>
+                                <button value="$reportClass->status == 0" class="btn btn-outline-primary " disabled>unpaid</button>
                                
                                 @endif
                         </td>
