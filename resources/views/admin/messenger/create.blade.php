@@ -16,9 +16,16 @@
                                 {{ trans('global.recipient') }}
                             </label>
                             <select name="recipient" class="form-control">
-                                @foreach($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->email }}</option>
-                                @endforeach
+                            @php
+    // Filter users with role ID 1
+    $usersWithRole1 = $users->filter(function ($user) {
+        return $user->roles->contains(1);
+    });
+    @endphp
+
+    @foreach($usersWithRole1 as $user)
+        <option value="{{ $user->id }}">{{ $user->email }}</option>
+    @endforeach
                             </select>
                         </div>
 
