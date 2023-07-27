@@ -451,7 +451,7 @@
         <li class="c-department">Marketing</li>
         @endcan
         @php($unread = \App\Models\QaTopic::unreadCount())
-            <li class="c-sidebar-nav-item">
+           <!-- <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.messenger.index") }}" class="{{ request()->is("admin/messenger") || request()->is("admin/messenger/*") ? "c-active" : "" }} c-sidebar-nav-link">
                     <i class="c-sidebar-nav-icon fa-fw fa fa-envelope">
 
@@ -462,7 +462,7 @@
                     @endif
 
                 </a>
-            </li>
+            </li>-->
             @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
                 @can('profile_password_edit')
                     <li class="c-sidebar-nav-item">
