@@ -13,10 +13,12 @@
 
     <div wire:loading.remove>
     @if ($selectedMonth)
-
-    <button wire:click="selectAll" class="btn btn-primary">Select All</button>
+<br>
+ <div class="">
+ <button wire:click="selectAll" class="btn btn-primary">Select All</button>
     <button wire:click="downloadCSV" class="btn btn-success">Download CSV</button>
-
+ </div>
+<br>
             <table id="data" class="table table-bordered rounded table-striped table-hover">
                 <thead>
                     <tr>
@@ -33,9 +35,11 @@
                         <th>{{ trans('cruds.reportClass.fields.date_2') }}</th>
                         <th>{{ trans('cruds.reportClass.fields.total_hour_2') }}</th>
                         <th>{{ trans('cruds.reportClass.fields.allowance') }}</th>
-                        <th>&nbsp;</th>
-                        @can('report_class_edit')
+                       
+                        @can('report_class_delete')
                             <th>{{ trans('cruds.reportClass.fields.note') }}</th>
+                 
+                        <th>{{trans('global.action')}}</th>
                         @endcan
                     </tr>
                 </thead>
@@ -55,11 +59,10 @@
                             <td>{{ $reportclass->date_2 }}</td>
                             <td>{{ $reportclass->total_hour_2 }}</td>
                             <td>{{ $reportclass->allowance }}</td>
-                            <td></td>
-                            @can('report_class_edit')
-                                <td>{{ $reportclass->note }}</td>
-                            @endcan
+                            
                             @can('report_class_delete')
+                                <td>{{ $reportclass->note }}</td>
+                          
                             <td>
                                <button wire:click="confirmDelete({{ $reportclass->id }})" class="btn btn-danger">Delete</button>
                             </td>

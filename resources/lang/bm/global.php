@@ -311,4 +311,5 @@ return [
     'team-members'                   => 'Anggota Tim',
     'calendar'                       => 'Kalendar',
     'messenger'                      => 'Pesan',
+    'allowance'                      => 'Elaun',
 ];
