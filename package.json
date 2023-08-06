@@ -16,7 +16,6 @@
         "postcss": "^8.4.27"
     },
     "dependencies": {
-        "@coreui/coreui": "^4.2.6",
         "chart.js": "^4.3.3",
         "flatpickr": "^4.6.13"
     }
