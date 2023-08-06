@@ -51,7 +51,7 @@ return [
     | Example: 'https://protoqol.nl'
     |
     */
-    'baseUrl' => 'https://apps.alqori.com',
+    'baseUrl' => null,
 
 
     /*
@@ -101,9 +101,9 @@ return [
         'connection' => env('DB_CONNECTION', 'mysql'),
         'host'       => env('DB_HOST', '127.0.0.1'),
         'port'       => env('DB_PORT', '3306'),
-        'database'   => env('DB_DATABASE', 'u829014500_apps'),
-        'username'   => env('DB_USERNAME', 'u829014500_aziziina'),
-        'password'   => env('DB_PASSWORD', 'Taktahu@96'),
+        'database'   => env('DB_DATABASE', 'homestead'),
+        'username'   => env('DB_USERNAME', 'homestead'),
+        'password'   => env('DB_PASSWORD', 'secret'),
         'socket'     => env('DB_SOCKET', ''),
     ],
 
