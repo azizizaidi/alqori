@@ -190,8 +190,8 @@ table.dataTable thead .sorting_desc {
  
     color: #ffffff;
     background-color: #f40404;
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
 
    
 }
@@ -224,5 +224,12 @@ table.dataTable thead .sorting_desc {
 .c-sidebar .c-sidebar-nav .c-sidebar-nav-dropdown .c-sidebar-nav-dropdown-toggle .c-sidebar-nav-icon{
     color: #FF1493;
 
+}
+
+.c-sidebar .c-sidebar-nav .c-sidebar-nav-item .c-sidebar-nav-link:active,
+.c-sidebar .c-sidebar-nav .c-sidebar-nav-item .c-sidebar-nav-link.active {
+  color: #FF1493;
+  background-color: #ffffff;
+  /* Add any other styles you want to change for the active menu item */
 }
 

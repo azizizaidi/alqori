@@ -65,6 +65,7 @@ return array(
     'NunoMaduro\\Collision\\' => array($vendorDir . '/nunomaduro/collision/src'),
     'MyCLabs\\Enum\\' => array($vendorDir . '/myclabs/php-enum/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
+    'Mockery\\' => array($vendorDir . '/mockery/mockery/library/Mockery'),
     'Masterminds\\' => array($vendorDir . '/masterminds/html5/src'),
     'Luthfi\\CrudGenerator\\' => array($vendorDir . '/luthfi/simple-crud-generator/src'),
     'Livewire\\' => array($vendorDir . '/livewire/livewire/src'),
