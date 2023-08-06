@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 
-
+<button class=" bg-sky-500/100">Save Changes</button>
                     @if(session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}

@@ -547,6 +547,8 @@ return [
             'total_hour_2_helper' => ' ',
             'allowance'        => 'Elaun',
             'allowance_helper' => ' ',
+            'note'        => 'Nota',
+            'note_helper' => ' ',
         ],
     ],
 

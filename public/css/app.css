@@ -657,6 +657,9 @@ video {
 .rounded {
   border-radius: 0.25rem;
 }
+.rounded-full {
+  border-radius: 9999px;
+}
 .rounded-lg {
   border-radius: 0.5rem;
 }
@@ -676,6 +679,9 @@ video {
 .bg-gray-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+.bg-sky-500\/100 {
+  background-color: rgb(14 165 233 / 1);
 }
 .bg-white {
   --tw-bg-opacity: 1;
