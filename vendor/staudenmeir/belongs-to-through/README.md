@@ -14,6 +14,10 @@ Supports Laravel 5.0+.
 
     composer require staudenmeir/belongs-to-through:"^2.5"
 
+Use this command if you are in PowerShell on Windows (e.g. in VS Code):
+
+    composer require staudenmeir/belongs-to-through:"^^^^2.5"
+
 ## Usage
 
 Consider this `HasManyThrough` relationship:  
@@ -24,7 +28,7 @@ class Country extends Model
 {
     public function posts()
     {
-        return $this->hasManyThrough('App\Post', 'App\User');
+        return $this->hasManyThrough(Post::class, User::class);
     }
 }
 ```
@@ -39,7 +43,7 @@ class Post extends Model
 
     public function country()
     {
-        return $this->belongsToThrough('App\Country', 'App\User');
+        return $this->belongsToThrough(Country::class, User::class);
     }
 }
 ```
@@ -56,7 +60,7 @@ class Comment extends Model
 
     public function country()
     {
-        return $this->belongsToThrough('App\Country', ['App\User', 'App\Post']);
+        return $this->belongsToThrough(Country::class, [User::class, Post::class]);
     }
 }
 ```
@@ -71,11 +75,11 @@ class Comment extends Model
     public function country()
     {
         return $this->belongsToThrough(
-            'App\Country',
-            ['App\User', 'App\Post'], 
+            Country::class,
+            [User::class, Post::class], 
             null,
             '',
-            ['App\User' => 'custom_user_id']
+            [User::class => 'custom_user_id']
         );
     }
 }
@@ -93,11 +97,11 @@ class Comment extends Model
     public function grandparent()
     {
         return $this->belongsToThrough(
-            'App\Comment',
-            'App\Comment as alias', 
+            Comment::class,
+            Comment::class . ' as alias', 
             null,
             '',
-            ['App\Comment' => 'parent_id']
+            [Comment::class => 'parent_id']
         );
     }
 }
@@ -123,7 +127,7 @@ class Comment extends Model
 
     public function country()
     {
-        return $this->belongsToThrough('App\Country', ['App\User', 'App\Post'])
+        return $this->belongsToThrough(Country::class, [User::class, Post::class])
             ->withTrashed('users.deleted_at');
     }
 }
