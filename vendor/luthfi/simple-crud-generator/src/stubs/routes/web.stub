@@ -1,5 +1,0 @@
-
-/*
- * Masters Routes
- */
-Route::resource('masters', App\Http\Controllers\MasterController::class);

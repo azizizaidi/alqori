@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 
 /**
  * Class InvoiceServiceProvider
- * @package LaravelDaily\Invoices
  */
 class InvoiceServiceProvider extends ServiceProvider
 {
@@ -51,7 +50,7 @@ class InvoiceServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (!defined('INVOICES_PATH')) {
+        if (! defined('INVOICES_PATH')) {
             define('INVOICES_PATH', realpath(__DIR__ . '/../'));
         }
 
@@ -59,7 +58,6 @@ class InvoiceServiceProvider extends ServiceProvider
         $this->offerPublishing();
         $this->registerServices();
         $this->registerCommands();
-
     }
 
     /**
@@ -105,7 +103,7 @@ class InvoiceServiceProvider extends ServiceProvider
     protected function registerServices()
     {
         $this->app->singleton('invoice', function ($app) {
-            return new Invoice;
+            return new Invoice();
         });
     }
 

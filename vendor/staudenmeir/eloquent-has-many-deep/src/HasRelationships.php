@@ -5,11 +5,13 @@ namespace Staudenmeir\EloquentHasManyDeep;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Illuminate\Support\Str;
+use Staudenmeir\EloquentHasManyDeep\Eloquent\Traits\ConcatenatesRelationships;
+use Staudenmeir\EloquentHasManyDeep\Eloquent\Traits\ReversesRelationships;
 
 trait HasRelationships
 {
     use ConcatenatesRelationships;
+    use ReversesRelationships;
 
     /**
      * Define a has-many-deep relationship.
@@ -26,17 +28,6 @@ trait HasRelationships
     }
 
     /**
-     * Define a has-many-deep relationship from existing relationships.
-     *
-     * @param \Illuminate\Database\Eloquent\Relations\Relation ...$relations
-     * @return \Staudenmeir\EloquentHasManyDeep\HasManyDeep
-     */
-    public function hasManyDeepFromRelations(...$relations)
-    {
-        return $this->hasManyDeep(...$this->hasOneOrManyDeepFromRelations($relations));
-    }
-
-    /**
      * Define a has-one-deep relationship.
      *
      * @param string $related
@@ -48,17 +39,6 @@ trait HasRelationships
     public function hasOneDeep($related, array $through, array $foreignKeys = [], array $localKeys = [])
     {
         return $this->newHasOneDeep(...$this->hasOneOrManyDeep($related, $through, $foreignKeys, $localKeys));
-    }
-
-    /**
-     * Define a has-one-deep relationship from existing relationships.
-     *
-     * @param \Illuminate\Database\Eloquent\Relations\Relation ...$relations
-     * @return \Staudenmeir\EloquentHasManyDeep\HasOneDeep
-     */
-    public function hasOneDeepFromRelations(...$relations)
-    {
-        return $this->hasOneDeep(...$this->hasOneOrManyDeepFromRelations($relations));
     }
 
     /**
@@ -99,18 +79,35 @@ trait HasRelationships
     protected function hasOneOrManyDeepThroughParents(array $through)
     {
         return array_map(function ($class) {
-            $segments = preg_split('/\s+as\s+/i', $class);
+            $segments = preg_split('/\s+(as|from)\s+/i', $class, -1, PREG_SPLIT_DELIM_CAPTURE);
 
-            $instance = Str::contains($segments[0], '\\')
-                ? new $segments[0]()
-                : (new Pivot())->setTable($segments[0]);
+            $instance = $this->newRelatedDeepThroughInstance($segments[0]);
 
             if (isset($segments[1])) {
-                $instance->setTable($instance->getTable().' as '.$segments[1]);
+                $instance->setTable(
+                    $segments[1] === 'as'
+                        ? $instance->getTable().' as '.$segments[2]
+                        : $segments[2]
+                );
             }
 
             return $instance;
         }, $through);
+    }
+
+    /**
+     * Create a new model instance for a related "deep through" model.
+     *
+     * @param string $class
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    protected function newRelatedDeepThroughInstance(string $class): Model
+    {
+        return str_contains($class, '\\')
+            ? (method_exists($this, 'newRelatedThroughInstance') // TODO[L10]
+                ? $this->newRelatedThroughInstance($class)
+                : new $class())
+            : (new Pivot())->setTable($class);
     }
 
     /**
