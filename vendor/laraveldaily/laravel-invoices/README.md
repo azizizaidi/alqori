@@ -1,9 +1,14 @@
+![![Banner]](https://banners.beyondco.de/Laravel%20Invoices.png?theme=light&packageManager=composer+require&packageName=laraveldaily%2Flaravel-invoices&pattern=architect&style=style_1&description=PDFs+made+easy&md=1&showWatermark=0&fontSize=100px&images=document-download)
+
 # Laravel Invoices
 
-[![Latest Stable Version](https://poser.pugx.org/laraveldaily/laravel-invoices/v/stable)](https://packagist.org/packages/laraveldaily/laravel-invoices)
-[![Total Downloads](https://poser.pugx.org/laraveldaily/laravel-invoices/downloads)](https://packagist.org/packages/laraveldaily/laravel-invoices)
+[![Latest Stable Version](https://poser.pugx.org/laraveldaily/laravel-invoices/v/stable?2)](https://packagist.org/packages/laraveldaily/laravel-invoices)
+[![Total Downloads](https://poser.pugx.org/laraveldaily/laravel-invoices/downloads?2)](https://packagist.org/packages/laraveldaily/laravel-invoices)
 [![Latest Unstable Version](https://poser.pugx.org/laraveldaily/laravel-invoices/v/unstable)](https://packagist.org/packages/laraveldaily/laravel-invoices)
 [![License](https://poser.pugx.org/laraveldaily/laravel-invoices/license)](https://packagist.org/packages/laraveldaily/laravel-invoices)
+
+[![version 2](https://img.shields.io/badge/v3%20maintenance-yes-green?style=flat)](https://packagist.org/packages/laraveldaily/laravel-invoices)
+[![version 1](https://img.shields.io/badge/v2%20maintenance-no-red?style=flat)](https://packagist.org/packages/laraveldaily/laravel-invoices)
 
 This Laravel package provides an easy to use interface to generate **Invoice PDF files** with your provided data.
 
@@ -31,7 +36,13 @@ Please see the [changelog](CHANGELOG.md) for more information on what has change
 
 Via Composer
 
-### Laravel version 8
+### Laravel version <= 9
+
+```bash
+$ composer require laraveldaily/laravel-invoices:^3.0
+```
+
+### Laravel version <= 8
 
 ```bash
 $ composer require laraveldaily/laravel-invoices:^2.0
@@ -138,7 +149,12 @@ use LaravelDaily\Invoices\Classes\InvoiceItem;
         ]);
 
         $items = [
-            (new InvoiceItem())->title('Service 1')->pricePerUnit(47.79)->quantity(2)->discount(10),
+            (new InvoiceItem())
+                ->title('Service 1')
+                ->description('Your product or service description')
+                ->pricePerUnit(47.79)
+                ->quantity(2)
+                ->discount(10),
             (new InvoiceItem())->title('Service 2')->pricePerUnit(71.96)->quantity(2),
             (new InvoiceItem())->title('Service 3')->pricePerUnit(4.56),
             (new InvoiceItem())->title('Service 4')->pricePerUnit(87.51)->quantity(7)->discount(4)->units('kg'),
@@ -168,6 +184,9 @@ use LaravelDaily\Invoices\Classes\InvoiceItem;
 
         $invoice = Invoice::make('receipt')
             ->series('BIG')
+            // ability to include translated invoice status
+            // in case it was paid
+            ->status(__('invoices::invoice.paid'))
             ->sequence(667)
             ->serialNumberFormat('{SEQUENCE}/{SERIES}')
             ->seller($client)
@@ -211,6 +230,22 @@ $item = Invoice::makeItem('Your service or product title')->pricePerUnit(9.99);
 
 return Invoice::make()->buyer($customer)->addItem($item)->stream();
 ```
+
+## Templates
+
+After publishing assets you can modify or make your own template for invoices.
+
+Templates are stored in the `resources/views/vendor/invoices/templates` directory. There you will find `default.blade.php` template which is used by default.
+
+You can specify which template to use by calling `template` method on Invoice object.
+
+For example if you have `resources/views/vendor/invoices/templates/my_company.blade.php` it should look like this:
+
+```php
+Invoice::make('receipt')->template('my_company');
+```
+
+Too see how things work in a template you can view `default.blade.php` as an example.
 
 ## Config
 
@@ -313,15 +348,18 @@ return [
 ```
 
 ## Available Methods
-Almost every configuration value can be overrided dinamically by methods.
+Almost every configuration value can be overrided dynamically by methods.
 
 ## Invoice
 #### General
 - addItem(InvoiceItem $item)
 - addItems(Iterable)
 - name(string)
+- status(string) - invoice status [paid/due] if needed
 - seller(PartyContract)
 - buyer(PartyContract)
+- setCustomData(mixed) - allows user to attach additional data to invoice
+- getCustomData() - retrieves additional data to use in template
 - template(string)
 - logo(string) - path to logo
 - getLogo() - returns base64 encoded image, used in template to avoid path issues
@@ -356,7 +394,7 @@ Almost every configuration value can be overrided dinamically by methods.
 - currencyDecimalPoint(string)
 - currencyThousandsSeparator(string)
 - currencyFormat(string)
-- getAmountInWords(float) - Spells out float to words (only english)
+- getAmountInWords(float, ?string $locale) - Spells out float to words, second parameter is locale
 - getTotalAmountInWords() - spells out total_amount
 - formatCurrency(float) - returns formatted value with currency settings '$ 1,99'
 
@@ -365,9 +403,11 @@ Almost every configuration value can be overrided dinamically by methods.
 - download() - offers to download invoice
 - save($disk) - saves invoice to storage, use ->filename() for filename
 - url() - return url of saved invoice
+- toHtml() - render html view instead of pdf
 
 ## InvoiceItem
 - title(string) - product or service name
+- description(string) - additional information for service entry
 - units(string) - measurement units of item (adds units columns if set)
 - quantity(float) - amount of units of item
 - pricePerUnit(float)

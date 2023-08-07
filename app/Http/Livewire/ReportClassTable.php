@@ -73,10 +73,8 @@ class ReportClassTable extends Component
 
     public function selectAll()
     {
-        //$this->selectedItems = $this->reportclasses->pluck('id')->toArray();
-        $this->selectedItems = $this->reportclasses->pluck('id')->map(function ($id) {
-            return (string) $id;
-        })->toArray();
+        $this->selectedItems = $this->reportclasses->pluck('id')->toArray();
+      
     }
 
     public function downloadCSV()

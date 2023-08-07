@@ -2,6 +2,7 @@
 
 namespace LaravelDaily\Invoices\Traits;
 
+use Illuminate\Support\Facades\App;
 use NumberFormatter;
 
 /**
@@ -144,12 +145,13 @@ trait CurrencyFormatter
 
     /**
      * @param float $amount
+     * @param string|null $locale
      * @return string
      */
-    public function getAmountInWords(float $amount)
+    public function getAmountInWords(float $amount, ?string $locale = null)
     {
         $amount    = number_format($amount, $this->currency_decimals, '.', '');
-        $formatter = new NumberFormatter('en', NumberFormatter::SPELLOUT);
+        $formatter = new NumberFormatter($locale ?? App::getLocale(), NumberFormatter::SPELLOUT);
 
         $value = explode('.', $amount);
 
@@ -161,7 +163,7 @@ trait CurrencyFormatter
         }
 
         return sprintf(
-            '%s %s and %s %s',
+            trans('invoices::invoice.amount_in_words_format'),
             ucfirst($integer_value),
             strtoupper($this->currency_code),
             $fraction_value,
