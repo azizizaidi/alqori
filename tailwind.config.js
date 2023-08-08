@@ -5,6 +5,8 @@ module.exports = {
     "./resources/**/*.js",
     "./resources/**/*.vue",
     'node_modules/preline/dist/*.js',
+      './app/Http/Livewire/**/*Table.php',
+    
   ],
   theme: {
     extend: {},
@@ -12,5 +14,6 @@ module.exports = {
   plugins: [
     require('preline/plugin'),
   ],
+  darkMode: 'class',
 }
 
