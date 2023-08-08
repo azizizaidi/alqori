@@ -16,33 +16,224 @@
 </div>
 <br>
 
-    <div style="margin-bottom: 10px;" class="row">
+  
+<div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route('admin.report-classes.create') }}">
                 {{ trans('global.add') }} {{ trans('cruds.reportClass.title_singular') }}
             </a>
-           
+            <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                {{ trans('global.app_csvImport') }}
+            </button>
             @include('csvImport.modal', ['model' => 'ReportClass', 'route' => 'admin.report-classes.parseCsvImport'])
         </div>
     </div>
 @endcan
 
-
-
-<div class="card border shadow p-1">
+<div class="card">
     <div class="card-header">
         {{ trans('cruds.reportClass.title_singular') }} {{ trans('global.list') }}
     </div>
-    
 
     <div class="card-body">
         <div class="table-responsive">
-     
-            @livewire('report-class-table')
+            <table id="table "class=" table table-bordered table-striped table-hover datatable datatable-ReportClass">
+                <thead>
+                    <tr>
+                        <th width="10">
 
+                        </th>
+                        <th>
+                            {{ trans('cruds.reportClass.fields.id') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.reportClass.fields.teacher') }}
+                        </th>
+                      
+                        <th>
+                            {{ trans('cruds.reportClass.fields.registrar') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.reportClass.fields.month') }}
+                        </th>
+                           <th>
+                            {{ trans('cruds.reportClass.fields.created_at') }}
+                        </th>
+                         <th>
+                            {{ trans('cruds.reportClass.fields.classname') }}
+                        </th>
+                          <th>
+                            {{ trans('cruds.reportClass.fields.date') }}
+                        </th>
+                         <th>
+                            {{ trans('cruds.reportClass.fields.total_hour') }}
+                        </th>
+                             <th>
+                            {{ trans('cruds.reportClass.fields.classname_2') }}
+                        </th>
+                          <th>
+                            {{ trans('cruds.reportClass.fields.date_2') }}
+                        </th>
+                         <th>
+                            {{ trans('cruds.reportClass.fields.total_hour_2') }}
+                        </th>
+                      
+                      
+                        <th>
+                            {{ trans('cruds.reportClass.fields.allowance') }}
+                        </th>
+                        <th>
+                            &nbsp;
+                        </th>
+                          @can('report_class_edit')
+                         
+                            <th> 
+                              {{ trans('cruds.reportClass.fields.note') }}
+                           
+                            </th>
+                            @endcan
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                           
+                        </td>
+                        <td>
+                             <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                     
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                         <td>
+                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            
+                        </td>
+                        <td>
+                        </td>
+                         <td>
+                 
+                        </td>
+                         <td>
+                 
+                        </td>
+                           <td>
+                        </td>
+                         <td>
+                 
+                        </td>
+                         <td>
+                 
+                        </td>
+                        <td>
+                            
+                        </td>
+                     
+                        <td>
+                        </td>
+                          @can('report_class_edit')
+                        
+                            <td>
+                                
+                            </td>
+                            @endcan
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($reportClasses as $key => $reportClass)
+                    
+                        <tr data-entry-id="{{ $reportClass->id }}">
+                            <td>
+
+                            </td>
+                            <td>
+                                {{ $reportClass->id ?? '' }}
+                            </td>
+                            <td>
+                                {{ $reportClass->created_by->name ?? '' }}
+                            </td>
+                           
+                            <td>
+                                {{ $reportClass->registrar->name ?? '' }}&nbsp;
+                                 {{ $reportClass->registrar->code ?? '' }}
+                            </td>
+                            <td>
+                              {{ $reportClass->month ?? '' }}
+                        </td>
+                         <td>
+                              {{ $reportClass->created_at->addHours(8) ?? '' }}
+                        </td>
+                         <td>
+                              {{ $reportClass->class_name->name ?? '' }}
+                        </td>
+                          <td>
+                            {{ $reportClass->date ?? '' }}
+                        </td>
+                            <td>
+                            {{ $reportClass->total_hour ?? '' }}
+                        </td>
+                         <td>
+                              {{ $reportClass->class_name_2->name ?? '' }}
+                        </td>
+                          <td>
+                            {{ $reportClass->date_2 ?? '' }}
+                        </td>
+                            <td>
+                            {{ $reportClass->total_hour_2 ?? '' }}
+                        </td>
+                           
+                            <td>
+                                RM{{$reportClass->allowance ?? '' }}
+                            </td>
+                            <td>
+                                <!--@can('report_class_show')
+                                    <a class="btn btn-xs btn-success" href="{{ route('admin.report-classes.show', $reportClass->id) }}">
+                                        {{ trans('global.view') }}
+                                    </a>
+                                @endcan-->
+
+                                @can('report_class_edit')
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.report-classes.edit', $reportClass->id) }}">
+                                        {{ trans('global.edit') }}
+                                    </a>
+                                @endcan
+
+                                @can('report_class_edit')
+                                 <a class="btn btn-xs btn-primary" href="{{ route('admin.report-classes.showinvoice', $reportClass->id) }}">
+                                        {{ trans('global.viewinvoice') }}
+                                    </a>
+                                    @endcan
+                                   @can('report_class_delete')  
+                                    <form action="{{ route('admin.report-classes.destroy', $reportClass->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                    </form>
+                                     
+                                @endcan
+                               
+                            </td>
+                             @can('report_class_edit')
+                            
+                       
+                            <td>
+                                 {{ $reportClass->note ?? '' }}
+                            </td>
+                             
+                            @endcan
+
+                        </tr>
+                          
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+
 
 
 
@@ -135,25 +326,25 @@ table.on('column-visibility.dt', function(e, settings, column, state) {
 
 
 
-var alwjan22 = <?php echo $reportclasses->where('month',null)->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwfeb22 = <?php echo $reportclasses->where('month','02-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwmar22 = <?php echo $reportclasses->where('month','03-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwapr22 = <?php echo $reportclasses->where('month','04-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwmay22 = <?php echo $reportclasses->where('month','05-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwjun22 = <?php echo $reportclasses->where('month','06-2022')->whereNull('deleted_at')->sum('allowance') ?? ''?>;
-var alwjul22 = <?php echo $reportclasses->where('month','07-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwogs22 = <?php echo $reportclasses->where('month','08-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwsep22 = <?php echo $reportclasses->where('month','09-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwoct22 = <?php echo $reportclasses->where('month','10-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwnov22 = <?php echo $reportclasses->where('month','11-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwdec22 = <?php echo $reportclasses->where('month','12-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwjan23 = <?php echo $reportclasses->where('month','01-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwfeb23 = <?php echo $reportclasses->where('month','02-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwmar23 = <?php echo $reportclasses->where('month','03-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwapr23 = <?php echo $reportclasses->where('month','04-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwmay23 = <?php echo $reportclasses->where('month','05-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwjun23 = <?php echo $reportclasses->where('month','06-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-var alwjul23 = <?php echo $reportclasses->where('month','07-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwjan22 = <?php echo $reportClasses->where('month',null)->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwfeb22 = <?php echo $reportClasses->where('month','02-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwmar22 = <?php echo $reportClasses->where('month','03-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwapr22 = <?php echo $reportClasses->where('month','04-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwmay22 = <?php echo $reportClasses->where('month','05-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwjun22 = <?php echo $reportClasses->where('month','06-2022')->whereNull('deleted_at')->sum('allowance') ?? ''?>;
+var alwjul22 = <?php echo $reportClasses->where('month','07-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwogs22 = <?php echo $reportClasses->where('month','08-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwsep22 = <?php echo $reportClasses->where('month','09-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwoct22 = <?php echo $reportClasses->where('month','10-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwnov22 = <?php echo $reportClasses->where('month','11-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwdec22 = <?php echo $reportClasses->where('month','12-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwjan23 = <?php echo $reportClasses->where('month','01-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwfeb23 = <?php echo $reportClasses->where('month','02-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwmar23 = <?php echo $reportClasses->where('month','03-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwapr23 = <?php echo $reportClasses->where('month','04-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwmay23 = <?php echo $reportClasses->where('month','05-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwjun23 = <?php echo $reportClasses->where('month','06-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwjul23 = <?php echo $reportClasses->where('month','07-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
 
   // Define the chart data and options
   var chartData = {

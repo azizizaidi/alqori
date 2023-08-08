@@ -80,7 +80,7 @@ class ReportClassController extends Controller
         abort_if(Gate::denies('report_class_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
        
-        $reportclasses = ReportClass::with(['registrar', 'created_by','class_name'])
+        $reportClasses = ReportClass::with(['registrar', 'created_by','class_name'])
                                     //->where('month','dec2022')
                                      ->get();
         
@@ -95,7 +95,7 @@ class ReportClassController extends Controller
 
        
         
-        return view('admin.reportClasses.index', compact('reportclasses', 'users','registrars'));
+        return view('admin.reportClasses.index', compact('reportClasses', 'users','registrars'));
  
        
 

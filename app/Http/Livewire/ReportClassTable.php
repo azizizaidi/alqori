@@ -22,7 +22,7 @@ class ReportClassTable extends Component
 
     protected $reportclasses;
     protected $listeners = ['updatedMonth' => 'getReportClasses'];
-    protected $paginationTheme = 'bootstrap';
+    //protected $paginationTheme = 'bootstrap';
 
     use WithPagination;
 
