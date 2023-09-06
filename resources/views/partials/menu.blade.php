@@ -399,6 +399,14 @@
                                 {{ trans('cruds.fee.title') }}
                             </a>
                         </li>
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.fees.add.receipt") }}" class="c-sidebar-nav-link {{ request()->is("admin/fees/add/receipt") || request()->is("admin/fees/add/receipt") ? "active" : "" }}">
+                                <i class="fa-fw fas fa-file-invoice c-sidebar-nav-icon">
+
+                                </i>
+                                {{ 'Add Receipt' }}
+                            </a>
+                        </li>
                     @endcan
                    
                 </ul>

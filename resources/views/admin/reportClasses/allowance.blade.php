@@ -97,15 +97,13 @@
                             
                             <td>
                                
-                           RM{{ $teacher->allowance ?? '' }}
+                           RM{{ $teacher->total_allowance ?? '' }}
                            </td>
                            <td>
-                           {{ $teacher->allowance_note ?? '' }}
+                        
                            </td>
                            <td>
-                               <a class="btn btn-xs btn-info" href="{{ route('admin.edit_allowance',$teacher->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
+                       
                            </td>
                         
 

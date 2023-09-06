@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e4f398ef94661567cdb590ba2d60baf2",
+    "content-hash": "f48b59ca6952012da88916a476993d07",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3378,6 +3378,86 @@
             "time": "2023-02-25T19:38:58+00:00"
         },
         {
+            "name": "power-components/livewire-powergrid",
+            "version": "v4.8.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Power-Components/livewire-powergrid.git",
+                "reference": "3549890e7ac4adf643e8af32e9ddb9b7abc6e8e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/3549890e7ac4adf643e8af32e9ddb9b7abc6e8e3",
+                "reference": "3549890e7ac4adf643e8af32e9ddb9b7abc6e8e3",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "^3.6.2|2.12.1",
+                "illuminate/support": "^9.0|^10.0",
+                "livewire/livewire": "^2.12.3",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "composer/composer": "^2.5.5",
+                "laradumps/laradumps": "^1.12.1",
+                "laravel/pint": "^1.10",
+                "nunomaduro/larastan": "^2.6.0",
+                "orchestra/testbench": "^7.0 | ^8.5.3",
+                "pestphp/pest": "^2.6.1",
+                "pestphp/pest-plugin-faker": "^2.0",
+                "pestphp/pest-plugin-livewire": "^2.0",
+                "spaze/phpstan-disallowed-calls": "^2.14.2"
+            },
+            "suggest": {
+                "openspout/openspout": "Required to export XLS and CSV"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "PowerComponents\\LivewirePowerGrid\\Providers\\PowerGridServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "PowerComponents\\LivewirePowerGrid\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luan Freitas",
+                    "email": "luanfreitasgoncalves@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "DanSysAnalyst",
+                    "email": "daniel@sysanalyst.eu",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PowerGrid generates Advanced Datatables using Laravel Livewire.",
+            "homepage": "https://github.com/power-components/livewire-powergrid",
+            "support": {
+                "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
+                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v4.8.7"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/luanfreitasdev",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-08-25T13:01:35+00:00"
+        },
+        {
             "name": "protoqol/prequel",
             "version": "v1.23.12",
             "source": {
@@ -3795,25 +3875,25 @@
         },
         {
             "name": "psr/simple-cache",
-            "version": "3.0.0",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/simple-cache.git",
-                "reference": "764e0b3939f5ca87cb904f570ef9be2d78a07865"
+                "reference": "753fa598e8f3b9966c886fe13f370baa45ef0e24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/764e0b3939f5ca87cb904f570ef9be2d78a07865",
-                "reference": "764e0b3939f5ca87cb904f570ef9be2d78a07865",
+                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/753fa598e8f3b9966c886fe13f370baa45ef0e24",
+                "reference": "753fa598e8f3b9966c886fe13f370baa45ef0e24",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0.0"
+                "php": ">=5.3.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0.x-dev"
+                    "dev-master": "1.0.x-dev"
                 }
             },
             "autoload": {
@@ -3828,7 +3908,7 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "https://www.php-fig.org/"
+                    "homepage": "http://www.php-fig.org/"
                 }
             ],
             "description": "Common interfaces for simple caching",
@@ -3840,9 +3920,9 @@
                 "simple-cache"
             ],
             "support": {
-                "source": "https://github.com/php-fig/simple-cache/tree/3.0.0"
+                "source": "https://github.com/php-fig/simple-cache/tree/1.0.0"
             },
-            "time": "2021-10-29T13:26:27+00:00"
+            "time": "2017-01-02T13:31:39+00:00"
         },
         {
             "name": "psy/psysh",
@@ -6909,6 +6989,61 @@
             "time": "2023-07-31T07:08:24+00:00"
         },
         {
+            "name": "tarsoft/toyyibpay",
+            "version": "v0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tarsofttech/toyyibpay-laravel.git",
+                "reference": "ef84fe348143012237ac579ef180d634d7f0e4b3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tarsofttech/toyyibpay-laravel/zipball/ef84fe348143012237ac579ef180d634d7f0e4b3",
+                "reference": "ef84fe348143012237ac579ef180d634d7f0e4b3",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.3|^7.0.1",
+                "illuminate/support": "5.5.*|5.6.*|5.7.*|5.8.*|^6.0|^7.0|^8.0|^9.0|^10.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "9.5.x-dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tarsoft\\Toyyibpay\\ToyyibpayServiceProvider"
+                    ],
+                    "aliases": {
+                        "Toyyibpay": "Tarsoft\\Toyyibpay\\ToyyibpayFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tarsoft\\Toyyibpay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "MUHAMMAD TARMIZI SANUSI AFKAR",
+                    "email": "realtarmizisanusi@gmail.com"
+                }
+            ],
+            "description": "Laravel Package for ToyyibPay API",
+            "support": {
+                "issues": "https://github.com/tarsofttech/toyyibpay-laravel/issues",
+                "source": "https://github.com/tarsofttech/toyyibpay-laravel/tree/v0.2.1"
+            },
+            "time": "2023-04-28T07:23:21+00:00"
+        },
+        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "2.2.6",
             "source": {
@@ -7179,6 +7314,67 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "apility/laravel-ngrok",
+            "version": "v4.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apility/laravel-ngrok.git",
+                "reference": "a2698562d2fcf094280e9ef6741f5828c5e53a51"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apility/laravel-ngrok/zipball/a2698562d2fcf094280e9ef6741f5828c5e53a51",
+                "reference": "a2698562d2fcf094280e9ef6741f5828c5e53a51",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.0",
+                "illuminate/console": "^9.0",
+                "illuminate/http": "^9.0",
+                "illuminate/pagination": "^9.0",
+                "illuminate/routing": "^9.0",
+                "illuminate/support": "^9.0",
+                "php": "^7.4|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Apility\\Laravel\\Ngrok\\NgrokServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Apility\\Laravel\\Ngrok\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Alrek",
+                    "email": "thomas@apility.no"
+                },
+                {
+                    "name": "Jairo Correa",
+                    "email": "jn.j41r0@gmail.com"
+                }
+            ],
+            "description": "Share Laravel application with ngrok.",
+            "homepage": "https://github.com/apility/laravel-ngrok",
+            "keywords": [
+                "apility",
+                "laravel-ngrok"
+            ],
+            "support": {
+                "source": "https://github.com/apility/laravel-ngrok/tree/v4.0.1"
+            },
+            "time": "2022-09-13T09:41:13+00:00"
+        },
         {
             "name": "composer/ca-bundle",
             "version": "1.3.6",

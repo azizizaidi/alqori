@@ -26,6 +26,8 @@ use LaravelDaily\Invoices\Classes\InvoiceItem;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
+use Toyyibpay;
+
 
 
 class ReportClassController extends Controller
@@ -40,15 +42,21 @@ class ReportClassController extends Controller
      abort_if(Gate::denies('allowance_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
      $teachers = DB::table('report_classes AS report')
+    
      ->whereNull('report.deleted_at')
-     ->select('report.id', 'report.allowance_note','report.created_by_id', 'user.name','report.allowance', 'report.month', 'report.created_at')
+    ->select('report.month', 'report.created_by_id', DB::raw('SUM(report.allowance) as total_allowance'), 'user.name')
+    ->join('users AS user', 'report.created_by_id', 'user.id')
+    ->groupBy('report.month', 'report.created_by_id', 'user.name')
+    ->orderBy('report.month', 'desc')
+    ->get();
+     //dd($teachers);
+      
+       //->whereNull('report.deleted_at')
+     //->select('report.id', 'report.allowance_note','report.created_by_id', 'user.name','report.allowance', 'report.month', 'report.created_at')
      //->groupBy('report.id', 'report.created_by_id', 'user.name', 'report.month', 'report.created_at')
-     ->join('users AS user', 'report.created_by_id', 'user.id')
-     ->orderBy('report.created_at', 'desc')
-     ->get();
-  
-      
-      
+     //->join('users AS user', 'report.created_by_id', 'user.id')
+     //->orderBy('report.month', 'desc')
+    // ->get();
         return view('admin.reportClasses.allowance', compact('teachers'));
  
 
@@ -402,85 +410,7 @@ class ReportClassController extends Controller
       
         return redirect()->route('admin.report-classes.index');
     
-        /*if ($classname_2) {
-            $total_hour += $reportClass->total_hour_2;
-            $total_allowance += $reportClass->total_hour_2 * $classname_2->allowanceperhour;
-        }
-    
-        switch ($classname->name) {
-            case 'Al-Quran Online AQ':
-                if ($total_hour <= 7.9) {
-                    $reportClass->fee_student = 35 * $total_hour;
-                } elseif ($total_hour <= 11.9) {
-                    $reportClass->fee_student = 30 * $total_hour;
-                } elseif ($total_hour >= 12) {
-                    $reportClass->fee_student = 25 * $total_hour;
-                }
-                break;
-    
-            case 'Fardhu Ain Online AQ':
-                if ($total_hour <= 7.9) {
-                    $reportClass->fee_student = 40 * $total_hour;
-                } elseif ($total_hour <= 11.9) {
-                    $reportClass->fee_student = 35 * $total_hour;
-                } elseif ($total_hour >= 12) {
-                    $reportClass->fee_student = 30 * $total_hour;
-                }
-                break;
-    
-            case 'Al-Quran Fizikal AQ':
-                if ($total_hour <= 7.9) {
-                    $reportClass->fee_student = 50 * $total_hour;
-                } elseif ($total_hour <= 11.9) {
-                    $reportClass->fee_student = 45 * $total_hour;
-                } elseif ($total_hour >= 12) {
-                    $reportClass->fee_student = 40 * $total_hour;
-                }
-                break;
-    
-            case 'Fardhu Ain Fizikal AQ':
-                if ($total_hour <= 7.9) {
-                    $reportClass->fee_student = 60 * $total_hour;
-                } elseif ($total_hour <= 11.9) {
-                    $reportClass->fee_student = 55 * $total_hour;
-                } elseif ($total_hour >= 12) {
-                    $reportClass->fee_student = 50 * $total_hour;
-                }
-                break;
-    
-            case 'Al-Quran Online BQ':
-                $reportClass->fee_student = 35 * $total_hour;
-                break;
-    
-            case 'Al-Quran Online CQ':
-                $reportClass->fee_student = 40 * $total_hour;
-                break;
-    
-            case 'Fardhu Ain Online BQ':
-                $reportClass->fee_student = 40 * $total_hour;
-                break;
-    
-            case 'Al-Quran Fizikal BQ':
-                $reportClass->fee_student = 50 * $total_hour;
-                break;
-    
-            case 'Fardhu Ain Fizikal BQ':
-                $reportClass->fee_student = 60 * $total_hour;
-                break;
-
-            case 'Fardhu Ain Online DQ':
-                $reportClass->fee_student = 45 * $total_hour;
-                break;
-
-            case 'Fardhu Ain Fizikal DQ':
-                $reportClass->fee_student = 70 * $total_hour;
-                break;
-
-            case 'Al-Quran Fizikal DQ':
-                $reportClass->fee_student = 60 * $total_hour;
-                break;    
-        }*/
-
+       
        
     }
    
@@ -501,11 +431,11 @@ class ReportClassController extends Controller
     {
         $reportClass->update($request->all());
   
-          $classname = ClassName::find($reportClass->class_name->id = $reportClass->class_names_id);
+          //$classname = ClassName::find($reportClass->class_name->id = $reportClass->class_names_id);
       
- 
-
-        if($reportClass->total_hour_2 == null){
+        //  $classname = ClassName::find($reportClass->class_names_id);
+//dd($reportClass);
+     /*   if($reportClass->total_hour_2 == null){
             
             $reportClass->allowance = $reportClass->total_hour * $classname->allowanceperhour;
             if($classname->name == "Al-Quran Online AQ"){
@@ -679,7 +609,7 @@ class ReportClassController extends Controller
 
         }
        
-         $reportClass->update();
+         $reportClass->update(); */
 
         return redirect()->route('admin.report-classes.index-student');
     }
@@ -807,6 +737,8 @@ class ReportClassController extends Controller
         return response(null, Response::HTTP_NO_CONTENT);
     }
 
+  
+
     public function createBill(ReportClass $reportClass)
     {
       
@@ -841,11 +773,13 @@ class ReportClassController extends Controller
  
 
  
-          $url = 'https://toyyibpay.com/index.php/api/createBill';
+          $url = 'https://dev.toyyibpay.com/index.php/api/createBill';
           $response = Http::asForm()->post($url, $some_data);
-          $billCode = $response[0]["BillCode"];
+          $billCode = $response[0]['BillCode'];
          
-          return redirect('https://toyyibpay.com/'. $billCode);
+          return redirect('https://dev.toyyibpay.com/'. $billCode);
+
+       
     }
 
  
@@ -878,7 +812,8 @@ class ReportClassController extends Controller
 
     public function callback()
     {
-        
+        $response= request()->all(['refno','status','reason','billcode','order_id','amount']);
+       Log::info($response);
     }
 
     public function billTransaction()

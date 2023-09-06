@@ -2,7 +2,7 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-6">
-    <h1 class="login-title">{{ trans('panel.site_title') }}</h1>
+    <h1 class=" text-red-600 text-3xl font-semibold flex justify-center mb-10">{{ trans('panel.site_title') }}</h1>
         <div class="card mx-4">
             <div class="card-body p-4">
                 
@@ -59,7 +59,7 @@
 
                     <div class="row">
                         <div class="col-12 button-login ">
-                            <button type="submit" class="btn btn-danger px-4  ">
+                            <button type="submit" class="py-2 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800  ">
                                 {{ trans('global.login') }}
                             </button>
                         </div>

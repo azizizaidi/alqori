@@ -6,6 +6,7 @@ use App\Models\User;
 use Auth;
 use App\Models\AssignClassTeacher;
 use App\Models\ReportClass;
+use App\Models\HistoryPayment;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 use Gate;
@@ -30,13 +31,15 @@ class HomeController
                         
          $reportclasses = ReportClass::get();
 
+         $hpayment = HistoryPayment::get();
+
 
  
 
 
            
            
-        return view('home', compact('registrars','students','teachers','reportclasses'));
+        return view('home', compact('registrars','students','teachers','reportclasses','hpayment'));
     }
 
     
