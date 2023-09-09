@@ -22,7 +22,7 @@
                     <form method="POST" action="{{ route('tests.destroy', $test) }}" accept-charset="UTF-8" onsubmit="return confirm(&quot;{{ __('app.delete_confirm') }}&quot;)" class="del-form float-right" style="display: inline;">
                         {{ csrf_field() }} {{ method_field('delete') }}
                         <input name="test_id" type="hidden" value="{{ $test->id }}">
-                        <button type="submit" class="btn btn-danger">{{ __('app.delete_confirm_button') }}</button>
+                        <button type="submit" class="py-2 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">{{ __('app.delete_confirm_button') }}</button>
                     </form>
                     <a href="{{ route('tests.edit', $test) }}" class="btn btn-link">{{ __('app.cancel') }}</a>
                 </div>
@@ -49,7 +49,7 @@
                     <input type="submit" value="{{ __('test.update') }}" class="btn btn-success">
                     <a href="{{ route('tests.show', $test) }}" class="btn btn-link">{{ __('app.cancel') }}</a>
                     @can('delete', $test)
-                        <a href="{{ route('tests.edit', [$test, 'action' => 'delete']) }}" id="del-test-{{ $test->id }}" class="btn btn-danger float-right">{{ __('app.delete') }}</a>
+                        <a href="{{ route('tests.edit', [$test, 'action' => 'delete']) }}" id="del-test-{{ $test->id }}" class="py-2 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800 float-right">{{ __('app.delete') }}</a>
                     @endcan
                 </div>
             </form>

@@ -1,4 +1,11 @@
 <?php return array (
+  'apility/laravel-ngrok' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Apility\\Laravel\\Ngrok\\NgrokServiceProvider',
+    ),
+  ),
   'barryvdh/laravel-dompdf' => 
   array (
     'providers' => 
@@ -89,6 +96,13 @@
       0 => 'Termwind\\Laravel\\TermwindServiceProvider',
     ),
   ),
+  'power-components/livewire-powergrid' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'PowerComponents\\LivewirePowerGrid\\Providers\\PowerGridServiceProvider',
+    ),
+  ),
   'protoqol/prequel' => 
   array (
     'providers' => 
@@ -105,6 +119,17 @@
     'aliases' => 
     array (
       'Flare' => 'Spatie\\LaravelIgnition\\Facades\\Flare',
+    ),
+  ),
+  'tarsoft/toyyibpay' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Tarsoft\\Toyyibpay\\ToyyibpayServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Toyyibpay' => 'Tarsoft\\Toyyibpay\\ToyyibpayFacade',
     ),
   ),
 );

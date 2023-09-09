@@ -132,8 +132,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('expense-reports', 'ExpenseReportController');
 
     // Fee
+    Route::get('fees/pay/page', 'FeeController@pay')->name('fees.pay.custom');
+    Route::post('fees/pay/amount', 'FeeController@amount')->name('fees.pay.amount');
     Route::delete('fees/destroy', 'FeeController@massDestroy')->name('fees.massDestroy');
+    Route::get('fees/add/receipt', 'FeeController@addReceipt')->name('fees.add.receipt');
+    Route::post('fees/store/receipt', 'FeeController@storeReceipt')->name('fees.store.receipt');
     Route::resource('fees', 'FeeController');
+  //  Route::get('toyyibpay/createbill/{selectedFee}', 'FeeController@createBill')->name('toyyibpay.createBill');
+  //  Route::get('toyyibpay/paymentstatus', 'FeeController@paymentStatus')->name('toyyibpay.paymentstatus');
+  //  Route::post('toyyibpay/callback', 'FeeController@callback')->name('toyyibpay.callback');
+    
 
     // Register Class
     Route::delete('register-classes/destroy', 'RegisterClassController@massDestroy')->name('register-classes.massDestroy');
@@ -201,17 +209,21 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     //toyyibpay
   
-    Route::get('toyyibpay/createbill/{reportClass}', 'ReportClassController@createBill')->name('toyyibpay.createBill');
-
-    //Route::get('toyyibpay/createbill/{reportClass}', 'ReportClassController@createBill')->name('toyyibpay.createBill');
-    //Route::get('create-bill-with-sum/{ids}/{sum}', 'ReportClassController@createBill')->name('toyyibpay.createBillWithSum');
-    Route::get('toyyibpay/paymentstatus/{reportClass}', 'ReportClassController@paymentStatus')->name('toyyibpay.paymentstatus');
-    Route::get('toyyibpay/callback', 'ReportClassController@callback')->name('toyyibpay.callback');
+    Route::get('reportclass/toyyibpay/createbill/{reportClass}', 'ReportClassController@createBill')->name('toyyibpay.createBill');
+    Route::get('reportclass/toyyibpay/paymentstatus{reportClass}', 'ReportClassController@paymentStatus')->name('toyyibpay.paymentstatus');
+    Route::post('reportclass/toyyibpay/callback', 'ReportClassController@callback')->name('toyyibpay.callback');
+   
 
 
 
     //pdfinvoice
     Route::get('pdfinvoice', 'pdfInvoiceController@index')->name('pdfinvoice.index');
+
+    //bizappay
+    Route::get('bizappay', 'BizappayController@create')->name('bizappay');
+    Route::get('bizappay-status', 'BizappayController@status')->name('bizappay.status');
+    Route::get('bizappay-callback', 'BizappayController@callback')->name('bizappay-callback');
+    Route::get('bizappay-generate-token', 'BizappayController@generateToken')->name('bizappay-generate-token');
 
    
    //calculator

@@ -53,16 +53,38 @@
                      </div>
                      </div>
                      </div>
-<div class=" col-6 bg-white">
+
+                   
+
+                 
+                <br><br>
+                <div class="border-b border-gray-200 dark:border-gray-700">
+  <nav class="flex space-x-2" aria-label="Tabs" role="tablist">
+    <button type="button" class="flex-auto hs-tab-active:bg-red-600 hs-tab-active:border-b-transparent hs-tab-active:text-white dark:hs-tab-active:bg-gray-800 dark:hs-tab-active:border-b-gray-800 dark:hs-tab-active:text-white -mb-px py-3 px-4 inline-flex items-center gap-2 bg-gray-50 text-sm font-medium text-center border text-gray-500 rounded-t-lg hover:text-gray-700 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400 active" id="card-type-tab-item-1" data-hs-tab="#card-type-tab-1" aria-controls="card-type-tab-1" role="tab">
+      Unpaid
+    </button>
+    <button type="button" class="flex-auto hs-tab-active:bg-red-600 hs-tab-active:border-b-transparent hs-tab-active:text-white dark:hs-tab-active:bg-gray-800 dark:hs-tab-active:border-b-gray-800 dark:hs-tab-active:text-white -mb-px py-3 px-4 inline-flex items-center gap-2 bg-gray-50 text-sm font-medium text-center border text-gray-500 rounded-t-lg hover:text-gray-700 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400 dark:hover:text-gray-300" id="card-type-tab-item-2" data-hs-tab="#card-type-tab-2" aria-controls="card-type-tab-2" role="tab">
+      Fail
+    </button>
+    <button type="button" class="flex-auto hs-tab-active:bg-red-600 hs-tab-active:border-b-transparent hs-tab-active:text-white dark:hs-tab-active:bg-gray-800 dark:hs-tab-active:border-b-gray-800 dark:hs-tab-active:text-white -mb-px py-3 px-4 inline-flex items-center gap-2 bg-gray-50 text-sm font-medium text-center border text-gray-500 rounded-t-lg hover:text-gray-700 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400 dark:hover:text-gray-300" id="card-type-tab-item-3" data-hs-tab="#card-type-tab-3" aria-controls="card-type-tab-3" role="tab">
+      Pending
+    </button>
+  </nav>
+</div>
+
+<div class="mt-3">
+  <div id="card-type-tab-1" role="tabpanel" aria-labelledby="card-type-tab-item-1">
+    
+<div class=" col-6 bg-white m-auto"><br>
                      <div class="table-responsive">
-                     <table class="table table-bordered table-striped table-hover">
+                     <table class="table table-bordered table-striped table-hover ">
     <thead>
         <tr>
-            <th>Month</th>
-            <th>Total Unpaid</th>
+            <th class="">Month</th>
+            <th class="">Total Unpaid</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody >
       
 
        
@@ -161,10 +183,9 @@
         </div>
                      
         </div>      
-        <br>
-<br>
-
-        <div class=" col-6 bg-white">
+  </div>
+  <div id="card-type-tab-2" class="hidden" role="tabpanel" aria-labelledby="card-type-tab-item-2">
+  <div class=" col-6 bg-white m-auto"><br>
                      <div class="table-responsive">
                      <table class="table table-bordered table-striped table-hover">
     <thead>
@@ -272,10 +293,9 @@
         </div>
                      
         </div>      
-        <br>
-<br>
-
-        <div class=" col-6 bg-white">
+  </div>
+  <div id="card-type-tab-3" class="hidden" role="tabpanel" aria-labelledby="card-type-tab-item-3">
+  <div class=" col-6 bg-white m-auto"><br>
                      <div class="table-responsive">
                      <table class="table table-bordered table-striped table-hover">
     <thead>
@@ -383,9 +403,53 @@
         </div>
                      
         </div>      
+  </div>
+</div>
+<br><br>
+             
+                
+              <!--   <div x-data="{ tab: '#tab1' }" class="">
+<!-- Links here -->
+             <!--    <div class="flex flex-row justify-between">
 
-                        
-<div>
+<a class="px-4 border-b-2 border-gray-900 hover:border-teal-300" 
+href="#" x-on:click.prevent="tab='#tab1'">Unpaid</a>
+
+<a class="px-4 border-b-2 border-gray-900 hover:border-teal-300" 
+href="#" x-on:click.prevent="tab='#tab2'">Fail</a>
+
+<a class="px-4 border-b-2 border-gray-900 hover:border-teal-300" 
+href="#" x-on:click.prevent="tab='#tab3'">Pending</a>
+
+</div>
+<br><br>
+                       <!-- Tab Content here -->
+                    <!--  <div x-show="tab == '#tab1'" x-cloak>
+                       
+..............
+                     </div>
+                     <div x-show="tab == '#tab2'" x-cloak>
+                       
+     
+                     </div>
+
+                    <div x-show="tab == '#tab3'" x-cloak>
+                     
+     
+                     </div>
+
+                      
+
+
+                </div>
+
+
+
+
+
+<br><br>-->
+           <div class="m-auto">          
+<div class="">
         <label for="year">Select Year:</label>
  <select id="yearSelect" onchange="updateChart()">
         <option value="">select year</option>
@@ -403,7 +467,7 @@
                           </div>
                        
                       </div>          
-
+                      </div>   
                   
 
                        
@@ -426,15 +490,27 @@
                      
 
                  @elseif(Auth::user()->roles->contains(4 ))
+         @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
-                 <div class="row">
+@if (session('fail'))
+    <div class="alert alert-danger">
+        {{ session('fail') }}
+    </div>
+@endif
+
+             <!--    <div class="row">
                       <div class="col-lg-4">
                    <div class="card text-grey bg-white rounded-3 shadow p-1 " style="width: 18rem;">
                        <div class="card-body">
                       
-                           <h5 class="card-title text-bold">RM{{ $reportclasses->where('registrar_id',Auth::user()->id)->where('status',0)->sum('fee_student') ?? '' }}</h5>
+                           <h5 class="card-title text-bold">RM{{ $reportclasses->where('registrar_id',Auth::user()->id)->sum('fee_student') - $hpayment->where('paid_by_id',Auth::user()->id)->sum('amount_paid') ?? '' }}</h5>
                            <img src="{{ url('/Image/pay2.png') }}" class="float-right  " width="100px" >
                              <p class="card-text ">Total Unpaid</p>
+                             <a href="{{ route('admin.fees.pay.custom') }}"><button type="button" class="btn btn-warning">Pay Now</button></a>
                             
 
 
@@ -442,6 +518,10 @@
                      </div>
                      </div>
                      </div>
+
+
+                     
+                 </div>-->
 
                    @else
                    @endif

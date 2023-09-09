@@ -12,7 +12,7 @@
             @csrf
         
             
-             <div class="form-group">
+       <!--      <div class="form-group">
                 <label class="required" for="registrar_id">{{ trans('cruds.reportClass.fields.registrar') }}</label>
                 <select class="form-control select2 {{ $errors->has('registrar') ? 'is-invalid' : '' }}" name="registrar_id" id="registrar_id" required>
               
@@ -105,7 +105,7 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.reportClass.fields.total_hour_2_helper') }}</span>
-            </div>
+            </div>-->
              <div class="form-group">
                 <label class="" for="status">{{ trans('cruds.reportClass.fields.status') }}</label>
                 <input class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" type="number" name="status" id="status" value="{{ old('status', $reportClass->status) }}">
@@ -129,7 +129,7 @@
                 <span class="help-block">{{ trans('cruds.reportClass.fields.note_helper') }}</span>
             </div>
             <div class="form-group">
-                <button class="btn btn-danger" type="submit">
+                <button class="py-2 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" type="submit">
                     {{ trans('global.save') }}
                 </button>
             </div>

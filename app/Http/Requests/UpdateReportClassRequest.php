@@ -17,7 +17,7 @@ class UpdateReportClassRequest extends FormRequest
     public function rules()
     {
         return [
-             'registrar_id' => [
+       /*      'registrar_id' => [
                 'required',
                
             ],
@@ -56,7 +56,7 @@ class UpdateReportClassRequest extends FormRequest
             'class_names_id' => [
                 'required',
                 'integer',
-            ],
+            ],*/
         ];
     }
 }
