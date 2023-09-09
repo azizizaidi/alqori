@@ -773,11 +773,16 @@ class ReportClassController extends Controller
  
 
  
-          $url = 'https://dev.toyyibpay.com/index.php/api/createBill';
+          $url = 'https://toyyibpay.com/index.php/api/createBill';
           $response = Http::asForm()->post($url, $some_data);
           $billCode = $response[0]['BillCode'];
+
+          session([
+            'billAmount' => $report->fee_student,
+            'billCode' => $billCode
+        ]);
          
-          return redirect('https://dev.toyyibpay.com/'. $billCode);
+          return redirect('https://toyyibpay.com/'. $billCode);
 
        
     }
@@ -786,8 +791,8 @@ class ReportClassController extends Controller
 
     public function paymentStatus(ReportClass $reportClass)
     {
-        $report = request('reportClass','id');
-      
+   /*     $report = request()->all();
+        dd($report);
          
            
         $response = request()->all(['status_id','billcode','order_id']);
@@ -806,14 +811,40 @@ class ReportClassController extends Controller
             $report->status = 3;
             $report->save();
                 return redirect()->route('admin.report-classes.index-student');
+        }*/
+
+
+
+
+        //--------------------------------------------------
+        $response= request()->status_id;
+    
+       
+        if($response == 1)
+        {
+           
+            $reportClass->update(['status' => 1]);
+          $billAmount = session('billAmount');
+          $billCode = session('billCode');
+        
+
+      // dd($reportClass);
+
+         return redirect()->route('admin.report-classes.index-student')->with('success', 'Your payment has been successfully');
         }
+    
+      else
+      {
+         
+          return redirect()->route('admin.report-classes.index-student')->with('fail', 'Your payment has been canceled');;
+      }
     }
     
 
     public function callback()
     {
         $response= request()->all(['refno','status','reason','billcode','order_id','amount']);
-       Log::info($response);
+        Log::info($response);
     }
 
     public function billTransaction()

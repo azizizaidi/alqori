@@ -138,9 +138,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('fees/add/receipt', 'FeeController@addReceipt')->name('fees.add.receipt');
     Route::post('fees/store/receipt', 'FeeController@storeReceipt')->name('fees.store.receipt');
     Route::resource('fees', 'FeeController');
-    Route::get('toyyibpay/createbill/{selectedFee}', 'FeeController@createBill')->name('toyyibpay.createBill');
-    Route::get('toyyibpay/paymentstatus', 'FeeController@paymentStatus')->name('toyyibpay.paymentstatus');
-    Route::post('toyyibpay/callback', 'FeeController@callback')->name('toyyibpay.callback');
+  //  Route::get('toyyibpay/createbill/{selectedFee}', 'FeeController@createBill')->name('toyyibpay.createBill');
+  //  Route::get('toyyibpay/paymentstatus', 'FeeController@paymentStatus')->name('toyyibpay.paymentstatus');
+  //  Route::post('toyyibpay/callback', 'FeeController@callback')->name('toyyibpay.callback');
     
 
     // Register Class
@@ -209,9 +209,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     //toyyibpay
   
-   // Route::get('toyyibpay/createbill/{reportClass}', 'ReportClassController@createBill')->name('toyyibpay.createBill');
-   // Route::get('toyyibpay/paymentstatus/{reportClass}', 'ReportClassController@paymentStatus')->name('toyyibpay.paymentstatus');
-   // Route::post('toyyibpay/callback', 'ReportClassController@callback')->name('toyyibpay.callback');
+    Route::get('reportclass/toyyibpay/createbill/{reportClass}', 'ReportClassController@createBill')->name('toyyibpay.createBill');
+    Route::get('reportclass/toyyibpay/paymentstatus{reportClass}', 'ReportClassController@paymentStatus')->name('toyyibpay.paymentstatus');
+    Route::post('reportclass/toyyibpay/callback', 'ReportClassController@callback')->name('toyyibpay.callback');
    
 
 

@@ -502,7 +502,7 @@ href="#" x-on:click.prevent="tab='#tab3'">Pending</a>
     </div>
 @endif
 
-                 <div class="row">
+             <!--    <div class="row">
                       <div class="col-lg-4">
                    <div class="card text-grey bg-white rounded-3 shadow p-1 " style="width: 18rem;">
                        <div class="card-body">
@@ -521,7 +521,7 @@ href="#" x-on:click.prevent="tab='#tab3'">Pending</a>
 
 
                      
-                 </div>
+                 </div>-->
 
                    @else
                    @endif
