@@ -557,6 +557,7 @@ var feeapr23 = <?php echo $reportclasses->where('month','04-2023')->whereNull('d
 var feemay23 = <?php echo $reportclasses->where('month','05-2023')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
 var feejun23 = <?php echo $reportclasses->where('month','06-2023')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
 var feejul23 = <?php echo $reportclasses->where('month','07-2023')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
+var feeogs23 = <?php echo $reportclasses->where('month','08-2023')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
 
 var alwjan22 = <?php echo $reportclasses->where('month',null)->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
 var alwfeb22 = <?php echo $reportclasses->where('month','02-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
@@ -577,6 +578,7 @@ var alwapr23 = <?php echo $reportclasses->where('month','04-2023')->whereNull('d
 var alwmay23 = <?php echo $reportclasses->where('month','05-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
 var alwjun23 = <?php echo $reportclasses->where('month','06-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
 var alwjul23 = <?php echo $reportclasses->where('month','07-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwogs23 = <?php echo $reportclasses->where('month','08-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
 
   // Define the chart data and options
   var chartData = {
@@ -628,8 +630,8 @@ var alwjul23 = <?php echo $reportclasses->where('month','07-2023')->whereNull('d
         allowanceData = [alwjan22,alwfeb22,alwmar22, alwapr22, alwmay22, alwjun22, alwjul22, alwogs22, alwsep22, alwoct22, alwnov22, alwdec22];
         break;
       case '2023':
-        feeData =[feejan23,feefeb23,feemar23,feeapr23,feemay23,feejun23,feejul23];
-        allowanceData =[alwjan23,alwfeb23,alwmar23,alwapr23,alwmay23,alwjun23,alwjul23];
+        feeData =[feejan23,feefeb23,feemar23,feeapr23,feemay23,feejun23,feejul23,feeogs23];
+        allowanceData =[alwjan23,alwfeb23,alwmar23,alwapr23,alwmay23,alwjun23,alwjul23,alwogs23];
         break;
       default:
         // Handle default case or show an error message
