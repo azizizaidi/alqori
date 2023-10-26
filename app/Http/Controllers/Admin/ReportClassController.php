@@ -215,16 +215,17 @@ class ReportClassController extends Controller
     public function store(StoreReportClassRequest $request)
     {
         $reportClass = ReportClass::create($request->all());
-        
+        //dd($reportClass);
         $assignClassTeacher = AssignClassTeacher::find($reportClass->registrar_id);
         $registrarName = $assignClassTeacher->registrar->id;
         $reportClass->registrar_id = $registrarName;
 
-        $reportClass->month = "09-2023";
+        $reportClass->month = "10-2023";
         
         $classname = ClassName::find($request->id = $reportClass->class_names_id);
         $classname_2 = ClassName::find($request->id = $reportClass->class_names_id_2);
         
+       // dd($classname);
       
        // $total_hour = $reportClass->total_hour;
        // $total_allowance = $total_hour * $classname->allowanceperhour;

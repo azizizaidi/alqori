@@ -172,7 +172,7 @@
 
 
                 @endif
-              <!-- total hour-->
+              <!-- total fee classname-->
 
                 @if($value->class_name->name  == "Fardhu Ain Online AQ")
                 @if( $value->total_hour <= 7.9)
@@ -279,7 +279,7 @@
                 <td style="padding: 0px 7px; line-height: 20px;">RM40</td>
                 @endif
 
-                @elseif($value->class_name->name  == "Fardhu Ain Fizikal DQ")
+                @elseif($value->class_name_2->name  == "Fardhu Ain Fizikal DQ")
                 @if( $value->total_hour <= 4.9)
                 <td style="padding: 0px 7px; line-height: 20px;">RM70</td>
                 @elseif( $value->total_hour <= 8.9)
@@ -288,7 +288,7 @@
                 <td style="padding: 0px 7px; line-height: 20px;">RM60</td>
                 @endif
 
-                @elseif($value->class_name->name  == "Al-Quran Fizikal DQ")
+                @elseif($value->class_name_2->name  == "Al-Quran Fizikal DQ")
                 @if( $value->total_hour <= 4.9)
                 <td style="padding: 0px 7px; line-height: 20px;">RM60</td>
                 @elseif( $value->total_hour <= 8.9)
@@ -305,7 +305,7 @@
 
                 @endif
               @endif
-              <!-- total hour-->
+              <!-- total fee classname 2-->
               @if($value->class_name_2 != NULL)
                 @if($value->class_name_2->name  == "Fardhu Ain Online AQ")
                 @if( $value->total_hour_2 <= 7.9)
@@ -343,7 +343,7 @@
                 <td style="padding: 0px 7px; line-height: 20px;">RM{{ 40 * $value->total_hour_2 }}</td>
                 @endif
 
-                @elseif($value->class_name->name  == "Fardhu Ain Fizikal DQ")
+                @elseif($value->class_name_2->name  == "Fardhu Ain Fizikal DQ")
                 @if( $value->total_hour <= 4.9)
                 <td style="padding: 0px 7px; line-height: 20px;">RM{{ 70 * $value->total_hour }}</td>
                 @elseif( $value->total_hour <= 8.9)
@@ -352,7 +352,7 @@
                 <td style="padding: 0px 7px; line-height: 20px;">RM{{ 60 * $value->total_hour }}</td>
                 @endif
 
-                @elseif($value->class_name->name  == "Al-Quran Fizikal DQ")
+                @elseif($value->class_name_2->name  == "Al-Quran Fizikal DQ")
                 @if( $value->total_hour <= 4.9)
                 <td style="padding: 0px 7px; line-height: 20px;">RM{{ 60 * $value->total_hour }}</td>
                 @elseif( $value->total_hour <= 8.9)

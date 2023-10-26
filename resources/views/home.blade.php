@@ -175,6 +175,21 @@
                 <td>RM{{ $reportclasses->where('month','07-2023')->where('status',0)->sum('fee_student')  ?? ''  }}</td>
                 
             </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '08-2023' }}</td>
+                <td>RM{{ $reportclasses->where('month','08-2023')->where('status',0)->sum('fee_student')  ?? ''  }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '09-2023' }}</td>
+                <td>RM{{ $reportclasses->where('month','09-2023')->where('status',0)->sum('fee_student')  ?? ''  }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '10-2023' }}</td>
+                <td>RM{{ $reportclasses->where('month','10-2023')->where('status',0)->sum('fee_student')  ?? ''  }}</td>
+                
+            </tr>
 
        
     </tbody>
@@ -285,6 +300,21 @@
                 <td>RM{{ $reportclasses->where('month','07-2023')->where('status',3)->sum('fee_student')  ?? ''  }}</td>
                 
             </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '08-2023' }}</td>
+                <td>RM{{ $reportclasses->where('month','08-2023')->where('status',3)->sum('fee_student')  ?? ''  }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '09-2023' }}</td>
+                <td>RM{{ $reportclasses->where('month','09-2023')->where('status',3)->sum('fee_student')  ?? ''  }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '10-2023' }}</td>
+                <td>RM{{ $reportclasses->where('month','10-2023')->where('status',3)->sum('fee_student')  ?? ''  }}</td>
+                
+            </tr>
 
        
     </tbody>
@@ -393,6 +423,21 @@
             <tr>
                 <td>{{ $reportclasses->month = '07-2023' }}</td>
                 <td>RM{{ $reportclasses->where('month','07-2023')->where('status',2)->sum('fee_student')  ?? ''  }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '08-2023' }}</td>
+                <td>RM{{ $reportclasses->where('month','08-2023')->where('status',2)->sum('fee_student')  ?? ''  }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '09-2023' }}</td>
+                <td>RM{{ $reportclasses->where('month','09-2023')->where('status',2)->sum('fee_student')  ?? ''  }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ $reportclasses->month = '10-2023' }}</td>
+                <td>RM{{ $reportclasses->where('month','10-2023')->where('status',2)->sum('fee_student')  ?? ''  }}</td>
                 
             </tr>
 
@@ -559,6 +604,7 @@ var feejun23 = <?php echo $reportclasses->where('month','06-2023')->whereNull('d
 var feejul23 = <?php echo $reportclasses->where('month','07-2023')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
 var feeogs23 = <?php echo $reportclasses->where('month','08-2023')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
 var feesep23 = <?php echo $reportclasses->where('month','09-2023')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
+var feeoct23 = <?php echo $reportclasses->where('month','10-2023')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
 
 var alwjan22 = <?php echo $reportclasses->where('month',null)->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
 var alwfeb22 = <?php echo $reportclasses->where('month','02-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
@@ -581,7 +627,7 @@ var alwjun23 = <?php echo $reportclasses->where('month','06-2023')->whereNull('d
 var alwjul23 = <?php echo $reportclasses->where('month','07-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
 var alwogs23 = <?php echo $reportclasses->where('month','08-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
 var alwsep23 = <?php echo $reportclasses->where('month','09-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
-
+var alwoct23 = <?php echo $reportclasses->where('month','10-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
   // Define the chart data and options
   var chartData = {
     labels: ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november','december'],
@@ -632,8 +678,8 @@ var alwsep23 = <?php echo $reportclasses->where('month','09-2023')->whereNull('d
         allowanceData = [alwjan22,alwfeb22,alwmar22, alwapr22, alwmay22, alwjun22, alwjul22, alwogs22, alwsep22, alwoct22, alwnov22, alwdec22];
         break;
       case '2023':
-        feeData =[feejan23,feefeb23,feemar23,feeapr23,feemay23,feejun23,feejul23,feeogs23,feesep23];
-        allowanceData =[alwjan23,alwfeb23,alwmar23,alwapr23,alwmay23,alwjun23,alwjul23,alwogs23,alwsep23];
+        feeData =[feejan23,feefeb23,feemar23,feeapr23,feemay23,feejun23,feejul23,feeogs23,feesep23,feeoct23];
+        allowanceData =[alwjan23,alwfeb23,alwmar23,alwapr23,alwmay23,alwjun23,alwjul23,alwogs23,alwsep23,alwoct23];
         break;
       default:
         // Handle default case or show an error message
