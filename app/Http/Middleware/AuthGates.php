@@ -16,7 +16,7 @@ class AuthGates
             $permissionsArray = [];
             foreach ($roles as $role) {
                 foreach ($role->permissions as $permissions) {
-                    $permissionsArray[$permissions->title][] = $role->id;
+                    $permissionsArray[$permissions->name][] = $role->id;
                 }
             }
             foreach ($permissionsArray as $title => $roles) {

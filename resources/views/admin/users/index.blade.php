@@ -66,7 +66,7 @@
                             <select class="search">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach($roles as $key => $item)
-                                    <option value="{{ $item->title }}">{{ $item->title }}</option>
+                                    <option value="{{ $item->title }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
                         </td>
@@ -98,7 +98,7 @@
                          
                             <td>
                                 @foreach($user->roles as $key => $item)
-                                    <span class="badge badge-info">{{ $item->title }}</span>
+                                    <span class="badge badge-info">{{ $item->name }}</span>
                                 @endforeach
                             </td>
                             <td>

@@ -52,7 +52,7 @@
                             <select class="search">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach($permissions as $key => $item)
-                                    <option value="{{ $item->title }}">{{ $item->title }}</option>
+                                    <option value="{{ $item->title }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
                         </td>
@@ -70,11 +70,11 @@
                                 {{ $role->id ?? '' }}
                             </td>
                             <td>
-                                {{ $role->title ?? '' }}
+                                {{ $role->name ?? '' }}
                             </td>
                             <td>
                                 @foreach($role->permissions as $key => $item)
-                                    <span class="badge badge-info">{{ $item->title }}</span>
+                                    <span class="badge badge-info">{{ $item->name }}</span>
                                 @endforeach
                             </td>
                             <td>

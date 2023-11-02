@@ -59,7 +59,7 @@
                                 {{ $permission->id ?? '' }}
                             </td>
                             <td>
-                                {{ $permission->title ?? '' }}
+                                {{ $permission->name ?? '' }}
                             </td>
                             <td>
                                 @can('permission_show')
