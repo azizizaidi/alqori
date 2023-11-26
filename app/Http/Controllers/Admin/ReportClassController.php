@@ -220,7 +220,7 @@ class ReportClassController extends Controller
         $registrarName = $assignClassTeacher->registrar->id;
         $reportClass->registrar_id = $registrarName;
 
-        $reportClass->month = "10-2023";
+        $reportClass->month = "11-2023";
         
         $classname = ClassName::find($request->id = $reportClass->class_names_id);
         $classname_2 = ClassName::find($request->id = $reportClass->class_names_id_2);
