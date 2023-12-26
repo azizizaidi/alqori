@@ -350,6 +350,7 @@ var alwogs23 = <?php echo $reportClasses->where('month','08-2023')->whereNull('d
 var alwsep23 = <?php echo $reportClasses->where('month','09-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
 var alwoct23 = <?php echo $reportClasses->where('month','10-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
 var alwnov23 = <?php echo $reportClasses->where('month','11-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwdec23 = <?php echo $reportClasses->where('month','12-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
   // Define the chart data and options
   var chartData = {
     labels: ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november','december'],
@@ -401,7 +402,7 @@ var alwnov23 = <?php echo $reportClasses->where('month','11-2023')->whereNull('d
         break;
       case '2023':
        // feeData =[feejan23,feefeb23];
-        allowanceData =[alwjan23,alwfeb23,alwmar23, alwapr23, alwmay23, alwjun23,alwjul23,alwogs23,alwsep23,alwoct23,alwnov23];
+        allowanceData =[alwjan23,alwfeb23,alwmar23, alwapr23, alwmay23, alwjun23,alwjul23,alwogs23,alwsep23,alwoct23,alwnov23,alwdec23];
         break;
       default:
         // Handle default case or show an error message
