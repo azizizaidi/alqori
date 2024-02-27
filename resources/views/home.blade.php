@@ -654,6 +654,7 @@ var feeoct23 = <?php echo $reportclasses->where('month','10-2023')->whereNull('d
 var feenov23 = <?php echo $reportclasses->where('month','11-2023')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
 var feedec23 = <?php echo $reportclasses->where('month','12-2023')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
 var feejan24 = <?php echo $reportclasses->where('month','01-2024')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
+var feefeb24 = <?php echo $reportclasses->where('month','02-2024')->whereNull('deleted_at')->sum('fee_student') ?? ''; ?>;
 
 var alwjan22 = <?php echo $reportclasses->where('month',null)->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
 var alwfeb22 = <?php echo $reportclasses->where('month','02-2022')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
@@ -680,6 +681,7 @@ var alwoct23 = <?php echo $reportclasses->where('month','10-2023')->whereNull('d
 var alwnov23 = <?php echo $reportclasses->where('month','11-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
 var alwdec23 = <?php echo $reportclasses->where('month','12-2023')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
 var alwjan24 = <?php echo $reportclasses->where('month','01-2024')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
+var alwfeb24 = <?php echo $reportclasses->where('month','02-2024')->whereNull('deleted_at')->sum('allowance') ?? ''; ?>;
   // Define the chart data and options
   var chartData = {
     labels: ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november','december'],
@@ -734,8 +736,8 @@ var alwjan24 = <?php echo $reportclasses->where('month','01-2024')->whereNull('d
         allowanceData =[alwjan23,alwfeb23,alwmar23,alwapr23,alwmay23,alwjun23,alwjul23,alwogs23,alwsep23,alwoct23,alwnov23,alwdec23];
         break;
         case '2024':
-        feeData =[feejan24];
-        allowanceData =[alwjan24];
+        feeData =[feejan24,feefeb24];
+        allowanceData =[alwjan24,alwfeb24];
         break;  
       default:
         // Handle default case or show an error message
