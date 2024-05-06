@@ -143,7 +143,7 @@ class ReportClassController extends Controller
                                       
        // dd( $registrar_id);
         $users = User::get();
-       //dd($reportClasses);
+      // dd($reportClasses[0]);
         
         return view('admin.reportClasses.indexstudent', compact('reportClasses', 'users'));
        } elseif(Auth::user()->roles->contains(1)){
@@ -157,9 +157,9 @@ class ReportClassController extends Controller
                                    
                      
                                       
-       // dd( $reportClasses);
+     //   dd( $reportClasses[0]);
         $users = User::get();
-      //return dd($reportClasses);
+    //  return dd($reportClasses);
         
         return view('admin.reportClasses.indexstudent', compact('reportClasses', 'users'));
         }

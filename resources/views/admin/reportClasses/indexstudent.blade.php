@@ -123,7 +123,7 @@
                             </td>
                            
                             <td>
-                                {{ $reportClass->registrar->name."". $reportClass->registrar->code  ?? '' }}
+                                {{ $reportClass->registrar->name ."". $reportClass->registrar->code  ?? '' }}
                             </td>
                               <td>
                                 {{ $reportClass->month ?? '' }}
