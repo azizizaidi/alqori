@@ -12,6 +12,7 @@
 
 namespace Composer\Command;
 
+use Composer\Advisory\Auditor;
 use Composer\Pcre\Preg;
 use Composer\Util\Filesystem;
 use Composer\Util\Platform;
@@ -512,6 +513,14 @@ EOT
                     return $val !== 'false' && (bool) $val;
                 },
             ],
+            'audit.abandoned' => [
+                static function ($val): bool {
+                    return in_array($val, [Auditor::ABANDONED_IGNORE, Auditor::ABANDONED_REPORT, Auditor::ABANDONED_FAIL], true);
+                },
+                static function ($val) {
+                    return $val;
+                },
+            ],
         ];
         $multiConfigValues = [
             'github-protocols' => [
@@ -556,7 +565,26 @@ EOT
                     return $vals;
                 },
             ],
+            'audit.ignore' => [
+                static function ($vals) {
+                    if (!is_array($vals)) {
+                        return 'array expected';
+                    }
+
+                    return true;
+                },
+                static function ($vals) {
+                    return $vals;
+                },
+            ],
         ];
+
+        // allow unsetting audit config entirely
+        if ($input->getOption('unset') && $settingKey === 'audit') {
+            $this->configSource->removeConfigSetting($settingKey);
+
+            return 0;
+        }
 
         if ($input->getOption('unset') && (isset($uniqueConfigValues[$settingKey]) || isset($multiConfigValues[$settingKey]))) {
             if ($settingKey === 'disable-tls' && $this->config->get('disable-tls')) {
@@ -743,8 +771,12 @@ EOT
                     foreach ($bits as $bit) {
                         $currentValue = $currentValue[$bit] ?? null;
                     }
-                    if (is_array($currentValue)) {
-                        $value = array_merge($currentValue, $value);
+                    if (is_array($currentValue) && is_array($value)) {
+                        if (array_is_list($currentValue) && array_is_list($value)) {
+                            $value = array_merge($currentValue, $value);
+                        } else {
+                            $value = $value + $currentValue;
+                        }
                     }
                 }
             }

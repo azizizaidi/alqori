@@ -2,7 +2,7 @@
     'theme' => null,
     'readyToLoad' => false,
 ])
-<div @isset($this->setUp['responsive']) x-data="tableResponsive" @endisset>
+<div @isset($this->setUp['responsive']) x-data="pgResponsive" @endisset>
     <table
         class="table power-grid-table {{ $theme->tableClass }}"
         style="{{ $theme->tableStyle }}"
@@ -17,6 +17,7 @@
             <tbody
                 class="{{ $theme->tbodyClass }}"
                 style="{{ $theme->tbodyStyle }}"
+                wire:key="tableBody-{{ uniqid() }}"
             >
                 {{ $rows }}
             </tbody>

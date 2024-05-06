@@ -35,9 +35,9 @@ class PostmarkApiTransport extends AbstractApiTransport
 
     private string $key;
 
-    private $messageStream;
+    private ?string $messageStream = null;
 
-    public function __construct(string $key, HttpClientInterface $client = null, EventDispatcherInterface $dispatcher = null, LoggerInterface $logger = null)
+    public function __construct(string $key, ?HttpClientInterface $client = null, ?EventDispatcherInterface $dispatcher = null, ?LoggerInterface $logger = null)
     {
         $this->key = $key;
 
