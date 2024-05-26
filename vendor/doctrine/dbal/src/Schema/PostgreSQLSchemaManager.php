@@ -463,6 +463,7 @@ SQL,
                 $length = null;
                 break;
 
+            case 'json':
             case 'text':
             case '_varchar':
             case 'varchar':
@@ -530,7 +531,6 @@ SQL,
             'precision'     => $precision,
             'scale'         => $scale,
             'fixed'         => $fixed,
-            'unsigned'      => false,
             'autoincrement' => $autoincrement,
             'comment'       => isset($tableColumn['comment']) && $tableColumn['comment'] !== ''
                 ? $tableColumn['comment']
@@ -539,7 +539,7 @@ SQL,
 
         $column = new Column($tableColumn['field'], Type::getType($type), $options);
 
-        if (isset($tableColumn['collation']) && ! empty($tableColumn['collation'])) {
+        if (! empty($tableColumn['collation'])) {
             $column->setPlatformOption('collation', $tableColumn['collation']);
         }
 
@@ -733,6 +733,7 @@ SQL;
     {
         $sql = <<<'SQL'
 SELECT c.relname,
+       CASE c.relpersistence WHEN 'u' THEN true ELSE false END as unlogged,
        obj_description(c.oid, 'pg_class') AS comment
 FROM pg_class c
      INNER JOIN pg_namespace n

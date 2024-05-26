@@ -358,7 +358,7 @@
                 @elseif( $value->total_hour_2 <= 8.9)
                 <td style="padding: 0px 7px; line-height: 20px;">RM{{ 55 * $value->total_hour_2 }}</td>
                 @elseif( $value->total_hour_2 >= 9)
-                <td style="padding: 0px 7px; line-height: 20px;">RM{{ 50 * $value->total_hour-2 }}</td>
+                <td style="padding: 0px 7px; line-height: 20px;">RM{{ 50 * $value->total_hour_2 }}</td>
                 @endif
 
                 @else
